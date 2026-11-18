@@ -46,3 +46,16 @@ Semua perubahan penting pada proyek dicatat dalam dokumen ini.
 ### Notes
 - Konten fikih, dalil, dan regulasi tetap memerlukan telaah sumber resmi dan pemeriksaan ahli sebelum dinyatakan tervalidasi.
 - Pengujian interaksi browser lintas perangkat masih perlu dilakukan pada deployment HTTPS.
+
+
+## [5.1.1] — 2026-11-18
+
+### Fixed
+- Sidebar navigation now preserves its own scroll position when moving between pages.
+- Scroll restoration is scoped to the destination path, so stale positions are discarded.
+- Browser back/forward cache (`pageshow`) is handled.
+- Modifier-click and links opened in a new tab do not overwrite the current tab's saved sidebar position.
+
+### Improved
+- Service Worker cache version bumped to `asisten-penghulu-v5.1.1`.
+- Added automated static checks for sidebar scroll persistence.

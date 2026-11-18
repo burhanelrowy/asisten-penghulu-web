@@ -7,7 +7,7 @@
 Platform web modular untuk memperkaya pengetahuan profesional penghulu melalui ensiklopedia regulasi, fikih munakahat, dalil, materi khutbah, nasihat perkawinan, dan alat bantu pembelajaran.
 
 <p>
-  <img src="https://img.shields.io/badge/version-5.1-176b52?style=flat-square" alt="Version 5.1">
+  <img src="https://img.shields.io/badge/version-5.1-176b52?style=flat-square" alt="Version 5.1.1">
   <img src="https://img.shields.io/badge/architecture-modular-2563eb?style=flat-square" alt="Modular architecture">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
@@ -16,7 +16,7 @@ Platform web modular untuk memperkaya pengetahuan profesional penghulu melalui e
   <img src="https://img.shields.io/badge/Deploy-Vercel%20%7C%20Netlify-111827?style=flat-square" alt="Vercel and Netlify">
 </p>
 
-**Bahasa:** Indonesia · **Platform:** Web · **Versi:** 5.1 · **Website:** [asistenpenghulu.vercel.app](https://asistenpenghulu.vercel.app)
+**Bahasa:** Indonesia · **Platform:** Web · **Versi:** 5.1.1 · **Website:** [asistenpenghulu.vercel.app](https://asistenpenghulu.vercel.app)
 
 </div>
 
@@ -234,7 +234,7 @@ Repository ini belum menyertakan file lisensi. Hak penggunaan, modifikasi, dan d
 
 <div align="center">
 
-**Asisten Penghulu Web v5.1**
+**Asisten Penghulu Web v5.1.1**
 
 *Professional knowledge tools for accurate and responsible marriage guidance.*
 

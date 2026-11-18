@@ -94,3 +94,21 @@ Paket v5.1 menyertakan skrip validasi statis dan GitHub Actions untuk pemeriksaa
 Source v5.0 memiliki struktur halaman dan referensi lokal yang rapi serta lolos pemeriksaan sintaks. Perbaikan v5.1 berfokus pada stabilitas cache offline, status navigasi ensiklopedia, penanganan tanggal, clipboard/cetak Bank Nasihat, metadata ruang lingkup, dan pemeriksaan statis berulang.
 
 Tidak ada fitur administrasi calon pengantin atau pencatatan nikah yang ditambahkan.
+
+
+## Patch lanjutan v5.1.1 — Sidebar scroll
+
+Ditemukan perilaku yang membuat daftar menu sidebar kembali ke posisi awal ketika pengguna berpindah halaman melalui tautan sidebar. Penyebabnya adalah arsitektur multi-page memuat ulang dokumen sehingga elemen `.sidebar-nav` dibuat ulang dengan `scrollTop` nol.
+
+Perbaikan:
+- Menyimpan `scrollTop` sidebar ke `sessionStorage` sebelum navigasi internal.
+- Menyimpan path tujuan agar posisi hanya dipulihkan pada halaman yang sesuai.
+- Memulihkan posisi setelah `pageshow` dan menunggu font/layout selesai.
+- Menghapus state setelah pemulihan untuk mencegah posisi lama digunakan pada navigasi berikutnya.
+- Tidak mengubah perilaku klik modifier atau tautan tab baru.
+
+Pengujian:
+- Validasi statis memastikan mekanisme simpan/pulih terpasang.
+- Seluruh 10 halaman menggunakan `.sidebar-nav` dan memuat `app-core.js`.
+- 9 file JavaScript lolos `node --check`.
+- Pengujian interaksi browser nyata masih diperlukan pada Preview Deployment Vercel.

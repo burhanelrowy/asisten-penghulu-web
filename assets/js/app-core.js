@@ -17,7 +17,85 @@
     /* ==========================================================================
        B. INITIALIZATION & NAVIGATION
        ========================================================================== */
+    const SIDEBAR_SCROLL_KEY = 'asisten-penghulu.sidebar-scroll.v1';
+
+    function initSidebarScrollPersistence() {
+      const sidebarNav = document.querySelector('.sidebar-nav');
+      if (!sidebarNav) return;
+
+      // Restore only when the saved position belongs to the page being opened.
+      // This also handles browser back/forward cache through the pageshow event.
+      const restoreSidebarPosition = () => {
+        let saved = null;
+        try {
+          saved = sessionStorage.getItem(SIDEBAR_SCROLL_KEY);
+        } catch (error) {
+          return;
+        }
+        if (!saved) return;
+
+        let state = null;
+        try {
+          state = JSON.parse(saved);
+        } catch (error) {
+          try { sessionStorage.removeItem(SIDEBAR_SCROLL_KEY); } catch (_) {}
+          return;
+        }
+
+        if (!state || state.destination !== window.location.pathname ||
+            !Number.isFinite(Number(state.scrollTop))) {
+          try { sessionStorage.removeItem(SIDEBAR_SCROLL_KEY); } catch (_) {}
+          return;
+        }
+
+        // Wait for layout/fonts to settle, then restore the sidebar's own scroll area.
+        const applyPosition = () => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              const maxScroll = Math.max(0, sidebarNav.scrollHeight - sidebarNav.clientHeight);
+              sidebarNav.scrollTop = Math.min(Math.max(0, Number(state.scrollTop)), maxScroll);
+              try { sessionStorage.removeItem(SIDEBAR_SCROLL_KEY); } catch (_) {}
+            });
+          });
+        };
+
+        if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function') {
+          document.fonts.ready.then(applyPosition).catch(applyPosition);
+        } else {
+          applyPosition();
+        }
+      };
+
+      // Save the scroll position before a normal same-tab sidebar navigation.
+      sidebarNav.addEventListener('click', event => {
+        const link = event.target.closest('a.nav-item[href]');
+        if (!link || event.defaultPrevented || event.button !== 0 ||
+            event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (link.target && link.target !== '_self') return;
+
+        let destination;
+        try {
+          destination = new URL(link.href, window.location.href);
+        } catch (error) {
+          return;
+        }
+        if (destination.origin !== window.location.origin) return;
+
+        try {
+          sessionStorage.setItem(SIDEBAR_SCROLL_KEY, JSON.stringify({
+            scrollTop: sidebarNav.scrollTop,
+            destination: destination.pathname
+          }));
+        } catch (error) {
+          // Navigation should continue even if browser storage is unavailable.
+        }
+      });
+
+      window.addEventListener('pageshow', restoreSidebarPosition);
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+      initSidebarScrollPersistence();
       initAppDates();
       const page = document.body.dataset.page || 'dashboard';
       if (page === 'wali') { renderWaliTreeSidebar(); loadWaliStep(0); }

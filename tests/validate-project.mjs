@@ -47,6 +47,13 @@ for (const relative of ["manifest.webmanifest", "vercel.json"]) {
   JSON.parse(fs.readFileSync(path.join(root, relative), "utf8"));
 }
 
+const appCore = fs.readFileSync(path.join(root, "assets", "js", "app-core.js"), "utf8");
+assert.ok(appCore.includes("SIDEBAR_SCROLL_KEY"), "Sidebar scroll persistence key is missing");
+assert.ok(appCore.includes("sessionStorage.setItem(SIDEBAR_SCROLL_KEY"), "Sidebar scroll position is not saved");
+assert.ok(appCore.includes("sessionStorage.getItem(SIDEBAR_SCROLL_KEY"), "Sidebar scroll position is not restored");
+assert.ok(appCore.includes("window.addEventListener('pageshow', restoreSidebarPosition)"),
+  "Sidebar scroll restoration must also handle browser pageshow/back-forward cache");
+
 const worker = fs.readFileSync(path.join(root, "sw.js"), "utf8");
 for (const required of [
   "/assets/js/data/knowledge.js",
@@ -61,4 +68,5 @@ const encyclopedia = fs.readFileSync(path.join(root, "pages", "ensiklopedia.html
 assert.ok(!/class=["']nav-item knowledge-nav active["']/.test(encyclopedia),
   "Encyclopedia category links must not all be statically active");
 
+assert.ok(fs.existsSync(path.join(root, "tests", "sidebar-scroll-smoke.mjs")), "Sidebar scroll regression test is missing");
 console.log(`Static validation passed: ${htmlFiles.length} HTML pages, ${jsFiles.length} JavaScript files, ${checkedRefs} local references.`);

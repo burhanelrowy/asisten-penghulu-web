@@ -1,4 +1,4 @@
-const CACHE_NAME = "asisten-penghulu-v5.1.0";
+const CACHE_NAME = "asisten-penghulu-v5.1.1";
 const SHELL = [
   "/",
   "/index.html",
