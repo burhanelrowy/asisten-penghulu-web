@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123e32">
+<meta name="description" content="Asisten Penghulu — alat bantu administrasi, fikih munakahat, dan materi kepenghuluan.">
+<title>Terjemah Mahar | Asisten Penghulu</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body data-page="mahar">
+<div class="version-strip">ASISTEN PENGHULU · VERSI 5.0 · WEB MODULAR</div>
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleMobileSidebar()"></div>
+<div class="app-layout">
+<aside class="app-sidebar" id="appSidebar">
+  <div class="sidebar-header">
+    <div class="brand-icon"><span aria-hidden="true">م</span></div>
+    <div><h1 class="brand-title">Asisten Penghulu</h1><p class="brand-subtitle">Pengetahuan &amp; Praktik Kepenghuluan</p></div>
+  </div>
+  <nav class="sidebar-nav">
+<div class="nav-label">Ruang Kerja</div>
+<a class="nav-item" href="../index.html"><span class="nav-glyph">⌂</span><span>Beranda</span></a>
+<a class="nav-item" href="../pages/wali.html"><span class="nav-glyph">♧</span><span>Cek Wali Nikah</span></a>
+<a class="nav-item" href="../pages/iddah.html"><span class="nav-glyph">◷</span><span>Kalkulator Iddah</span></a>
+<a class="nav-item active" href="../pages/mahar.html" aria-current="page"><span class="nav-glyph">◇</span><span>Terjemah Mahar</span></a>
+<a class="nav-item" href="../pages/akad.html"><span class="nav-glyph">✧</span><span>Lafaz Akad Nikah</span></a>
+<a class="nav-item" href="../pages/khutbah.html"><span class="nav-glyph">▤</span><span>Kumpulan Khutbah</span></a>
+<a class="nav-item" href="../pages/nasihat.html"><span class="nav-glyph">♡</span><span>Bank Nasihat Perkawinan</span></a>
+<a class="nav-item" href="../pages/konversi.html"><span class="nav-glyph">∑</span><span>Kalkulator & Konversi</span></a>
+<div class="nav-label">Pusat Pengetahuan</div>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=regulasi"><span class="nav-glyph">§</span><span>Ensiklopedia Regulasi</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=fikih"><span class="nav-glyph">ف</span><span>Ensiklopedia Fikih Munakahat</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=dalil"><span class="nav-glyph">۞</span><span>Ensiklopedia Dalil</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=problematika"><span class="nav-glyph">⚖</span><span>Problematika Akad</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=nasab-mahram"><span class="nav-glyph">∞</span><span>Ensiklopedia Nasab & Mahram</span></a>
+<a class="nav-item" href="../pages/referensi.html"><span class="nav-glyph">▤</span><span>Referensi Fikih &amp; KHI</span></a>
+</nav>
+  <div class="sidebar-footer">
+    <div class="offline-badge"><span class="pulse-dot"></span><span>Web · Offline setelah halaman tersimpan</span></div>
+    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.0 · Modular Web</div>
+  </div>
+</aside>
+<main class="app-main">
+  <header class="app-header">
+    <div class="header-left">
+      <button aria-label="Buka Menu" class="mobile-toggle" onclick="toggleMobileSidebar()"><span aria-hidden="true">☰</span></button>
+      <div class="page-title-badge" id="topPageTitle"><span aria-hidden="true">◇</span><span>Terjemah Mahar</span></div>
+    </div>
+    <div class="header-right">
+      <div class="date-badge"><span id="currentDateMasehi">Memuat...</span><span class="hijri" id="currentDateHijri">... H</span></div>
+      <button class="btn-header-print no-print" onclick="window.print()" title="Cetak Halaman"><span>⎙</span><span>Cetak</span></button>
+    </div>
+  </header>
+  <div class="content-area">
+    <div class="print-header"><p style="font-size:.85rem;margin-top:4px">Lembar Kerja Asisten Penghulu — Terjemah Mahar</p></div>
+    <section class="app-section active" id="section-mahar">
+<div class="card-header" style="border:none; padding:0; margin-bottom: 20px;">
+<div>
+<h2 style="font-family: var(--font-heading); color: var(--primary-dark); font-size: 1.5rem;">
+<i class="fa-solid fa-coins" style="color: var(--gold);"></i> Terjemah &amp; Perakit Mahar Nikah
+              </h2>
+<p style="font-size: 0.86rem; color: var(--text-muted);">
+                Penerjemah nominal angka mahar ke bahasa Arab (alfazh &amp; arqam), Inggris, kamus kosakata mahar, dan perakit naskah ijab kabul otomatis.
+              </p>
+</div>
+</div>
+<!-- Subtabs for Mahar Feature -->
+<div class="subtabs-bar">
+<button class="subtab-btn active" onclick="switchMaharSubtab('angka', this)">
+<i class="fa-solid fa-hashtag"></i> Terjemah Angka Terbilang
+            </button>
+<button class="subtab-btn" onclick="switchMaharSubtab('builder', this)">
+<i class="fa-solid fa-pen-nib"></i> Perakit Teks Mahar Lengkap
+            </button>
+<button class="subtab-btn mahar-dictionary-toggle" id="maharDictionaryToggle" type="button" aria-expanded="false" aria-controls="mahar-subtab-kamus" onclick="toggleMaharDictionary(this)">
+<i class="fa-solid fa-book"></i> <span>Kamus Kosakata Mahar</span> <i class="fa-solid fa-chevron-down mahar-toggle-chevron"></i>
+</button>
+</div>
+<!-- SUBTAB 1: NUMBER TRANSLATOR -->
+<div class="subtab-pane active" id="mahar-subtab-angka">
+<div class="card">
+<div class="card-title">
+<i class="fa-solid fa-calculator"></i>
+<span>Konversi Nilai Nominal Mahar ke Multi-Bahasa</span>
+</div>
+<p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 16px;">
+                Masukkan nominal mahar dan pilih mata uang. Pilihan ini mengubah penyebutan mata uang pada hasil terjemahan, bukan melakukan konversi kurs.
+              </p>
+<div class="form-group">
+<label class="form-label" for="maharCurrencySelect">Mata uang mahar:</label>
+<select class="form-select" id="maharCurrencySelect" onchange="translateMaharNumber()">
+<option value="IDR">Rupiah Indonesia (IDR)</option>
+<option value="USD">Dolar Amerika Serikat (USD)</option>
+<option value="SAR">Riyal Arab Saudi (SAR)</option>
+<option value="MYR">Ringgit Malaysia (MYR)</option>
+<option value="SGD">Dolar Singapura (SGD)</option>
+<option value="AED">Dirham Uni Emirat Arab (AED)</option>
+<option value="EUR">Euro (EUR)</option>
+<option value="GBP">Pound Sterling (GBP)</option>
+<option value="AUD">Dolar Australia (AUD)</option>
+<option value="CAD">Dolar Kanada (CAD)</option>
+<option value="CHF">Franc Swiss (CHF)</option>
+<option value="JPY">Yen Jepang (JPY)</option>
+<option value="CNY">Yuan Renminbi Tiongkok (CNY)</option>
+<option value="INR">Rupee India (INR)</option>
+<option value="BND">Dolar Brunei (BND)</option>
+<option value="QAR">Riyal Qatar (QAR)</option>
+<option value="KWD">Dinar Kuwait (KWD)</option>
+<option value="BHD">Dinar Bahrain (BHD)</option>
+<option value="OMR">Rial Oman (OMR)</option>
+<option value="TRY">Lira Turki (TRY)</option>
+<option value="THB">Baht Thailand (THB)</option>
+<option value="PHP">Peso Filipina (PHP)</option>
+<option value="PKR">Rupee Pakistan (PKR)</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label" for="maharNumberInput">Masukkan nominal angka:</label>
+<div style="display: flex; gap: 10px; align-items:center;">
+<span id="maharCurrencySymbol" style="background: #f1f5f3; border: 1.5px solid var(--border-color); padding: 10px 16px; border-radius: var(--radius-md); font-weight: 700; color: var(--primary-dark); min-width:64px; text-align:center;">Rp</span>
+<input class="form-control" id="maharNumberInput" min="0" oninput="translateMaharNumber()" placeholder="Contoh: 1000000" step="1" type="number" value="1000000"/>
+</div>
+</div>
+<!-- Quick Presets -->
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;">
+<span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted); align-self: center;">Pilihan Cepat:</span>
+<button class="btn btn-outline btn-sm" onclick="setMaharPreset(100000)">100.000</button>
+<button class="btn btn-outline btn-sm" onclick="setMaharPreset(500000)">500.000</button>
+<button class="btn btn-outline btn-sm" onclick="setMaharPreset(1000000)">1.000.000</button>
+<button class="btn btn-outline btn-sm" onclick="setMaharPreset(5000000)">5.000.000</button>
+<button class="btn btn-outline btn-sm" onclick="setMaharPreset(10000000)">10.000.000</button>
+<button class="btn btn-outline btn-sm" onclick="setMaharPreset(50000000)">50.000.000</button>
+</div>
+<!-- Results Rows -->
+<div>
+<!-- Indonesia -->
+<div class="translation-result-row">
+<span class="lang-badge" style="background: #fee2e2; color: #991b1b;">Indonesia</span>
+<div class="trans-text" id="resTerbilangId">Satu juta rupiah</div>
+<button class="btn btn-outline btn-sm" onclick="copyText('resTerbilangId')" title="Salin"><i class="fa-regular fa-copy"></i></button>
+</div>
+<!-- Arabic Numerals -->
+<div class="translation-result-row">
+<span class="lang-badge" style="background: #e0f2fe; color: #075985;">Angka Arab</span>
+<div class="trans-text arabic" id="resArabicNumerals">١٬٠٠٠٬٠٠٠ رُوبِيَّةٍ</div>
+<button class="btn btn-outline btn-sm" onclick="copyText('resArabicNumerals')" title="Salin"><i class="fa-regular fa-copy"></i></button>
+</div>
+<!-- Arabic Words (Tafqit) -->
+<div class="translation-result-row">
+<span class="lang-badge" style="background: #e8f5ed; color: #166534;">Lafaz Arab</span>
+<div class="trans-text arabic" id="resArabicWords">مِلْيُونُ رُوبِيَّةٍ</div>
+<button class="btn btn-outline btn-sm" onclick="copyText('resArabicWords')" title="Salin"><i class="fa-regular fa-copy"></i></button>
+</div>
+<!-- English -->
+<div class="translation-result-row">
+<span class="lang-badge" style="background: #fef3c7; color: #92400e;">Inggris</span>
+<div class="trans-text" id="resEnglishWords">One million rupiahs</div>
+<button class="btn btn-outline btn-sm" onclick="copyText('resEnglishWords')" title="Salin"><i class="fa-regular fa-copy"></i></button>
+</div>
+<!-- Malay -->
+<div class="translation-result-row">
+<span class="lang-badge" style="background: #ede9fe; color: #5b21b6;">Melayu</span>
+<div class="trans-text" id="resMalayWords">Satu juta rupiah</div>
+<button class="btn btn-outline btn-sm" onclick="copyText('resMalayWords')" title="Salin"><i class="fa-regular fa-copy"></i></button>
+</div>
+</div>
+</div>
+</div>
+<!-- SUBTAB 2: MAHAR SENTENCE BUILDER -->
+<div class="subtab-pane" id="mahar-subtab-builder">
+<div class="card">
+<div class="card-title">
+<i class="fa-solid fa-cubes"></i>
+<span>Perakit Redaksi Mahar Komprehensif</span>
+</div>
+<p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 20px;">
+                Pilih kombinasi benda mahar untuk menghasilkan kalimat deklarasi maskawin resmi dalam 3 bahasa.
+              </p>
+<div class="grid-2">
+<div>
+<div class="form-group">
+<label class="form-label">Komponen 1: Alat Ibadah / Al-Qur'an</label>
+<select class="form-select" id="bldItemShalat" onchange="buildMaharSentence()">
+<option value="none">-- Tanpa Alat Ibadah --</option>
+<option selected="" value="sholat">Seperangkat Alat Shalat</option>
+<option value="quran">Mushaf Al-Qur'an</option>
+<option value="sholat_quran">Seperangkat Alat Shalat dan Mushaf Al-Qur'an</option>
+<option value="sajadah">Sajadah dan Mukenah</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">Komponen 2: Uang Tunai</label>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:8px;">
+<select aria-label="Mata uang komponen uang tunai" class="form-select" id="bldCashCurrency" onchange="buildMaharSentence()">
+<option value="IDR">IDR - Rupiah</option><option value="USD">USD - Dolar AS</option><option value="SAR">SAR - Riyal Saudi</option><option value="MYR">MYR - Ringgit</option><option value="SGD">SGD - Dolar Singapura</option><option value="AED">AED - Dirham</option><option value="EUR">EUR - Euro</option><option value="GBP">GBP - Pound</option><option value="AUD">AUD - Dolar Australia</option><option value="CAD">CAD - Dolar Kanada</option><option value="CHF">CHF - Franc Swiss</option><option value="JPY">JPY - Yen</option><option value="CNY">CNY - Yuan</option><option value="INR">INR - Rupee India</option><option value="BND">BND - Dolar Brunei</option><option value="QAR">QAR - Riyal Qatar</option><option value="KWD">KWD - Dinar Kuwait</option><option value="BHD">BHD - Dinar Bahrain</option><option value="OMR">OMR - Rial Oman</option><option value="TRY">TRY - Lira Turki</option><option value="THB">THB - Baht</option><option value="PHP">PHP - Peso Filipina</option><option value="PKR">PKR - Rupee Pakistan</option>
+</select>
+<input class="form-control" id="bldCashAmount" min="0" oninput="buildMaharSentence()" placeholder="Contoh: 500000" step="1" type="number" value="500000"/>
+</div>
+<div class="form-hint">Isi 0 jika tidak ada komponen uang</div>
+</div>
+</div>
+<div>
+<div class="form-group">
+<label class="form-label">Komponen 3: Logam Mulia / Emas / Perhiasan</label>
+<div style="display: flex; gap: 8px;">
+<select class="form-select" id="bldGoldType" onchange="buildMaharSentence()" style="flex: 1.2;">
+<option value="none">-- Tanpa Emas --</option>
+<option selected="" value="cincin_emas">Cincin Emas</option>
+<option value="logam_mulia">Logam Mulia (Emas Batangan)</option>
+<option value="kalung_emas">Kalung Emas</option>
+<option value="gelang_emas">Gelang Emas</option>
+<option value="cincin_perak">Cincin Perak</option>
+</select>
+<input class="form-control" id="bldGoldWeight" oninput="buildMaharSentence()" placeholder="Gram" step="0.1" style="width: 100px;" type="number" value="5"/>
+<span style="align-self: center; font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Gram</span>
+</div>
+</div>
+<div class="form-group">
+<label class="form-label">Status Pembayaran Mahar:</label>
+<select class="form-select" id="bldPayStatus" onchange="buildMaharSentence()">
+<option selected="" value="tunai">Dibayar Tunai (Haalan / نَقْدًا)</option>
+<option value="hutang">Hutang / Ditangguhkan (Mu'ajjalan / مُؤَجَّلاً)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Result Preview -->
+<div style="margin-top: 24px; padding-top: 20px; border-top: 2px dashed var(--border-color);">
+<div class="card-title" style="font-size: 1rem; margin-bottom: 14px;">
+<i class="fa-solid fa-scroll"></i>
+<span>Naskah Redaksi Maskawin Terpadu</span>
+</div>
+<!-- Indo -->
+<div style="margin-bottom: 14px;">
+<span class="lang-badge" style="background:#fee2e2; color:#991b1b;">Bahasa Indonesia</span>
+<div class="script-text-id" id="bldResultId" style="margin-top: 6px;">
+                    Seperangkat alat shalat, uang tunai sebesar Rp 500.000 (lima ratus ribu rupiah), dan cincin emas seberat 5 gram dibayar tunai.
+                  </div>
+<button class="btn btn-outline btn-sm" onclick="copyText('bldResultId')"><i class="fa-regular fa-copy"></i> Salin Indonesia</button>
+</div>
+<!-- Arab -->
+<div style="margin-bottom: 14px;">
+<span class="lang-badge" style="background:#e8f5ed; color:#166534;">Bahasa Arab</span>
+<div class="script-text-ar" id="bldResultAr" style="margin-top: 6px;">
+                    مَجْمُوعَةُ أَدَوَاتِ الصَّلَاةِ، وَنَقْدٌ مَالِيٌّ قَدْرُهُ خَمْسُمِائَةِ أَلْفِ رُوبِيَّةٍ، وَخَاتَمُ ذَهَبٍ بِوَزْنِ خَمْسَةِ غَرَامَاتٍ حَالاً.
+                  </div>
+<button class="btn btn-outline btn-sm" onclick="copyText('bldResultAr')"><i class="fa-regular fa-copy"></i> Salin Arab</button>
+</div>
+<!-- English -->
+<div>
+<span class="lang-badge" style="background:#fef3c7; color:#92400e;">Bahasa Inggris</span>
+<div class="script-text-id" id="bldResultEn" style="margin-top: 6px; border-left-color: var(--gold);">
+                    A set of prayer equipment, cash in the amount of 500,000 rupiahs, and a 5-gram gold ring paid in cash.
+                  </div>
+<button class="btn btn-outline btn-sm" onclick="copyText('bldResultEn')"><i class="fa-regular fa-copy"></i> Salin Inggris</button>
+</div>
+</div>
+</div>
+</div>
+<!-- SUBTAB 3: DICTIONARY OF MAHAR ITEMS -->
+<div class="subtab-pane" id="mahar-subtab-kamus">
+<div class="card">
+<div class="card-title">
+<i class="fa-solid fa-book-bookmark"></i>
+<span>Kamus Kosakata Mahar 3 Bahasa</span>
+</div>
+<p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 16px;">
+                Daftar terjemahan istilah benda-benda mahar umum dari Bahasa Indonesia ke Bahasa Arab dan Bahasa Inggris.
+              </p>
+<div class="search-input-wrapper">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input class="form-control" id="maharSearchInput" oninput="filterMaharDictionary()" placeholder="Cari istilah mahar (cth: cincin, mukenah, emas, tanah)..." type="text"/>
+</div>
+<div class="dictionary-table-wrap">
+<table class="dictionary-table" id="maharDictTable">
+<thead>
+<tr>
+<th style="width: 30%;">Bahasa Indonesia</th>
+<th style="width: 38%; text-align: right;">Bahasa Arab (العربية)</th>
+<th style="width: 32%;">Bahasa Inggris</th>
+</tr>
+</thead>
+<tbody id="maharDictBody">
+<!-- Populated by JS -->
+</tbody>
+</table>
+</div>
+<!-- Satuan Berat Syar'i Box -->
+<div class="dalil-box" style="margin-top: 20px;">
+<div class="dalil-title"><i class="fa-solid fa-scale-unbalanced-flip"></i> Konversi Satuan Berat Syar'i</div>
+<div style="font-size: 0.85rem; line-height: 1.6;">
+                  • <strong>Gram (غرام):</strong> Satuan internasional standar.<br/>
+                  • <strong>Mitsqal Syar'i (مثقال):</strong> 1 Mitsqal setara dengan <strong>4,25 gram emas murni</strong> (24 karat).<br/>
+                  • <strong>Dirham Perak Syar'i (درهم):</strong> 1 Dirham setara dengan <strong>2,975 gram perak murni</strong>.<br/>
+                  • <strong>Mahar Minimum Sunnah:</strong> Fiqh madzhab menganjurkan mahar yang bernilai dan tidak memberatkan (HR. Abu Dawud: <em>"Sebaik-baik mahar adalah yang paling mudah"</em>).
+                </div>
+</div>
+</div>
+</div>
+</section>
+  </div>
+  <footer class="app-footer">
+    <div><strong>Asisten Penghulu v5.0</strong> · Aplikasi web modular</div>
+    <div class="footer-disclaimer">Aplikasi ini merupakan alat bantu kerja. Keputusan administratif dan penetapan hukum tetap mengacu pada peraturan yang berlaku serta kewenangan pejabat yang berwenang.</div>
+    <div class="footer-v4">Asisten Penghulu Modular Web v5.0</div>
+  </footer>
+</main>
+</div>
+<div id="toast-notification"><span aria-hidden="true">✓</span><span id="toast-message">Teks berhasil disalin.</span></div>
+<script src="../assets/js/data/mahar-data.js"></script><script src="../assets/js/app-core.js"></script>
+<script src="../assets/js/pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123e32">
+<meta name="description" content="Asisten Penghulu — alat bantu administrasi, fikih munakahat, dan materi kepenghuluan.">
+<title>Cek Wali Nikah | Asisten Penghulu</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/app.css"><link rel="stylesheet" href="../assets/css/modules/wali.css">
+</head>
+<body data-page="wali">
+<div class="version-strip">ASISTEN PENGHULU · VERSI 5.0 · WEB MODULAR</div>
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleMobileSidebar()"></div>
+<div class="app-layout">
+<aside class="app-sidebar" id="appSidebar">
+  <div class="sidebar-header">
+    <div class="brand-icon"><span aria-hidden="true">م</span></div>
+    <div><h1 class="brand-title">Asisten Penghulu</h1><p class="brand-subtitle">Pengetahuan &amp; Praktik Kepenghuluan</p></div>
+  </div>
+  <nav class="sidebar-nav">
+<div class="nav-label">Ruang Kerja</div>
+<a class="nav-item" href="../index.html"><span class="nav-glyph">⌂</span><span>Beranda</span></a>
+<a class="nav-item active" href="../pages/wali.html" aria-current="page"><span class="nav-glyph">♧</span><span>Cek Wali Nikah</span></a>
+<a class="nav-item" href="../pages/iddah.html"><span class="nav-glyph">◷</span><span>Kalkulator Iddah</span></a>
+<a class="nav-item" href="../pages/mahar.html"><span class="nav-glyph">◇</span><span>Terjemah Mahar</span></a>
+<a class="nav-item" href="../pages/akad.html"><span class="nav-glyph">✧</span><span>Lafaz Akad Nikah</span></a>
+<a class="nav-item" href="../pages/khutbah.html"><span class="nav-glyph">▤</span><span>Kumpulan Khutbah</span></a>
+<a class="nav-item" href="../pages/nasihat.html"><span class="nav-glyph">♡</span><span>Bank Nasihat Perkawinan</span></a>
+<a class="nav-item" href="../pages/konversi.html"><span class="nav-glyph">∑</span><span>Kalkulator & Konversi</span></a>
+<div class="nav-label">Pusat Pengetahuan</div>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=regulasi"><span class="nav-glyph">§</span><span>Ensiklopedia Regulasi</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=fikih"><span class="nav-glyph">ف</span><span>Ensiklopedia Fikih Munakahat</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=dalil"><span class="nav-glyph">۞</span><span>Ensiklopedia Dalil</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=problematika"><span class="nav-glyph">⚖</span><span>Problematika Akad</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=nasab-mahram"><span class="nav-glyph">∞</span><span>Ensiklopedia Nasab & Mahram</span></a>
+<a class="nav-item" href="../pages/referensi.html"><span class="nav-glyph">▤</span><span>Referensi Fikih &amp; KHI</span></a>
+</nav>
+  <div class="sidebar-footer">
+    <div class="offline-badge"><span class="pulse-dot"></span><span>Web · Offline setelah halaman tersimpan</span></div>
+    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.0 · Modular Web</div>
+  </div>
+</aside>
+<main class="app-main">
+  <header class="app-header">
+    <div class="header-left">
+      <button aria-label="Buka Menu" class="mobile-toggle" onclick="toggleMobileSidebar()"><span aria-hidden="true">☰</span></button>
+      <div class="page-title-badge" id="topPageTitle"><span aria-hidden="true">♧</span><span>Cek Wali Nikah</span></div>
+    </div>
+    <div class="header-right">
+      <div class="date-badge"><span id="currentDateMasehi">Memuat...</span><span class="hijri" id="currentDateHijri">... H</span></div>
+      <button class="btn-header-print no-print" onclick="window.print()" title="Cetak Halaman"><span>⎙</span><span>Cetak</span></button>
+    </div>
+  </header>
+  <div class="content-area">
+    <div class="print-header"><p style="font-size:.85rem;margin-top:4px">Lembar Kerja Asisten Penghulu — Cek Wali Nikah</p></div>
+    <section class="app-section active" id="section-wali">
+<div class="card-header" style="border:none; padding:0; margin-bottom: 20px;">
+<div>
+<h2 style="font-family: var(--font-heading); color: var(--primary-dark); font-size: 1.5rem;">
+<i class="fa-solid fa-people-arrows" style="color: var(--gold);"></i> Penentuan Wali Nikah
+              </h2>
+<p style="font-size: 0.86rem; color: var(--text-muted);">
+                Verifikasi urutan wali nasab dari tingkat terdekat (aqrab) ke tingkat terjauh (ab'ad). Jika syarat gugur, hak wali berpindah ke urutan berikutnya.
+              </p>
+</div>
+<button class="btn btn-outline btn-sm" onclick="resetWaliChecker()">
+<i class="fa-solid fa-rotate-left"></i> Mulai Ulang
+            </button>
+</div>
+<div class="grid-sidebar-layout">
+<!-- Left: Interactive Form -->
+<div>
+<div class="wali-stepper">
+<div class="wali-step-info">
+<span class="step-pill" id="waliStepPill">Tingkat 1 dari 17</span>
+<div>
+<div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Calon Wali Saat Ini:</div>
+<div class="wali-current-target" id="waliCurrentName">Ayah Kandung</div>
+</div>
+</div>
+<div class="badge badge-primary" id="waliRelationshipBadge">Garis Nasab Utama</div>
+</div>
+<!-- Questionnaire Container -->
+<div class="card" id="waliQuestionCard">
+<div class="card-header">
+<div class="card-title">
+<i class="fa-solid fa-list-check"></i>
+<span>Verifikasi Syarat Wali Nasab dan Kehadiran</span>
+</div>
+<span class="badge badge-gold">Wajib Terpenuhi Semua</span>
+</div>
+<!-- Q1 -->
+<div class="question-row">
+<div>
+<div class="question-text">1. Apakah calon wali masih hidup?</div>
+<div class="question-desc">Jika wafat, lanjutkan pemeriksaan urutan berikutnya; hubungan nasab dan bukti tetap harus diverifikasi.</div>
+</div>
+<div class="toggle-group">
+<button class="toggle-btn yes active" id="btn-q1-yes" onclick="setWaliAnswer('q1', true)">Ya (Hidup)</button>
+<button class="toggle-btn no" id="btn-q1-no" onclick="setWaliAnswer('q1', false)">Wafat</button>
+</div>
+</div>
+<!-- Q2 -->
+<div class="question-row">
+<div>
+<div class="question-text">2. Apakah calon wali laki-laki dan beragama Islam?</div>
+<div class="question-desc">Syarat wali nasab menurut PMA Nomor 30 Tahun 2024 Pasal 12 ayat (2) adalah laki-laki dan beragama Islam.</div>
+</div>
+<div class="toggle-group">
+<button class="toggle-btn yes active" id="btn-q2-yes" onclick="setWaliAnswer('q2', true)">Ya (Laki-laki &amp; Muslim)</button>
+<button class="toggle-btn no" id="btn-q2-no" onclick="setWaliAnswer('q2', false)">Bukan</button>
+</div>
+</div>
+<!-- Q3 -->
+<div class="question-row">
+<div>
+<div class="question-text">3. Apakah calon wali baligh dan berakal sehat?</div>
+<div class="question-desc">Anak kecil dan orang yang hilang akal/gila atau pikun tidak berhak menikahkan.</div>
+</div>
+<div class="toggle-group">
+<button class="toggle-btn yes active" id="btn-q3-yes" onclick="setWaliAnswer('q3', true)">Ya (Baligh &amp; Berakal)</button>
+<button class="toggle-btn no" id="btn-q3-no" onclick="setWaliAnswer('q3', false)">Tidak</button>
+</div>
+</div>
+<!-- Q4 -->
+<div class="question-row">
+<div>
+<div class="question-text">4. Apakah calon wali memenuhi syarat adil?</div>
+<div class="question-desc">Syarat wali nasab menurut PMA Nomor 30 Tahun 2024 Pasal 12 ayat (2) huruf e adalah adil. Kondisi ihram, bila relevan, perlu diperiksa tersendiri menurut pedoman fikih.</div>
+</div>
+<div class="toggle-group">
+<button class="toggle-btn yes active" id="btn-q4-yes" onclick="setWaliAnswer('q4', true)">Ya (Memenuhi syarat adil)</button>
+<button class="toggle-btn no" id="btn-q4-no" onclick="setWaliAnswer('q4', false)">Tidak memenuhi / belum terverifikasi</button>
+</div>
+</div>
+<!-- Q5 -->
+<div class="question-row">
+<div>
+<div class="question-text">5. Apakah wali hadir saat akad atau taukil wali telah dibuat sesuai prosedur?</div>
+<div class="question-desc">Jika tidak hadir, periksa surat taukil wali di hadapan PPN sesuai domisili/keberadaan wali dan disaksikan 2 orang sebagaimana Pasal 12 ayat (5). Jarak saja tidak otomatis menggugurkan wali.</div>
+</div>
+<div class="toggle-group">
+<button class="toggle-btn yes active" id="btn-q5-yes" onclick="setWaliAnswer('q5', true)">Ya (Hadir/Taukil sah)</button>
+<button class="toggle-btn no" id="btn-q5-no" onclick="setWaliAnswer('q5', false)">Tidak hadir/Taukil belum ada</button>
+</div>
+</div>
+<div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
+<button class="btn btn-outline" disabled="" id="btnWaliPrev" onclick="prevWaliLevel()">
+<i class="fa-solid fa-chevron-left"></i> Tingkat Sebelumnya
+                  </button>
+<button class="btn btn-primary" onclick="evaluateCurrentWali()">
+<span>Evaluasi Hasil Pemeriksaan Awal</span>
+<i class="fa-solid fa-check"></i>
+</button>
+</div>
+</div>
+<!-- Result Area -->
+<div class="wali-result-box" id="waliResultBox">
+<div style="display: flex; align-items: flex-start; gap: 16px;">
+<div id="waliResultIcon" style="font-size: 2.2rem; color: #059669;">
+<i class="fa-solid fa-circle-check"></i>
+</div>
+<div style="flex: 1;">
+<h3 id="waliResultTitle" style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--primary-dark);">
+                      Hasil Pemeriksaan Awal
+                    </h3>
+<p id="waliResultExplanation" style="margin-top: 6px; font-size: 0.9rem; line-height: 1.6;">
+                      Hasil pemeriksaan awal akan ditampilkan di sini. Verifikasi dokumen dan ketentuan oleh petugas tetap diperlukan.
+                    </p>
+<div class="dalil-box" id="waliResultNotes" style="margin-top: 14px; background: rgba(255,255,255,0.7);">
+<!-- dynamic note -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Complete Hierarchy Tree Reference -->
+<div>
+<div class="card" style="padding: 20px;">
+<div class="card-title" style="font-size: 1rem; margin-bottom: 12px;">
+<i class="fa-solid fa-list-ol"></i>
+<span>Urutan Hierarki Wali Nasab</span>
+</div>
+<p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">
+                  Urutan hubungan wali nasab yang digunakan dalam alat bantu ini. Verifikasi penerapannya berdasarkan regulasi dan ketentuan fikih yang relevan:
+                </p>
+<ul class="wali-tree-list" id="waliTreeListContainer">
+<!-- Populated by JS -->
+</ul>
+<div style="margin-top: 16px; padding: 12px; background: #fff8e6; border-radius: var(--radius-md); border: 1px solid #f2e2a8; font-size: 0.78rem; color: #855e05;">
+<i class="fa-solid fa-circle-info"></i> <strong>Wali Hakim:</strong> Jika wali nasab tidak ada atau terdapat keadaan yang memenuhi ketentuan penggunaan wali hakim, hak perwalian berpindah kepada <em>Wali Hakim</em> (Kepala KUA yang ditunjuk Menteri Agama).
+                </div>
+</div>
+</div>
+</div>
+</section>
+  </div>
+  <footer class="app-footer">
+    <div><strong>Asisten Penghulu v5.0</strong> · Aplikasi web modular</div>
+    <div class="footer-disclaimer">Aplikasi ini merupakan alat bantu kerja. Keputusan administratif dan penetapan hukum tetap mengacu pada peraturan yang berlaku serta kewenangan pejabat yang berwenang.</div>
+    <div class="footer-v4">Asisten Penghulu Modular Web v5.0</div>
+  </footer>
+</main>
+</div>
+<div id="toast-notification"><span aria-hidden="true">✓</span><span id="toast-message">Teks berhasil disalin.</span></div>
+<script src="../assets/js/data/wali-data.js"></script><script src="../assets/js/app-core.js"></script>
+<script src="../assets/js/pwa.js"></script>
+</body>
+</html>

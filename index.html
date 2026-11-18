@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123e32">
+<meta name="description" content="Asisten Penghulu — alat bantu administrasi, fikih munakahat, dan materi kepenghuluan.">
+<title>Beranda | Asisten Penghulu</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-page="dashboard">
+<div class="version-strip">ASISTEN PENGHULU · VERSI 5.0 · WEB MODULAR</div>
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleMobileSidebar()"></div>
+<div class="app-layout">
+<aside class="app-sidebar" id="appSidebar">
+  <div class="sidebar-header">
+    <div class="brand-icon"><span aria-hidden="true">م</span></div>
+    <div><h1 class="brand-title">Asisten Penghulu</h1><p class="brand-subtitle">Pengetahuan &amp; Praktik Kepenghuluan</p></div>
+  </div>
+  <nav class="sidebar-nav">
+<div class="nav-label">Ruang Kerja</div>
+<a class="nav-item active" href="index.html" aria-current="page"><span class="nav-glyph">⌂</span><span>Beranda</span></a>
+<a class="nav-item" href="pages/wali.html"><span class="nav-glyph">♧</span><span>Cek Wali Nikah</span></a>
+<a class="nav-item" href="pages/iddah.html"><span class="nav-glyph">◷</span><span>Kalkulator Iddah</span></a>
+<a class="nav-item" href="pages/mahar.html"><span class="nav-glyph">◇</span><span>Terjemah Mahar</span></a>
+<a class="nav-item" href="pages/akad.html"><span class="nav-glyph">✧</span><span>Lafaz Akad Nikah</span></a>
+<a class="nav-item" href="pages/khutbah.html"><span class="nav-glyph">▤</span><span>Kumpulan Khutbah</span></a>
+<a class="nav-item" href="pages/nasihat.html"><span class="nav-glyph">♡</span><span>Bank Nasihat Perkawinan</span></a>
+<a class="nav-item" href="pages/konversi.html"><span class="nav-glyph">∑</span><span>Kalkulator & Konversi</span></a>
+<div class="nav-label">Pusat Pengetahuan</div>
+<a class="nav-item knowledge-nav" href="pages/ensiklopedia.html?category=regulasi"><span class="nav-glyph">§</span><span>Ensiklopedia Regulasi</span></a>
+<a class="nav-item knowledge-nav" href="pages/ensiklopedia.html?category=fikih"><span class="nav-glyph">ف</span><span>Ensiklopedia Fikih Munakahat</span></a>
+<a class="nav-item knowledge-nav" href="pages/ensiklopedia.html?category=dalil"><span class="nav-glyph">۞</span><span>Ensiklopedia Dalil</span></a>
+<a class="nav-item knowledge-nav" href="pages/ensiklopedia.html?category=problematika"><span class="nav-glyph">⚖</span><span>Problematika Akad</span></a>
+<a class="nav-item knowledge-nav" href="pages/ensiklopedia.html?category=nasab-mahram"><span class="nav-glyph">∞</span><span>Ensiklopedia Nasab & Mahram</span></a>
+<a class="nav-item" href="pages/referensi.html"><span class="nav-glyph">▤</span><span>Referensi Fikih &amp; KHI</span></a>
+</nav>
+  <div class="sidebar-footer">
+    <div class="offline-badge"><span class="pulse-dot"></span><span>Web · Offline setelah halaman tersimpan</span></div>
+    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.0 · Modular Web</div>
+  </div>
+</aside>
+<main class="app-main">
+  <header class="app-header">
+    <div class="header-left">
+      <button aria-label="Buka Menu" class="mobile-toggle" onclick="toggleMobileSidebar()"><span aria-hidden="true">☰</span></button>
+      <div class="page-title-badge" id="topPageTitle"><span aria-hidden="true">⌂</span><span>Beranda</span></div>
+    </div>
+    <div class="header-right">
+      <div class="date-badge"><span id="currentDateMasehi">Memuat...</span><span class="hijri" id="currentDateHijri">... H</span></div>
+      <button class="btn-header-print no-print" onclick="window.print()" title="Cetak Halaman"><span>⎙</span><span>Cetak</span></button>
+    </div>
+  </header>
+  <div class="content-area">
+    <div class="print-header"><p style="font-size:.85rem;margin-top:4px">Lembar Kerja Asisten Penghulu — Beranda</p></div>
+    <section class="app-section active" id="section-dashboard">
+<!-- Hero Banner -->
+<div class="hero-banner">
+<div class="hero-greeting">Ahlan wa Sahlan • Sistem Asisten Penghulu</div>
+<h2 class="hero-title">Selamat Bertugas, Bapak Penghulu</h2>
+<p class="hero-desc">Ruang kerja dan perpustakaan pengetahuan untuk mendukung tugas Penghulu: alat bantu, regulasi, fikih munakahat, dalil, dan studi kasus dalam satu aplikasi offline.</p>
+<div class="hero-dates">
+<div class="hero-date-chip">
+<i class="fa-regular fa-calendar-check"></i>
+<span id="dashMasehiText">Kamis, 29 Oktober 2026</span>
+</div>
+<div class="hero-date-chip">
+<i class="fa-solid fa-moon"></i>
+<span id="dashHijriText">18 Jumadil Ula 1448 H</span>
+</div>
+<div class="hero-date-chip">
+<i class="fa-solid fa-shield-halved"></i>
+<span>Sesuai KHI &amp; PMA 30/2024</span>
+</div>
+<div class="hero-date-chip">✦ 17 modul • Offline</div></div>
+</div><div class="v4-welcome-grid"><div class="v4-welcome-card"><div class="eyebrow">PUSAT PENGETAHUAN</div><h3>Perluas wawasan kepenghuluan</h3><p>Telusuri regulasi, fikih, dalil, istilah, panduan praktik, dan pembelajaran kasus.</p><button class="v4-primary" onclick="window.location.href='pages/ensiklopedia.html?category=regulasi'">Jelajahi ensiklopedia <span>→</span></button></div><div class="v4-welcome-card v4-welcome-soft"><div class="eyebrow">PENCARIAN CEPAT</div><h3>Temukan materi</h3><p>Cari kata kunci dari seluruh lima bidang pengetahuan.</p><div class="dash-search"><input id="dashboardKnowledgeSearch" placeholder="Contoh: wali adhal, Pasal 12…" type="search"/><button onclick="searchKnowledgeFromDashboard()">Cari</button></div></div></div>
+<!-- Quick Statistics Summary -->
+<div class="stats-row">
+<div class="stat-card">
+<div class="stat-icon gold">
+<i class="fa-solid fa-sitemap"></i>
+</div>
+<div>
+<div class="stat-value" id="dashWaliStat">Tingkat 1</div>
+<div class="stat-label">Urutan Wali Nasab</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon blue">
+<i class="fa-solid fa-hourglass-end"></i>
+</div>
+<div>
+<div class="stat-value">4 bln 10 hr</div>
+<div class="stat-label">Ketentuan Iddah Wafat</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon purple">
+<i class="fa-solid fa-coins"></i>
+</div>
+<div>
+<div class="stat-value">4.25 g</div>
+<div class="stat-label">1 Mitsqal Syar'i Emas</div>
+</div>
+</div>
+</div>
+<!-- Quick Feature Navigation Cards -->
+<h3 class="section-headline">
+<i class="fa-solid fa-wand-magic-sparkles" style="color: var(--gold);"></i>
+<span>Menu Layanan &amp; Alat Bantu</span>
+</h3>
+<div class="feature-cards-grid">
+<!-- Card 1: Cek Wali -->
+<div class="feature-card" onclick="window.location.href='pages/wali.html'">
+<div class="feature-card-header">
+<div class="feature-card-icon"><i class="fa-solid fa-people-arrows"></i></div>
+<h4 class="feature-card-title">Cek Wali Nikah</h4>
+</div>
+<p class="feature-card-desc">
+                Panduan interaktif 17 urutan wali nasab berdasarkan PMA 30/2024, dengan verifikasi awal dan catatan prosedur wali hakim.
+              </p>
+<div class="feature-card-footer">
+<span>Periksa Urutan Wali</span>
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+</div>
+<!-- Card 2: Kalkulator Iddah -->
+<div class="feature-card" onclick="window.location.href='pages/iddah.html'">
+<div class="feature-card-header">
+<div class="feature-card-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+<h4 class="feature-card-title">Kalkulator Masa Iddah</h4>
+</div>
+<p class="feature-card-desc">
+                Hitung masa tunggu cerai talak, gugat, mati, fasakh, dan khulu' lengkap dengan dasar dalil Al-Qur'an dan garis waktu hitung mundur.
+              </p>
+<div class="feature-card-footer">
+<span>Hitung Masa Iddah</span>
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+</div>
+<!-- Card 3: Terjemah Mahar -->
+<div class="feature-card" onclick="window.location.href='pages/mahar.html'">
+<div class="feature-card-header">
+<div class="feature-card-icon"><i class="fa-solid fa-coins"></i></div>
+<h4 class="feature-card-title">Terjemah Mahar</h4>
+</div>
+<p class="feature-card-desc">
+                Konversi angka mahar ke teks terbilang Arab (angka &amp; huruf), Indonesia, Inggris, kamus benda mahar, dan perakit naskah maskawin.
+              </p>
+<div class="feature-card-footer">
+<span>Terjemahkan Mahar</span>
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+</div>
+<!-- Card 5: Lafaz Akad -->
+<div class="feature-card" onclick="window.location.href='pages/akad.html'">
+<div class="feature-card-header">
+<div class="feature-card-icon"><i class="fa-solid fa-scroll"></i></div>
+<h4 class="feature-card-title">Lafaz Akad Nikah</h4>
+</div>
+<p class="feature-card-desc">
+                Generator naskah ijab-kabul resmi untuk wali langsung, taukil wali, maupun wali hakim dalam teks Indonesia, transliterasi &amp; teks Arab.
+              </p>
+<div class="feature-card-footer">
+<span>Susun Teks Akad</span>
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+</div>
+<!-- Card 6: Kumpulan Khutbah -->
+<div class="feature-card" onclick="window.location.href='pages/khutbah.html'">
+<div class="feature-card-header">
+<div class="feature-card-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+<h4 class="feature-card-title">Kumpulan Khutbah Nikah</h4>
+</div>
+<p class="feature-card-desc">
+                5 naskah khutbah nikah resmi lengkap berharakat: Standar KUA, Hak &amp; Kewajiban, Sakinah Mawaddah, Amanah Nikah, dan Meraih Berkah dengan fitur cetak &amp; salin.
+              </p>
+<div class="feature-card-footer">
+<span>Buka Naskah Khutbah</span>
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+</div>
+<!-- Card 7: Nasehat Pernikahan -->
+<div class="feature-card" onclick="window.location.href='pages/nasihat.html'">
+<div class="feature-card-header">
+<div class="feature-card-icon"><i class="fa-solid fa-comments"></i></div>
+<h4 class="feature-card-title">Bank Nasihat Perkawinan</h4>
+</div>
+<p class="feature-card-desc">
+                Kompilasi untaian petuah pernikahan dari ayat Al-Qur'an, hadits shahih, mutiara kalam ulama salaf, serta tips praktis pengantin baru berbasis kategori.
+              </p>
+<div class="feature-card-footer">
+<span>Buka Bank Nasihat</span>
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+</div>
+<!-- Card 8: Konversi & Alat -->
+<div class="feature-card" onclick="window.location.href='pages/konversi.html'">
+<div class="feature-card-header">
+<div class="feature-card-icon"><i class="fa-solid fa-calculator"></i></div>
+<h4 class="feature-card-title">Kalkulator &amp; Konversi</h4>
+</div>
+<p class="feature-card-desc">
+                Konverter kalender Hijriyah-Masehi, penghitung selisih dan proyeksi hari, serta kalkulator kadar emas murni &amp; mitsqal syar'i.
+              </p>
+<div class="feature-card-footer">
+<span>Buka Konverter</span>
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+</div>
+<!-- Card 7: Referensi Fiqh -->
+<div class="feature-card" onclick="window.location.href='pages/referensi.html'">
+<div class="feature-card-header">
+<div class="feature-card-icon"><i class="fa-solid fa-book-quran"></i></div>
+<h4 class="feature-card-title">Referensi Fiqh Munakahat</h4>
+</div>
+<p class="feature-card-desc">
+                Kompilasi rukun nikah, syarat sah perwalian &amp; saksi, klasifikasi wanita mahram (nasab, susuan, mushaharah), dan dasar hukum PMA.
+              </p>
+<div class="feature-card-footer">
+<span>Buka Referensi</span>
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+</div>
+</div>
+<!-- Highlight Ayat Card -->
+<div class="card" style="background: linear-gradient(135deg, #ffffff 0%, #f7fbf8 100%);">
+<div class="card-title">
+<i class="fa-solid fa-heart" style="color: #e11d48;"></i>
+<span>Pondasi Pernikahan dalam Al-Qur'an</span>
+</div>
+<div class="dalil-arabic">
+              وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا لِّتَسْكُنُوٓا۟ إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+            </div>
+<p class="dalil-translation">
+              "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, 
+              agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. 
+              Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
+            </p>
+<div class="dalil-source">Surah Ar-Rum: 21</div>
+</div>
+</section>
+  </div>
+  <footer class="app-footer">
+    <div><strong>Asisten Penghulu v5.0</strong> · Aplikasi web modular</div>
+    <div class="footer-disclaimer">Aplikasi ini merupakan alat bantu kerja. Keputusan administratif dan penetapan hukum tetap mengacu pada peraturan yang berlaku serta kewenangan pejabat yang berwenang.</div>
+    <div class="footer-v4">Asisten Penghulu Modular Web v5.0</div>
+  </footer>
+</main>
+</div>
+<div id="toast-notification"><span aria-hidden="true">✓</span><span id="toast-message">Teks berhasil disalin.</span></div>
+<script src="assets/js/app-core.js"></script>
+<script src="assets/js/pwa.js"></script>
+</body>
+</html>

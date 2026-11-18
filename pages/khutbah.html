@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123e32">
+<meta name="description" content="Asisten Penghulu — alat bantu administrasi, fikih munakahat, dan materi kepenghuluan.">
+<title>Kumpulan Khutbah Nikah | Asisten Penghulu</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/app.css"><link rel="stylesheet" href="../assets/css/modules/khutbah.css">
+</head>
+<body data-page="khutbah">
+<div class="version-strip">ASISTEN PENGHULU · VERSI 5.0 · WEB MODULAR</div>
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleMobileSidebar()"></div>
+<div class="app-layout">
+<aside class="app-sidebar" id="appSidebar">
+  <div class="sidebar-header">
+    <div class="brand-icon"><span aria-hidden="true">م</span></div>
+    <div><h1 class="brand-title">Asisten Penghulu</h1><p class="brand-subtitle">Pengetahuan &amp; Praktik Kepenghuluan</p></div>
+  </div>
+  <nav class="sidebar-nav">
+<div class="nav-label">Ruang Kerja</div>
+<a class="nav-item" href="../index.html"><span class="nav-glyph">⌂</span><span>Beranda</span></a>
+<a class="nav-item" href="../pages/wali.html"><span class="nav-glyph">♧</span><span>Cek Wali Nikah</span></a>
+<a class="nav-item" href="../pages/iddah.html"><span class="nav-glyph">◷</span><span>Kalkulator Iddah</span></a>
+<a class="nav-item" href="../pages/mahar.html"><span class="nav-glyph">◇</span><span>Terjemah Mahar</span></a>
+<a class="nav-item" href="../pages/akad.html"><span class="nav-glyph">✧</span><span>Lafaz Akad Nikah</span></a>
+<a class="nav-item active" href="../pages/khutbah.html" aria-current="page"><span class="nav-glyph">▤</span><span>Kumpulan Khutbah</span></a>
+<a class="nav-item" href="../pages/nasihat.html"><span class="nav-glyph">♡</span><span>Bank Nasihat Perkawinan</span></a>
+<a class="nav-item" href="../pages/konversi.html"><span class="nav-glyph">∑</span><span>Kalkulator & Konversi</span></a>
+<div class="nav-label">Pusat Pengetahuan</div>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=regulasi"><span class="nav-glyph">§</span><span>Ensiklopedia Regulasi</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=fikih"><span class="nav-glyph">ف</span><span>Ensiklopedia Fikih Munakahat</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=dalil"><span class="nav-glyph">۞</span><span>Ensiklopedia Dalil</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=problematika"><span class="nav-glyph">⚖</span><span>Problematika Akad</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=nasab-mahram"><span class="nav-glyph">∞</span><span>Ensiklopedia Nasab & Mahram</span></a>
+<a class="nav-item" href="../pages/referensi.html"><span class="nav-glyph">▤</span><span>Referensi Fikih &amp; KHI</span></a>
+</nav>
+  <div class="sidebar-footer">
+    <div class="offline-badge"><span class="pulse-dot"></span><span>Web · Offline setelah halaman tersimpan</span></div>
+    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.0 · Modular Web</div>
+  </div>
+</aside>
+<main class="app-main">
+  <header class="app-header">
+    <div class="header-left">
+      <button aria-label="Buka Menu" class="mobile-toggle" onclick="toggleMobileSidebar()"><span aria-hidden="true">☰</span></button>
+      <div class="page-title-badge" id="topPageTitle"><span aria-hidden="true">▤</span><span>Kumpulan Khutbah Nikah</span></div>
+    </div>
+    <div class="header-right">
+      <div class="date-badge"><span id="currentDateMasehi">Memuat...</span><span class="hijri" id="currentDateHijri">... H</span></div>
+      <button class="btn-header-print no-print" onclick="window.print()" title="Cetak Halaman"><span>⎙</span><span>Cetak</span></button>
+    </div>
+  </header>
+  <div class="content-area">
+    <div class="print-header"><p style="font-size:.85rem;margin-top:4px">Lembar Kerja Asisten Penghulu — Kumpulan Khutbah Nikah</p></div>
+    <section class="app-section active" id="section-khutbah">
+<div class="card-header" style="border:none; padding:0; margin-bottom: 20px;">
+<div>
+<h2 style="font-family: var(--font-heading); color: var(--primary-dark); font-size: 1.5rem;">
+<i class="fa-solid fa-microphone-lines" style="color: var(--gold);"></i> Kumpulan Khutbah Nikah
+              </h2>
+<p style="font-size: 0.86rem; color: var(--text-muted);">
+                Kompilasi naskah khutbah nikah resmi standar KUA Kementerian Agama RI lengkap dengan muqaddimah ma'tsur, ayat Al-Qur'an, hadits shahih, uraian mau'izhah, dan doa pengantin.
+              </p>
+</div>
+</div>
+<!-- Controls Bar -->
+<div class="card" style="margin-bottom: 24px; padding: 18px 20px;">
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;">
+<div class="search-input-wrapper" style="margin-bottom: 0; flex: 1; min-width: 260px;">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input class="form-control" id="searchKhutbahInput" oninput="filterKhutbah()" placeholder="Cari naskah khutbah berdasarkan judul, tema, atau kata kunci..." type="text"/>
+</div>
+<div style="display: flex; gap: 8px;">
+<button class="btn btn-outline btn-sm" onclick="expandAllKhutbah()"><i class="fa-solid fa-angles-down"></i> Buka Semua</button>
+<button class="btn btn-outline btn-sm" onclick="collapseAllKhutbah()"><i class="fa-solid fa-angles-up"></i> Tutup Semua</button>
+</div>
+</div>
+</div>
+<!-- Khutbah Cards Container -->
+<div id="khutbahListContainer">
+<!-- Rendered by JS -->
+</div>
+</section>
+  </div>
+  <footer class="app-footer">
+    <div><strong>Asisten Penghulu v5.0</strong> · Aplikasi web modular</div>
+    <div class="footer-disclaimer">Aplikasi ini merupakan alat bantu kerja. Keputusan administratif dan penetapan hukum tetap mengacu pada peraturan yang berlaku serta kewenangan pejabat yang berwenang.</div>
+    <div class="footer-v4">Asisten Penghulu Modular Web v5.0</div>
+  </footer>
+</main>
+</div>
+<div id="toast-notification"><span aria-hidden="true">✓</span><span id="toast-message">Teks berhasil disalin.</span></div>
+<script src="../assets/js/data/khutbah-data.js"></script><script src="../assets/js/app-core.js"></script>
+<script src="../assets/js/pwa.js"></script>
+</body>
+</html>

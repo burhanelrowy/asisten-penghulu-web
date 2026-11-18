@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123e32">
+<meta name="description" content="Asisten Penghulu — alat bantu administrasi, fikih munakahat, dan materi kepenghuluan.">
+<title>Bank Nasihat Perkawinan | Asisten Penghulu</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/app.css"><link rel="stylesheet" href="../assets/css/modules/nasihat.css">
+</head>
+<body data-page="nasihat">
+<div class="version-strip">ASISTEN PENGHULU · VERSI 5.0 · WEB MODULAR</div>
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleMobileSidebar()"></div>
+<div class="app-layout">
+<aside class="app-sidebar" id="appSidebar">
+  <div class="sidebar-header">
+    <div class="brand-icon"><span aria-hidden="true">م</span></div>
+    <div><h1 class="brand-title">Asisten Penghulu</h1><p class="brand-subtitle">Pengetahuan &amp; Praktik Kepenghuluan</p></div>
+  </div>
+  <nav class="sidebar-nav">
+<div class="nav-label">Ruang Kerja</div>
+<a class="nav-item" href="../index.html"><span class="nav-glyph">⌂</span><span>Beranda</span></a>
+<a class="nav-item" href="../pages/wali.html"><span class="nav-glyph">♧</span><span>Cek Wali Nikah</span></a>
+<a class="nav-item" href="../pages/iddah.html"><span class="nav-glyph">◷</span><span>Kalkulator Iddah</span></a>
+<a class="nav-item" href="../pages/mahar.html"><span class="nav-glyph">◇</span><span>Terjemah Mahar</span></a>
+<a class="nav-item" href="../pages/akad.html"><span class="nav-glyph">✧</span><span>Lafaz Akad Nikah</span></a>
+<a class="nav-item" href="../pages/khutbah.html"><span class="nav-glyph">▤</span><span>Kumpulan Khutbah</span></a>
+<a class="nav-item active" href="../pages/nasihat.html" aria-current="page"><span class="nav-glyph">♡</span><span>Bank Nasihat Perkawinan</span></a>
+<a class="nav-item" href="../pages/konversi.html"><span class="nav-glyph">∑</span><span>Kalkulator & Konversi</span></a>
+<div class="nav-label">Pusat Pengetahuan</div>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=regulasi"><span class="nav-glyph">§</span><span>Ensiklopedia Regulasi</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=fikih"><span class="nav-glyph">ف</span><span>Ensiklopedia Fikih Munakahat</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=dalil"><span class="nav-glyph">۞</span><span>Ensiklopedia Dalil</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=problematika"><span class="nav-glyph">⚖</span><span>Problematika Akad</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=nasab-mahram"><span class="nav-glyph">∞</span><span>Ensiklopedia Nasab & Mahram</span></a>
+<a class="nav-item" href="../pages/referensi.html"><span class="nav-glyph">▤</span><span>Referensi Fikih &amp; KHI</span></a>
+</nav>
+  <div class="sidebar-footer">
+    <div class="offline-badge"><span class="pulse-dot"></span><span>Web · Offline setelah halaman tersimpan</span></div>
+    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.0 · Modular Web</div>
+  </div>
+</aside>
+<main class="app-main">
+  <header class="app-header">
+    <div class="header-left">
+      <button aria-label="Buka Menu" class="mobile-toggle" onclick="toggleMobileSidebar()"><span aria-hidden="true">☰</span></button>
+      <div class="page-title-badge" id="topPageTitle"><span aria-hidden="true">♡</span><span>Bank Nasihat Perkawinan</span></div>
+    </div>
+    <div class="header-right">
+      <div class="date-badge"><span id="currentDateMasehi">Memuat...</span><span class="hijri" id="currentDateHijri">... H</span></div>
+      <button class="btn-header-print no-print" onclick="window.print()" title="Cetak Halaman"><span>⎙</span><span>Cetak</span></button>
+    </div>
+  </header>
+  <div class="content-area">
+    <div class="print-header"><p style="font-size:.85rem;margin-top:4px">Lembar Kerja Asisten Penghulu — Bank Nasihat Perkawinan</p></div>
+    <section class="app-section active" id="section-nasehat">
+<div class="card-header" style="border:none; padding:0; margin-bottom: 20px;">
+<div>
+<h2 style="font-family: var(--font-heading); color: var(--primary-dark); font-size: 1.5rem;">
+<i class="fa-solid fa-comments" style="color: var(--gold);"></i> Bank Nasihat Perkawinan
+              </h2>
+<p style="font-size: 0.86rem; color: var(--text-muted);">
+                Perpustakaan materi perkawinan yang memuat dalil, fikih keluarga, contoh kasus, dan panduan nasihat praktis bagi penghulu.
+              </p>
+</div>
+</div>
+<div class="bank-nasehat-entrybar">
+  <div><strong>Perpustakaan Materi Penghulu</strong><span>24 artikel dalam enam tema keluarga.</span></div>
+  <button type="button" class="btn btn-primary" onclick="switchNasehatTab('artikel')"><i class="fa-solid fa-book-open"></i> Buka Bank Nasihat Perkawinan</button>
+</div>
+<!-- Filter kategori dan pencarian -->
+<div class="nasehat-filter-toolbar">
+  <div class="nasehat-filter-field">
+    <label for="nasehatCategorySelect"><i class="fa-solid fa-filter"></i> Kategori materi</label>
+    <select id="nasehatCategorySelect" class="form-control" onchange="switchNasehatTab(this.value)">
+      <option value="quran">Nasihat dari Al-Qur'an</option>
+      <option value="hadits">Nasihat dari Hadits</option>
+      <option value="ulama">Nasihat Ulama</option>
+      <option value="umum">Nasihat Umum &amp; Petuah Bijak</option>
+      <option value="naskah">Naskah Siap Pakai</option>
+      <option value="artikel">Bank Nasihat Perkawinan</option>
+    </select>
+  </div>
+  <div class="nasehat-filter-field">
+    <label for="searchNasehatInput"><i class="fa-solid fa-magnifying-glass"></i> Pencarian materi</label>
+    <input class="form-control" id="searchNasehatInput" oninput="filterNasehat()" placeholder="Cari ayat, tema, atau kata kunci..." type="search"/>
+  </div>
+</div>
+<!-- Tab Pane 1: Al-Qur'an -->
+<div class="subtab-pane active" id="nasehat-subtab-quran">
+<div class="nasehat-grid" id="gridNasehatQuran">
+<!-- Rendered by JS -->
+</div>
+</div>
+<!-- Tab Pane 2: Hadits -->
+<div class="subtab-pane" id="nasehat-subtab-hadits">
+<div class="nasehat-grid" id="gridNasehatHadits">
+<!-- Rendered by JS -->
+</div>
+</div>
+<!-- Tab Pane 3: Ulama -->
+<div class="subtab-pane" id="nasehat-subtab-ulama">
+<div class="nasehat-grid" id="gridNasehatUlama">
+<!-- Rendered by JS -->
+</div>
+</div>
+<!-- Tab Pane 4: Umum & Petuah Bijak -->
+<div class="subtab-pane" id="nasehat-subtab-umum">
+<div class="nasehat-grid" id="gridNasehatUmum">
+<!-- Rendered by JS -->
+</div>
+</div>
+<div class="subtab-pane" id="nasehat-subtab-naskah">
+  <div class="nasehat-model-selector">
+    <div><label for="nasehatScriptModel"><i class="fa-solid fa-file-lines"></i> Pilih naskah siap pakai</label>
+    <p>Lima model nasihat dengan tema berbeda. Setiap naskah dapat disesuaikan dengan keadaan mempelai.</p></div>
+    <select id="nasehatScriptModel" class="form-control" onchange="selectNasehatScript(this.value)">
+      <option value="script-model-1">Model 1 — Keluarga Sakinah, Mawaddah, wa Rahmah</option>
+      <option value="script-model-2">Model 2 — Amanah, Hak, dan Tanggung Jawab</option>
+      <option value="script-model-3">Model 3 — Komunikasi dan Mengelola Konflik</option>
+      <option value="script-model-4">Model 4 — Nafkah dan Ekonomi Keluarga</option>
+      <option value="script-model-5">Model 5 — Keluarga Qur’ani dan Pendidikan Anak</option>
+    </select>
+    <div class="nasehat-style-selector">
+      <label for="nasehatDeliveryStyle"><i class="fa-solid fa-sliders"></i> Gaya penyampaian</label>
+      <select id="nasehatDeliveryStyle" class="form-control" onchange="applyNasehatDeliveryStyle(this.value)">
+        <option value="formal">Formal dan Keagamaan</option>
+        <option value="warm">Hangat dan Menyentuh</option>
+        <option value="practical">Singkat dan Praktis</option>
+      </select>
+      <p id="nasehatStyleDescription">Bahasa baku, santun, dengan penjelasan dalil yang lebih dominan.</p>
+    </div>
+  </div>
+  <div class="nasehat-script-panels">
+  <div class="nasehat-script-panel active" id="script-model-1">
+  <article class="nasehat-main-script">
+    <div class="nasehat-script-top">
+      <span class="nasehat-script-label"><i class="fa-solid fa-clock"></i> Estimasi penyampaian 7–9 menit</span>
+      <span class="nasehat-script-label secondary"><i class="fa-solid fa-microphone"></i> Naskah siap disampaikan penghulu</span>
+    </div>
+    <h3>Nasihat Pernikahan: Membangun Keluarga Sakinah dengan Iman, Kasih Sayang, dan Tanggung Jawab</h3>
+    <p class="nasehat-script-intro">Naskah ini dapat disampaikan setelah akad nikah. Penghulu dapat menyesuaikan sapaan, nama kedua mempelai, serta situasi keluarga tanpa mengubah pesan pokoknya.</p>
+    <section class="nasehat-script-section">
+      <h4>1. Pembukaan dan rasa syukur</h4>
+      <p>Alhamdulillāhi rabbil ‘ālamīn. Segala puji bagi Allah SWT yang telah mempertemukan dua insan dalam ikatan pernikahan yang sah. Shalawat dan salam semoga tercurah kepada Nabi Muhammad SAW, keluarga, sahabat, dan seluruh umat beliau.</p>
+      <p>Kepada kedua mempelai yang berbahagia, hari ini bukan hanya hari ketika sebuah acara selesai dilaksanakan. Hari ini adalah awal dari amanah baru. Saudara berdua telah mengikrarkan janji untuk berjalan bersama, saling menerima, saling menjaga, dan membangun rumah tangga. Karena itu, pernikahan jangan hanya dipandang sebagai peristiwa seremonial, tetapi sebagai ibadah dan perjalanan panjang yang memerlukan kesungguhan.</p>
+    </section>
+    <section class="nasehat-script-section">
+      <h4>2. Menjadikan sakinah, mawaddah, dan rahmah sebagai tujuan</h4>
+      <div class="nasehat-script-arabic" dir="rtl">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</div>
+      <p><strong>Artinya:</strong> “Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.” (QS. Ar-Rum [30]: 21).</p>
+      <p>Ayat ini mengingatkan bahwa tujuan rumah tangga bukan sekadar tinggal dalam satu rumah, memiliki keturunan, atau memenuhi tuntutan sosial. Tujuan yang lebih dalam adalah menghadirkan ketenteraman. Sakinah berarti rumah menjadi tempat yang menenangkan, tempat suami dan istri dapat menjadi diri sendiri tanpa takut direndahkan. Mawaddah adalah cinta yang mendorong kedekatan dan perhatian. Rahmah adalah kasih sayang yang tetap hadir ketika keadaan tidak selalu mudah.</p>
+      <p>Jangan mengukur keberhasilan rumah tangga hanya dari banyaknya hadiah, kemewahan, atau unggahan kebahagiaan. Ukurlah juga dari kesediaan mendengar, kemampuan meminta maaf, kesungguhan menepati janji, dan keteguhan saling mendampingi ketika salah satu sedang lemah.</p>
+    </section>
+    <section class="nasehat-script-section">
+      <h4>3. Menjaga adab dan memperlakukan pasangan dengan baik</h4>
+      <div class="nasehat-script-arabic" dir="rtl">وَعَاشِرُوهُنَّ بِالْمَعْرُوفِ</div>
+      <p><strong>Artinya:</strong> “Dan bergaullah dengan mereka menurut cara yang patut.” (QS. An-Nisa’ [4]: 19).</p>
+      <p>Perintah mu‘āsyarah bil-ma‘rūf mengajarkan bahwa pasangan harus diperlakukan dengan cara yang baik, patut, dan bermartabat. Kebaikan itu tidak hanya berupa nafkah atau pemenuhan kebutuhan materi. Kebaikan juga hadir melalui tutur kata yang lembut, sikap menghargai, perhatian, kesetiaan, dan tidak menyakiti.</p>
+      <p>Suami dan istri berasal dari latar belakang, kebiasaan, serta cara berpikir yang mungkin berbeda. Jangan berharap pasangan selalu memahami isi hati tanpa penjelasan. Sampaikan kebutuhan dengan baik, dengarkan jawabannya, dan bicarakan perbedaan tanpa menghina. Hindari menjadikan kekurangan pasangan sebagai bahan ejekan, terlebih di hadapan keluarga atau orang lain. Bila melakukan kesalahan, beranilah meminta maaf. Bila pasangan meminta maaf dengan tulus, belajarlah memberi ruang untuk memperbaiki diri.</p>
+    </section>
+    <section class="nasehat-script-section">
+      <h4>4. Menjadi pakaian bagi satu sama lain</h4>
+      <div class="nasehat-script-arabic" dir="rtl">هُنَّ لِبَاسٌ لَّكُمْ وَأَنْتُمْ لِبَاسٌ لَهُنَّ</div>
+      <p><strong>Artinya:</strong> “Mereka adalah pakaian bagimu, dan kamu adalah pakaian bagi mereka.” (QS. Al-Baqarah [2]: 187).</p>
+      <p>Pakaian melindungi, menutupi, dan memberi kenyamanan. Demikian pula suami dan istri. Jagalah kehormatan pasangan, tutupi kekurangan yang tidak patut diumbar, dan jangan menyebarkan persoalan rumah tangga untuk mencari dukungan atau mempermalukan pasangan. Namun, menjaga rahasia bukan berarti menutup-nutupi kekerasan, ancaman, atau keadaan yang membahayakan. Jika terjadi kekerasan atau keselamatan terancam, carilah pertolongan dari pihak yang aman dan berwenang.</p>
+      <p>Bangunlah kebiasaan menjaga kepercayaan. Jangan mudah menuduh, jangan membuka ruang bagi pengkhianatan, dan jangan membanding-bandingkan pasangan dengan orang lain. Kepercayaan dibangun melalui kejujuran kecil yang dilakukan terus-menerus.</p>
+    </section>
+    <section class="nasehat-script-section">
+      <h4>5. Bermusyawarah dalam urusan rumah tangga</h4>
+      <p>Rumah tangga akan menghadapi keputusan tentang pekerjaan, tempat tinggal, pengelolaan keuangan, hubungan dengan keluarga besar, kesehatan, pendidikan anak, dan berbagai kebutuhan sehari-hari. Biasakan bermusyawarah. Jangan menjadikan keputusan sebagai perlombaan untuk menentukan siapa yang paling berkuasa. Dengarkan pendapat pasangan, jelaskan pertimbangan masing-masing, lalu carilah jalan keluar yang adil dan sesuai tuntunan agama.</p>
+      <p>Bicarakan keuangan secara terbuka: kebutuhan pokok, kewajiban, tabungan, utang, dan prioritas. Sesuaikan pengeluaran dengan kemampuan, hindari menyembunyikan utang atau mengambil keputusan finansial besar tanpa komunikasi. Rezeki setiap keluarga berbeda; jangan membebani pasangan dengan standar hidup orang lain.</p>
+    </section>
+    <section class="nasehat-script-section">
+      <h4>6. Menyelesaikan perselisihan dengan dewasa</h4>
+      <p>Perbedaan pendapat bukan tanda bahwa pernikahan gagal. Dua orang yang hidup bersama tentu dapat berbeda pandangan. Yang perlu dijaga adalah cara menyikapinya. Jangan menyelesaikan masalah ketika emosi sedang memuncak. Beri waktu untuk menenangkan diri, kemudian bicarakan persoalan secara jelas: apa yang terjadi, apa yang dirasakan, dan perubahan apa yang diharapkan.</p>
+      <p>Hindari kekerasan fisik maupun verbal, ancaman perceraian sebagai alat menekan, penghinaan, serta tindakan yang merusak rasa aman. Jika persoalan berulang dan sulit diselesaikan, mintalah bantuan konselor, mediator keluarga yang bijaksana, penyuluh, atau lembaga yang berwenang. Meminta bantuan bukan aib; itu dapat menjadi ikhtiar menjaga kemaslahatan keluarga.</p>
+    </section>
+    <section class="nasehat-script-section">
+      <h4>7. Menjaga ibadah dan mendidik keluarga</h4>
+      <div class="nasehat-script-arabic" dir="rtl">يَا أَيُّهَا الَّذِينَ آمَنُوا قُوا أَنْفُسَكُمْ وَأَهْلِيكُمْ نَارًا</div>
+      <p><strong>Artinya:</strong> “Wahai orang-orang yang beriman, jagalah dirimu dan keluargamu dari api neraka.” (QS. At-Tahrim [66]: 6).</p>
+      <p>Jadikan rumah sebagai tempat tumbuhnya ketaatan. Bangun kebiasaan salat, membaca Al-Qur’an, berdoa, mencari rezeki yang halal, dan saling mengingatkan dengan cara yang penuh kasih. Jika kelak Allah menganugerahkan keturunan, anak-anak tidak hanya membutuhkan makanan dan pendidikan formal, tetapi juga teladan. Mereka belajar dari cara orang tua berbicara, menyelesaikan masalah, menghormati orang lain, dan menjalankan ibadah.</p>
+      <p>Jangan menunggu menjadi keluarga sempurna untuk mulai berbuat baik. Mulailah dari hal sederhana: salat tepat waktu, makan bersama ketika memungkinkan, saling menanyakan kabar, dan mengucapkan terima kasih.</p>
+    </section>
+    <section class="nasehat-script-section">
+      <h4>8. Penutup dan doa</h4>
+      <p>Kepada kedua mempelai, jagalah akad yang telah diucapkan hari ini. Cinta perlu dirawat, tanggung jawab perlu ditunaikan, dan kesabaran perlu dilatih. Jangan hanya meminta pasangan menjadi lebih baik; mulailah dengan memperbaiki diri sendiri. Jadikan agama sebagai pedoman, musyawarah sebagai kebiasaan, dan kasih sayang sebagai suasana di dalam rumah.</p>
+      <p>Semoga Allah SWT memberkahi pernikahan saudara berdua, melimpahkan ketenteraman, kasih sayang, rezeki yang halal dan berkah, serta keturunan yang saleh dan salehah apabila dianugerahkan. Semoga Allah membimbing saudara berdua untuk saling menolong dalam kebaikan dan tetap bersama dalam ketaatan. Āmīn yā Rabbal ‘ālamīn.</p>
+    </section>
+    <div class="nasehat-script-actions no-print">
+      <button class="btn btn-primary" type="button" onclick="copyMainNasehatScript()"><i class="fa-regular fa-copy"></i> Salin Naskah Lengkap</button>
+      <button class="btn btn-outline" type="button" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak Naskah</button>
+    </div>
+  </article></div>
+
+
+  <div class="nasehat-script-panel" id="script-model-2">
+  <article class="nasehat-main-script">
+    <div class="nasehat-script-top"><span class="nasehat-script-label"><i class="fa-solid fa-clock"></i> Estimasi 7–9 menit</span><span class="nasehat-script-label secondary">Amanah dan tanggung jawab</span></div>
+    <h3>Nasihat Pernikahan: Menunaikan Amanah, Hak, dan Tanggung Jawab Suami Istri</h3>
+    <p class="nasehat-script-intro">Cocok untuk menekankan kesungguhan menjalankan hak dan kewajiban, saling menghormati, serta membangun kerja sama dalam keluarga.</p>
+    <section class="nasehat-script-section"><h4>1. Pembukaan</h4>
+      <p>Alhamdulillāhi rabbil ‘ālamīn. Segala puji bagi Allah SWT yang telah mempertemukan dua insan dalam ikatan pernikahan. Shalawat dan salam semoga tercurah kepada Nabi Muhammad SAW, keluarga, sahabat, dan umat beliau.</p>
+      <p>Kepada kedua mempelai yang berbahagia, akad yang telah saudara laksanakan bukan hanya pernyataan cinta, tetapi juga penerimaan terhadap amanah. Sejak hari ini, saudara berdua memulai perjalanan untuk saling menjaga, saling menghormati, dan menunaikan tanggung jawab. Pernikahan bukan tempat untuk saling menguasai, melainkan tempat untuk saling menguatkan dalam kebaikan.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>2. Pernikahan adalah perjanjian yang kuat</h4>
+      <div class="nasehat-script-arabic" dir="rtl">وَأَخَذْنَ مِنكُم مِّيثَاقًا غَلِيظًا</div>
+      <p><strong>Artinya:</strong> “Dan mereka (para istri) telah mengambil perjanjian yang kuat dari kamu.” (QS. An-Nisa’ [4]: 21).</p>
+      <p>Ayat ini mengingatkan bahwa pernikahan memiliki kedudukan mulia. Janji yang diucapkan di hadapan wali dan saksi harus tampak dalam perilaku sehari-hari. Kesetiaan bukan hanya kata-kata pada hari akad, melainkan kesediaan menjaga kepercayaan, menepati komitmen, dan tidak menyalahgunakan kelemahan pasangan.</p>
+      <p>Karena itu, biasakan bertanya kepada diri sendiri: apakah saya sudah menjadi pasangan yang amanah? Apakah ucapan saya menenangkan? Apakah saya hadir ketika pasangan membutuhkan dukungan? Pertanyaan seperti ini membantu kita memperbaiki diri, bukan sekadar menuntut pasangan berubah.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>3. Hak dan kewajiban dijalankan dengan cara yang patut</h4>
+      <div class="nasehat-script-arabic" dir="rtl">وَلَهُنَّ مِثْلُ الَّذِي عَلَيْهِنَّ بِالْمَعْرُوفِ</div>
+      <p><strong>Artinya:</strong> “Dan para perempuan mempunyai hak yang seimbang dengan kewajibannya menurut cara yang patut.” (QS. Al-Baqarah [2]: 228).</p>
+      <p>Dalam rumah tangga terdapat hak dan kewajiban yang perlu dipahami serta dilaksanakan. Suami berkewajiban memberikan nafkah sesuai ketentuan dan kemampuan, melindungi, membimbing, serta memperlakukan istri dengan baik. Istri memiliki hak untuk dihormati, diperlakukan secara patut, dan memperoleh perlindungan. Keduanya sama-sama berkewajiban menjaga kesetiaan, kehormatan, dan kepercayaan dalam perkawinan.</p>
+      <p>Jangan menjadikan pembicaraan hak dan kewajiban sebagai alat untuk menekan pasangan. Jangan pula menggunakan dalil hanya untuk memenangkan pertengkaran. Jadikan tuntunan agama sebagai pedoman untuk memperbaiki perilaku dan menghadirkan keadilan serta kemaslahatan di dalam keluarga.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>4. Kerja sama dalam urusan rumah tangga</h4>
+      <p>Keluarga memerlukan kerja sama dalam banyak hal: mengatur kebutuhan rumah, merawat anggota keluarga, mengelola waktu, mendukung pekerjaan pasangan, dan mengambil keputusan. Bicarakan pembagian peran dengan mempertimbangkan keadaan, kemampuan, serta kesepakatan yang baik. Jangan meremehkan pekerjaan domestik atau menganggap kontribusi pasangan tidak bernilai.</p>
+      <p>Biasakan menghargai hal-hal sederhana. Ucapkan terima kasih ketika pasangan membantu. Tawarkan bantuan ketika pasangan terlihat lelah. Tanyakan apa yang dapat dilakukan bersama. Rumah tangga akan terasa lebih ringan apabila kedua pihak tidak hanya menghitung apa yang telah diberikan, tetapi juga berusaha memberi manfaat.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>5. Menjaga kehormatan dan kepercayaan</h4>
+      <p>Jagalah kehormatan pasangan ketika bersama maupun ketika berjauhan. Hindari kebohongan, pengkhianatan, perselingkuhan, dan kebiasaan membuka aib rumah tangga kepada orang yang tidak berkepentingan. Jika membutuhkan nasihat, pilih orang yang amanah dan bijaksana, bukan pihak yang justru memperkeruh keadaan.</p>
+      <p>Kepercayaan tumbuh melalui kejujuran, keterbukaan, menepati janji, dan konsistensi. Jika pernah melakukan kesalahan, akui dengan jujur, bertanggung jawablah, dan tunjukkan perubahan nyata. Jangan meminta pasangan segera percaya kembali tanpa kesungguhan memperbaiki diri.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>6. Menjaga martabat dan keselamatan</h4>
+      <p>Rumah tangga harus menjadi tempat yang aman. Tidak ada alasan untuk membenarkan kekerasan fisik, seksual, psikologis, ancaman, atau pemaksaan. Menjaga keutuhan keluarga tidak berarti membiarkan seseorang berada dalam bahaya. Jika terjadi kekerasan atau ancaman keselamatan, utamakan perlindungan dan carilah bantuan dari pihak yang aman serta berwenang.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>7. Menerjemahkan tanggung jawab menjadi kebiasaan</h4>
+<p>Tanggung jawab akan lebih mudah dijalankan apabila diwujudkan dalam kebiasaan yang jelas. Misalnya, pasangan dapat menyepakati waktu untuk membicarakan kebutuhan rumah tangga, membagi tugas yang perlu diselesaikan, serta saling memberi kabar ketika ada perubahan rencana. Hal-hal sederhana seperti pulang sesuai kesepakatan, memberi informasi ketika terlambat, atau membantu pasangan yang sedang sakit merupakan bentuk amanah yang nyata.</p>
+<p>Ketika salah satu pasangan sedang menghadapi kesulitan pekerjaan, sakit, atau tekanan keluarga, pasangan lainnya perlu hadir sebagai teman seperjalanan. Dukungan tidak selalu berupa solusi besar. Terkadang mendengarkan, menemani, dan tidak menghakimi sudah menjadi pertolongan yang sangat berarti. Sebaliknya, jangan memanfaatkan keadaan lemah pasangan untuk mengendalikan atau mempermalukannya.</p>
+<p>Ingatlah bahwa hak dan kewajiban tidak boleh dipisahkan dari akhlak. Menunaikan kewajiban dengan kasar dapat melukai, sedangkan memenuhi hak dengan ikhlas dapat menumbuhkan kasih sayang. Karena itu, pelajari tuntunan agama, pahami peraturan yang relevan, dan bila ada persoalan hukum atau keluarga yang rumit, mintalah nasihat dari pihak yang kompeten.</p></section>
+<section class="nasehat-delivery-addition warm" data-style="warm"><h4>Renungan untuk kedua mempelai</h4><p>Bayangkan rumah tangga sebagai tempat seseorang pulang setelah menjalani hari yang panjang. Di sanalah kita berharap diterima, didengarkan, dan dikuatkan. Karena itu, jadilah tempat pulang yang menenangkan bagi pasangan. Ketika pasangan lelah, hadirkan perhatian. Ketika pasangan keliru, sampaikan dengan kasih sayang. Ketika keadaan sedang sulit, jangan cepat saling menyalahkan; genggam kembali komitmen yang telah dibangun bersama.</p></section>
+<section class="nasehat-delivery-addition practical" data-style="practical"><h4>Tiga kebiasaan yang dapat dimulai hari ini</h4><p>Pertama, sediakan waktu setiap hari untuk saling bertanya tentang keadaan pasangan. Kedua, biasakan mengucapkan terima kasih dan meminta maaf tanpa menunggu diminta. Ketiga, sepakati satu waktu dalam sepekan untuk membicarakan kebutuhan keluarga dan rencana bersama. Kebiasaan kecil yang dilakukan terus-menerus dapat membantu menjaga ketenteraman rumah tangga.</p></section>
+<section class="nasehat-delivery-addition warm" data-style="warm"><h4>Renungan untuk kedua mempelai</h4><p>Cinta tidak hanya terlihat ketika semua berjalan mudah. Cinta juga tampak ketika salah satu sedang sakit, kehilangan pekerjaan, atau menghadapi tekanan. Pada saat seperti itu, pasangan membutuhkan teman yang menguatkan, bukan hakim yang terus mencari kesalahan. Jadikan amanah pernikahan sebagai alasan untuk saling menjaga martabat dan tidak meninggalkan pasangan dalam kesulitan.</p></section>
+<section class="nasehat-delivery-addition practical" data-style="practical"><h4>Empat komitmen tanggung jawab</h4><p>Sepakati pembagian peran rumah tangga secara terbuka. Bicarakan nafkah dan kebutuhan keluarga sesuai kemampuan. Jaga kepercayaan dengan kejujuran dan keterbukaan. Tinjau kembali kesepakatan apabila keadaan berubah. Bila muncul persoalan yang tidak dapat diselesaikan, carilah bantuan dari pihak yang kompeten dan amanah.</p></section>
+<section class="nasehat-script-section"><h4>7. Penutup dan doa</h4>
+      <p>Kepada kedua mempelai, jadikan pernikahan sebagai ladang ibadah. Tunaikan tanggung jawab dengan ikhlas, sampaikan kebutuhan dengan santun, dan jangan lelah memperbaiki diri. Jadilah pasangan yang saling menguatkan, bukan saling memberatkan; saling menjaga, bukan saling melukai.</p>
+      <p>Semoga Allah SWT memberkahi ikatan pernikahan ini, memberi kemampuan untuk menunaikan amanah, melapangkan rezeki yang halal, menjaga kehormatan keluarga, dan membimbing saudara berdua dalam kebaikan. Āmīn yā Rabbal ‘ālamīn.</p>
+    </section>
+    <div class="nasehat-script-actions no-print"><button class="btn btn-primary" type="button" onclick="copyMainNasehatScript()"><i class="fa-regular fa-copy"></i> Salin Naskah Ini</button><button class="btn btn-outline" type="button" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak Naskah</button></div>
+  </article></div>
+
+  <div class="nasehat-script-panel" id="script-model-3">
+  <article class="nasehat-main-script">
+    <div class="nasehat-script-top"><span class="nasehat-script-label"><i class="fa-solid fa-clock"></i> Estimasi 7–9 menit</span><span class="nasehat-script-label secondary">Komunikasi dan penyelesaian konflik</span></div>
+    <h3>Nasihat Pernikahan: Merawat Cinta melalui Komunikasi, Musyawarah, dan Kesabaran</h3>
+    <p class="nasehat-script-intro">Cocok untuk menekankan komunikasi sehat, pengelolaan perbedaan, musyawarah, dan penyelesaian konflik tanpa kekerasan.</p>
+    <section class="nasehat-script-section"><h4>1. Pembukaan</h4>
+      <p>Alhamdulillāhi rabbil ‘ālamīn. Puji syukur kita panjatkan kepada Allah SWT atas terlaksananya akad nikah pada hari ini. Shalawat dan salam semoga tercurah kepada Nabi Muhammad SAW.</p>
+      <p>Kepada kedua mempelai, kehidupan setelah akad akan mempertemukan saudara berdua dalam banyak keadaan. Ada hari yang penuh kegembiraan, tetapi mungkin ada pula hari ketika pekerjaan melelahkan, kebutuhan meningkat, atau pendapat tidak sejalan. Salah satu bekal penting dalam pernikahan adalah kemampuan berkomunikasi dan menyelesaikan perbedaan dengan cara yang baik.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>2. Menjaga lisan dan memilih kata yang baik</h4>
+      <div class="nasehat-script-arabic" dir="rtl">وَقُولُوا لِلنَّاسِ حُسْنًا</div>
+      <p><strong>Artinya:</strong> “Dan bertuturkatalah yang baik kepada manusia.” (QS. Al-Baqarah [2]: 83).</p>
+      <p>Jika kepada orang lain saja kita diperintahkan berkata baik, tentu pasangan hidup lebih berhak menerima tutur kata yang santun. Jangan membiasakan ucapan yang merendahkan, sindiran yang menyakitkan, atau diam berkepanjangan untuk menghukum pasangan. Sampaikan persoalan dengan jelas tanpa menyerang pribadi.</p>
+      <p>Belajarlah mendengarkan sampai pasangan selesai berbicara. Mendengar bukan berarti selalu setuju, tetapi menunjukkan bahwa pendapat dan perasaan pasangan dihargai. Ungkapkan apa yang dirasakan dengan jujur dan tenang. Hindari kata “selalu” atau “tidak pernah” yang sering membuat pembicaraan berubah menjadi saling menyalahkan.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>3. Membiasakan musyawarah</h4>
+      <div class="nasehat-script-arabic" dir="rtl">وَأَمْرُهُمْ شُورَىٰ بَيْنَهُمْ</div>
+      <p><strong>Artinya:</strong> “Sedang urusan mereka diputuskan dengan musyawarah di antara mereka.” (QS. Asy-Syura [42]: 38).</p>
+      <p>Musyawarah perlu dibiasakan dalam urusan keluarga: tempat tinggal, pekerjaan, pengeluaran, hubungan dengan keluarga besar, pendidikan anak, dan keputusan penting lainnya. Musyawarah bukan sekadar meminta persetujuan setelah keputusan dibuat. Musyawarah berarti memberi kesempatan yang sungguh-sungguh kepada pasangan untuk menyampaikan pertimbangan.</p>
+      <p>Hindari sikap merasa paling benar. Pertimbangkan fakta, kemampuan, dampak keputusan, dan kemaslahatan keluarga. Jika belum menemukan kesepakatan, jangan memaksakan keputusan saat emosi sedang tinggi. Beri waktu untuk berpikir dan lanjutkan pembicaraan dengan kepala dingin.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>4. Mengelola perselisihan secara dewasa</h4>
+      <p>Perbedaan pendapat tidak selalu berarti pernikahan gagal. Yang perlu dijaga adalah cara menyelesaikannya. Ketika emosi meningkat, hentikan percakapan sejenak. Setelah tenang, bicarakan satu persoalan secara spesifik. Dengarkan penjelasan pasangan, sampaikan kebutuhan, lalu rumuskan solusi yang dapat dijalankan bersama.</p>
+      <p>Hindari ancaman perceraian sebagai alat menekan, membuka aib, merusak barang, atau melakukan kekerasan. Meminta maaf bukan tanda kalah. Meminta maaf adalah keberanian untuk bertanggung jawab dan menjaga hubungan.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>5. Menjaga hubungan dengan keluarga besar</h4>
+      <p>Pernikahan menyatukan dua orang dan mempertemukan dua keluarga. Hormati orang tua dan keluarga pasangan, tetapi bangun pula batas yang sehat agar keputusan rumah tangga dapat dibicarakan oleh suami dan istri. Jangan menjadikan orang tua sebagai alat untuk menekan pasangan. Jika ada campur tangan yang menimbulkan masalah, sampaikan dengan santun dan sepakati batas bersama.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>6. Meminta bantuan ketika diperlukan</h4>
+      <p>Apabila masalah terus berulang, komunikasi buntu, atau ada persoalan yang tidak mampu diselesaikan berdua, carilah bantuan dari konselor keluarga, mediator yang bijaksana, penyuluh agama, atau tenaga profesional. Meminta bantuan bukan aib. Jika terdapat kekerasan atau ancaman keselamatan, utamakan perlindungan dan akses bantuan yang aman.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>7. Membuat kesepakatan komunikasi sejak awal</h4>
+<p>Saudara berdua dapat membuat kebiasaan sederhana: menyediakan waktu khusus untuk berbicara tanpa terganggu telepon, menyampaikan hal penting sebelum mengambil keputusan, dan tidak membiarkan masalah kecil menumpuk terlalu lama. Misalnya, apabila salah satu merasa keberatan dengan pengeluaran tertentu, sampaikan sebelum rasa kesal berubah menjadi pertengkaran. Jika ada perubahan pekerjaan atau rencana keluarga, bicarakan sedini mungkin.</p>
+<p>Ketika berbeda pendapat, cobalah memahami kebutuhan di balik pendapat pasangan. Perdebatan tentang uang mungkin sebenarnya berkaitan dengan rasa aman. Perdebatan tentang waktu bersama mungkin berkaitan dengan kebutuhan untuk diperhatikan. Dengan memahami kebutuhan tersebut, pasangan dapat mencari jalan keluar yang lebih tepat daripada sekadar memperdebatkan siapa yang benar.</p>
+<p>Jangan pula membiarkan gawai dan kesibukan mengambil seluruh waktu kebersamaan. Sapaan, makan bersama ketika memungkinkan, dan menanyakan kabar merupakan bentuk perhatian yang sederhana tetapi bermakna. Apabila pembicaraan mulai berubah menjadi ancaman atau kekerasan, hentikan situasi yang membahayakan dan cari bantuan yang aman.</p></section>
+<section class="nasehat-delivery-addition warm" data-style="warm"><h4>Renungan untuk kedua mempelai</h4><p>Sering kali yang paling dibutuhkan pasangan bukan jawaban yang panjang, melainkan kesediaan untuk mendengarkan. Satu kalimat yang lembut dapat meredakan hati, sedangkan satu ucapan yang merendahkan dapat membekas lama. Jangan biarkan ego lebih besar daripada keinginan untuk menjaga hubungan. Belajarlah memahami sebelum meminta dipahami.</p></section>
+<section class="nasehat-delivery-addition practical" data-style="practical"><h4>Langkah komunikasi sehari-hari</h4><p>Dengarkan pasangan tanpa memotong pembicaraan. Gunakan kalimat yang menjelaskan perasaan, bukan tuduhan. Tunda pembahasan ketika emosi memuncak dan sepakati waktu untuk melanjutkannya. Bahas satu masalah pada satu waktu. Jika konflik berulang atau terdapat kekerasan, prioritaskan keselamatan dan cari bantuan.</p></section>
+<section class="nasehat-script-section"><h4>7. Penutup dan doa</h4>
+      <p>Kepada kedua mempelai, jangan biarkan kesibukan membuat saudara berhenti berbicara dari hati ke hati. Sisihkan waktu untuk saling mendengarkan, bermusyawarah, dan mengucapkan terima kasih. Jadikan rumah sebagai tempat yang menghadirkan ketenangan, bukan ketakutan; tempat untuk bertumbuh, bukan saling menjatuhkan.</p>
+      <p>Semoga Allah SWT melembutkan hati saudara berdua, membimbing lisan agar berkata baik, memberi kebijaksanaan dalam mengambil keputusan, dan menguatkan keluarga ini dalam menghadapi setiap ujian. Āmīn.</p>
+    </section>
+    <div class="nasehat-script-actions no-print"><button class="btn btn-primary" type="button" onclick="copyMainNasehatScript()"><i class="fa-regular fa-copy"></i> Salin Naskah Ini</button><button class="btn btn-outline" type="button" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak Naskah</button></div>
+  </article></div>
+
+  <div class="nasehat-script-panel" id="script-model-4">
+  <article class="nasehat-main-script">
+    <div class="nasehat-script-top"><span class="nasehat-script-label"><i class="fa-solid fa-clock"></i> Estimasi 7–9 menit</span><span class="nasehat-script-label secondary">Nafkah dan ekonomi keluarga</span></div>
+    <h3>Nasihat Pernikahan: Rezeki Halal, Keterbukaan, dan Pengelolaan Ekonomi Keluarga</h3>
+    <p class="nasehat-script-intro">Cocok untuk menekankan tanggung jawab nafkah, keterbukaan finansial, prioritas kebutuhan, dan hidup bersahaja.</p>
+    <section class="nasehat-script-section"><h4>1. Pembukaan</h4>
+      <p>Alhamdulillāhi rabbil ‘ālamīn. Segala puji bagi Allah SWT yang telah memberikan kesempatan kepada kita untuk menyaksikan ikatan pernikahan pada hari ini. Shalawat dan salam semoga tercurah kepada Nabi Muhammad SAW.</p>
+      <p>Kepada kedua mempelai, setelah akad ini saudara berdua akan membangun kehidupan bersama. Salah satu bagian penting dalam kehidupan tersebut adalah mengelola kebutuhan dan rezeki keluarga. Ada keluarga yang memulai dengan keadaan ekonomi mapan, ada pula yang masih merintis. Apa pun keadaan saudara, bangunlah rumah tangga dengan kejujuran, kerja keras, dan rasa syukur.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>2. Mengutamakan rezeki yang halal dan baik</h4>
+      <div class="nasehat-script-arabic" dir="rtl">يَا أَيُّهَا النَّاسُ كُلُوا مِمَّا فِي الْأَرْضِ حَلَالًا طَيِّبًا</div>
+      <p><strong>Artinya:</strong> “Wahai manusia, makanlah dari apa yang ada di bumi yang halal lagi baik.” (QS. Al-Baqarah [2]: 168).</p>
+      <p>Kecukupan keluarga bukan hanya soal jumlah penghasilan, tetapi juga kehalalan dan keberkahannya. Upayakan pekerjaan dan penghasilan yang baik. Hindari penipuan, mengambil hak orang lain, dan cara memperoleh uang yang merugikan. Rezeki yang halal menjadi bagian penting dalam membangun ketenteraman keluarga.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>3. Menjalankan tanggung jawab nafkah sesuai kemampuan</h4>
+      <div class="nasehat-script-arabic" dir="rtl">لِيُنفِقْ ذُو سَعَةٍ مِّن سَعَتِهِ</div>
+      <p><strong>Artinya:</strong> “Hendaklah orang yang mempunyai keluasan memberi nafkah menurut kemampuannya.” (QS. At-Talaq [65]: 7).</p>
+      <p>Ayat ini mengajarkan bahwa nafkah ditunaikan dengan mempertimbangkan kemampuan. Jangan menjadikan penghasilan sebagai bahan untuk merendahkan pasangan. Bicarakan kebutuhan secara terbuka, susun prioritas, dan sesuaikan gaya hidup dengan keadaan nyata. Tanggung jawab nafkah perlu dijalankan dengan sungguh-sungguh, sementara pasangan dapat saling mendukung melalui kesepakatan dan kerja sama yang baik.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>4. Terbuka dan tertib mengelola keuangan</h4>
+      <p>Biasakan membicarakan pendapatan, pengeluaran, kewajiban, tabungan, dan utang. Jangan menyembunyikan pinjaman atau mengambil keputusan finansial besar tanpa komunikasi. Buat anggaran sederhana untuk kebutuhan pokok, tempat tinggal, kesehatan, transportasi, pendidikan, tabungan, dan bantuan keluarga sesuai kemampuan.</p>
+      <p>Bedakan kebutuhan dan keinginan. Hindari berutang hanya demi mengikuti gaya hidup atau membandingkan keadaan dengan keluarga lain. Jika memiliki utang, sepakati rencana pembayaran dan jangan menambah beban tanpa pertimbangan. Keterbukaan mencegah kecurigaan dan membantu pasangan menghadapi masalah secara bersama.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>5. Menjaga kesederhanaan dan rasa syukur</h4>
+      <p>Jangan mengukur kebahagiaan rumah tangga dari besar rumah, kendaraan, pakaian, atau kemewahan pesta. Ada keluarga yang sederhana tetapi penuh penghormatan dan kasih sayang. Ada pula keluarga yang berkecukupan tetapi kehilangan ketenangan karena tidak saling menghargai.</p>
+      <p>Syukur bukan berarti berhenti berusaha. Syukur berarti menghargai nikmat yang ada sambil terus bekerja dengan cara yang baik. Ketika rezeki lapang, gunakan untuk kebutuhan, tabungan, dan berbagi. Ketika rezeki sempit, saling menguatkan dan menyusun langkah yang realistis.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>6. Menghindari konflik karena uang</h4>
+      <p>Persoalan ekonomi dapat menjadi sumber ketegangan jika tidak dibicarakan. Jangan saling menyalahkan ketika penghasilan menurun atau kebutuhan meningkat. Duduk bersama, periksa kembali anggaran, tentukan pengeluaran yang dapat ditunda, dan cari solusi tanpa mempermalukan pasangan. Jika diperlukan, mintalah nasihat dari pihak yang kompeten dan amanah.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>7. Menyusun rencana keuangan bersama</h4>
+<p>Saudara berdua dapat memulai dengan mencatat seluruh pemasukan dan pengeluaran selama satu bulan. Setelah itu, pisahkan kebutuhan pokok, kewajiban, tabungan, dana darurat, dan kebutuhan sosial. Tidak perlu menggunakan sistem yang rumit. Yang terpenting, kedua pihak memahami keadaan keuangan keluarga dan mengetahui tujuan yang sedang diusahakan bersama.</p>
+<p>Jika penghasilan salah satu pasangan tidak tetap, susun anggaran berdasarkan perkiraan yang konservatif dan dahulukan kebutuhan utama. Jika ada utang sebelum menikah, bicarakan secara terbuka mengenai jumlah, kewajiban pembayaran, dan rencana penyelesaiannya. Jangan menutupi keadaan keuangan karena persoalan yang disembunyikan sering kali menjadi sumber hilangnya kepercayaan.</p>
+<p>Sepakati pula batas pengeluaran yang perlu dibicarakan terlebih dahulu. Sisihkan dana untuk keadaan darurat sesuai kemampuan, dan hindari keputusan investasi atau pinjaman yang tidak dipahami risikonya. Apabila terjadi perubahan ekonomi, jangan saling menyalahkan. Tinjau kembali rencana, kurangi pengeluaran yang tidak mendesak, dan cari ikhtiar yang halal bersama-sama.</p></section>
+<section class="nasehat-delivery-addition warm" data-style="warm"><h4>Renungan untuk kedua mempelai</h4><p>Ada masa ketika rezeki terasa lapang dan ada masa ketika kebutuhan datang bersamaan. Pada kedua keadaan itu, pasangan perlu merasa bahwa mereka menghadapi kehidupan sebagai satu tim. Jangan mengukur kasih sayang dari besar kecilnya penghasilan. Hargai ikhtiar pasangan, bicarakan kesulitan tanpa mempermalukan, dan syukuri setiap rezeki yang diperoleh dengan cara yang baik.</p></section>
+<section class="nasehat-delivery-addition practical" data-style="practical"><h4>Langkah mengelola ekonomi keluarga</h4><p>Catat pemasukan dan pengeluaran. Dahulukan kebutuhan pokok dan kewajiban. Bicarakan utang serta tanggungan secara terbuka. Tentukan batas pengeluaran yang perlu disepakati bersama. Sisihkan dana darurat sesuai kemampuan dan evaluasi anggaran secara berkala.</p></section>
+<section class="nasehat-script-section"><h4>7. Penutup dan doa</h4>
+      <p>Kepada kedua mempelai, jadikan rezeki sebagai sarana beribadah, bukan alasan untuk saling membanggakan atau merendahkan. Bangun kebiasaan jujur, tertib, sederhana, dan saling mendukung. Semoga Allah SWT melimpahkan rezeki yang halal, mencukupkan kebutuhan saudara, dan menjadikan keluarga ini penuh keberkahan.</p>
+      <p>Semoga saudara berdua mampu bekerja sama dalam keadaan lapang maupun sempit, serta selalu mengingat bahwa keberkahan keluarga tidak hanya diukur dari harta, tetapi juga dari iman, kesehatan, kasih sayang, dan ketenteraman. Āmīn yā Rabbal ‘ālamīn.</p>
+    </section>
+    <div class="nasehat-script-actions no-print"><button class="btn btn-primary" type="button" onclick="copyMainNasehatScript()"><i class="fa-regular fa-copy"></i> Salin Naskah Ini</button><button class="btn btn-outline" type="button" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak Naskah</button></div>
+  </article></div>
+
+  <div class="nasehat-script-panel" id="script-model-5">
+  <article class="nasehat-main-script">
+    <div class="nasehat-script-top"><span class="nasehat-script-label"><i class="fa-solid fa-clock"></i> Estimasi 7–9 menit</span><span class="nasehat-script-label secondary">Ibadah dan pendidikan keluarga</span></div>
+    <h3>Nasihat Pernikahan: Membangun Keluarga Qur’ani dan Menyiapkan Generasi Berakhlak</h3>
+    <p class="nasehat-script-intro">Cocok untuk menekankan ibadah bersama, keteladanan orang tua, pendidikan anak, dan suasana rumah yang mendukung iman serta akhlak.</p>
+    <section class="nasehat-script-section"><h4>1. Pembukaan</h4>
+      <p>Alhamdulillāhi rabbil ‘ālamīn. Segala puji bagi Allah SWT yang telah memberikan nikmat iman, kesehatan, dan kesempatan sehingga pada hari ini terlaksana akad pernikahan. Shalawat dan salam semoga tercurah kepada Nabi Muhammad SAW.</p>
+      <p>Kepada kedua mempelai, keluarga yang dibangun hari ini kelak menjadi tempat tumbuhnya kebiasaan, nilai, dan akhlak. Rumah bukan hanya tempat beristirahat, tetapi juga tempat belajar mengenal Allah, menghormati sesama, dan bertanggung jawab. Karena itu, bangunlah rumah tangga yang menghadirkan suasana ibadah dan keteladanan.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>2. Menjaga diri dan keluarga</h4>
+      <div class="nasehat-script-arabic" dir="rtl">يَا أَيُّهَا الَّذِينَ آمَنُوا قُوا أَنْفُسَكُمْ وَأَهْلِيكُمْ نَارًا</div>
+      <p><strong>Artinya:</strong> “Wahai orang-orang yang beriman, jagalah dirimu dan keluargamu dari api neraka.” (QS. At-Tahrim [66]: 6).</p>
+      <p>Menjaga keluarga dimulai dari memperbaiki diri. Suami dan istri hendaknya saling mengingatkan untuk beribadah, mencari rezeki yang halal, menjaga pergaulan, dan menjauhi perilaku yang merusak. Nasihat yang baik bukan disampaikan dengan merendahkan, melainkan dengan kasih sayang, keteladanan, dan kesabaran.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>3. Membiasakan ibadah dalam kehidupan sehari-hari</h4>
+      <p>Mulailah dari kebiasaan yang sederhana: menjaga salat lima waktu, membaca Al-Qur’an meskipun beberapa ayat, berdoa sebelum dan sesudah aktivitas, serta saling mengingatkan ketika salah satu mulai lalai. Tidak perlu menunggu memiliki rumah besar atau keadaan sempurna untuk membangun kebiasaan baik.</p>
+      <p>Jadikan ibadah sebagai sumber ketenangan, bukan alat untuk menghakimi pasangan. Jika pasangan sedang lemah semangat, dukung dengan kelembutan. Jika diri sendiri melakukan kesalahan, akui dan perbaiki. Rumah yang baik bukan rumah tanpa kekurangan, tetapi rumah yang penghuninya terus berusaha kembali kepada Allah.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>4. Anak belajar dari keteladanan</h4>
+      <p>Jika Allah menganugerahkan keturunan, ingatlah bahwa pendidikan anak dimulai jauh sebelum anak memahami nasihat. Anak melihat bagaimana ayah dan ibu berbicara, menghormati orang tua, memperlakukan tetangga, menyelesaikan perselisihan, dan menjalankan ibadah. Karena itu, keteladanan sering kali lebih kuat daripada perintah.</p>
+      <p>Berikan anak kasih sayang, perlindungan, pendidikan, dan batasan yang jelas. Dengarkan pertanyaan mereka, hargai proses tumbuh kembangnya, dan hindari kekerasan sebagai metode mendidik. Orang tua perlu bekerja sama agar anak tidak menerima pesan yang saling bertentangan.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>5. Berdoa untuk pasangan dan keturunan</h4>
+      <div class="nasehat-script-arabic" dir="rtl">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</div>
+      <p><strong>Artinya:</strong> “Ya Tuhan kami, anugerahkanlah kepada kami pasangan kami dan keturunan kami sebagai penyenang hati, dan jadikanlah kami pemimpin bagi orang-orang yang bertakwa.” (QS. Al-Furqan [25]: 74).</p>
+      <p>Ayat ini mengajarkan agar pasangan tidak hanya meminta keluarga yang membanggakan secara duniawi, tetapi juga keluarga yang menyejukkan hati karena iman dan akhlaknya. Doakan pasangan, doakan keturunan, dan doakan agar diri sendiri mampu menjadi teladan yang baik.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>6. Menjaga hubungan sosial</h4>
+      <p>Keluarga yang baik tidak menutup diri dari masyarakat. Ajarkan penghormatan kepada tetangga, kepedulian kepada kerabat, dan kesediaan membantu sesama sesuai kemampuan. Namun, jaga pula batas dan prioritas agar hubungan sosial tidak mengabaikan kebutuhan serta ketenteraman rumah tangga.</p>
+    </section>
+    <section class="nasehat-script-section"><h4>7. Membangun lingkungan belajar yang sehat</h4>
+<p>Apabila kelak memiliki anak, saudara berdua perlu menyepakati nilai-nilai dasar yang ingin ditanamkan. Ajarkan kejujuran, tanggung jawab, adab kepada orang tua, kepedulian kepada tetangga, dan penghormatan terhadap perbedaan. Pendidikan tidak hanya berlangsung ketika anak duduk belajar, tetapi juga ketika mereka melihat orang tua meminta maaf, menepati janji, dan memperlakukan orang lain dengan baik.</p>
+<p>Perhatikan pula lingkungan pergaulan dan penggunaan teknologi. Dampingi anak mengenal manfaat serta risiko dunia digital sesuai usianya. Bangun komunikasi agar anak merasa aman bercerita ketika mengalami masalah. Hindari mempermalukan anak, membandingkannya dengan orang lain, atau menjadikan kekerasan sebagai cara mendisiplinkan. Orang tua perlu menjadi tempat anak memperoleh arahan sekaligus perlindungan.</p>
+<p>Kesepakatan antara ayah dan ibu sangat penting. Jika berbeda pandangan mengenai pendidikan, aturan, atau disiplin, bicarakan secara pribadi dan jangan saling menjatuhkan di hadapan anak. Tunjukkan bahwa perbedaan dapat diselesaikan dengan hormat. Dengan demikian, anak belajar bahwa keluarga adalah tempat untuk bertumbuh, belajar, dan memperbaiki diri.</p></section>
+<section class="nasehat-delivery-addition warm" data-style="warm"><h4>Renungan untuk kedua mempelai</h4><p>Anak kelak mungkin tidak mengingat semua nasihat yang disampaikan orang tuanya, tetapi mereka akan mengingat bagaimana ayah dan ibu memperlakukan satu sama lain. Mereka belajar tentang kasih sayang dari cara orang tua berbicara, tentang kejujuran dari perilaku sehari-hari, dan tentang kesabaran dari cara keluarga menghadapi ujian. Jadikan diri sendiri teladan sebelum meminta anak menjadi baik.</p></section>
+<section class="nasehat-delivery-addition practical" data-style="practical"><h4>Kebiasaan membangun keluarga Qur’ani</h4><p>Jaga salat dan biasakan doa bersama sesuai kemampuan. Sediakan waktu membaca dan membicarakan Al-Qur’an. Tunjukkan adab melalui perilaku orang tua. Sepakati pola pendidikan dan disiplin tanpa kekerasan. Dampingi penggunaan teknologi dan bangun komunikasi agar anak merasa aman bercerita.</p></section>
+<section class="nasehat-script-section"><h4>7. Penutup dan doa</h4>
+      <p>Kepada kedua mempelai, jadikan rumah sebagai tempat bertumbuhnya iman, ilmu, kasih sayang, dan akhlak. Mulailah dari teladan diri sendiri. Jangan hanya berharap anak menjadi saleh dan salehah; bangunlah suasana yang membantu mereka mencintai kebaikan. Jangan hanya meminta pasangan menjadi lebih taat; ajaklah dengan kelembutan dan contoh nyata.</p>
+      <p>Semoga Allah SWT menjadikan keluarga saudara sebagai keluarga yang sakinah, penuh keberkahan, teguh dalam ibadah, dan bermanfaat bagi masyarakat. Semoga dianugerahkan keturunan yang sehat, beriman, berilmu, dan berakhlak mulia apabila Allah menghendaki. Āmīn yā Rabbal ‘ālamīn.</p>
+    </section>
+    <div class="nasehat-script-actions no-print"><button class="btn btn-primary" type="button" onclick="copyMainNasehatScript()"><i class="fa-regular fa-copy"></i> Salin Naskah Ini</button><button class="btn btn-outline" type="button" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak Naskah</button></div>
+  </article></div>
+
+  </div>
+
+
+
+</div>
+
+<div class="subtab-pane" id="nasehat-subtab-artikel">
+  <section class="nasehat-reference-library bank-nasehat-library">
+    <div class="nasehat-reference-heading">
+      <span class="nasehat-script-label"><i class="fa-solid fa-book-open"></i> Pusat pengetahuan penghulu</span>
+      <h3>Bank Nasihat Perkawinan</h3>
+      <p>24 artikel tematik untuk bahan nasihat, konsultasi awal, dan pengayaan materi bimbingan perkawinan. Pilih tema, kemudian pilih judul untuk membaca isi artikel.</p>
+    </div>
+    <div class="bank-nasehat-controls">
+      <div class="nasehat-filter-field">
+        <label for="bankNasehatTheme"><i class="fa-solid fa-filter"></i> Filter tema</label>
+        <select id="bankNasehatTheme" class="form-control">
+          <option value="all">Semua tema</option>
+        </select>
+      </div>
+      <div class="nasehat-filter-field">
+        <label for="bankNasehatTitle"><i class="fa-solid fa-list"></i> Pilih judul artikel</label>
+        <select id="bankNasehatTitle" class="form-control" disabled>
+          <option value="">Pilih tema terlebih dahulu</option>
+        </select>
+      </div>
+    </div>
+    <div class="bank-nasehat-count" id="bankNasehatCount">24 artikel tersedia dalam 6 tema.</div>
+    <article class="bank-nasehat-reader" id="bankNasehatReader" hidden aria-live="polite">
+      <div class="bank-nasehat-reader-meta" id="bankNasehatMeta"></div>
+      <h4 id="bankNasehatArticleTitle"></h4>
+      <div class="bank-nasehat-source"><strong>Rujukan:</strong> <span id="bankNasehatSource"></span></div>
+      <div class="bank-nasehat-body" id="bankNasehatBody"></div>
+      <div class="bank-nasehat-deep" id="bankNasehatDeep"></div>
+      <div class="bank-nasehat-reader-actions no-print">
+        <button class="btn btn-primary" type="button" id="bankNasehatCopy"><i class="fa-regular fa-copy"></i> Salin artikel</button>
+        <button class="btn btn-outline" type="button" id="bankNasehatPrint"><i class="fa-solid fa-print"></i> Cetak artikel</button>
+      </div>
+    </article>
+    <div class="bank-nasehat-empty" id="bankNasehatEmpty">Pilih tema dan judul artikel untuk menampilkan isi.</div>
+    <div class="bank-nasehat-sources">
+      <h4>Referensi resmi dan bahan pengayaan</h4>
+      <p>Artikel disusun sebagai ringkasan edukatif. Untuk penetapan hukum atau penanganan kasus, periksa naskah peraturan dan rujukan asli.</p>
+      <ul>
+        <li><a href="https://bimasislam.kemenag.go.id/artikel/the-most-kua-keluarga-sakinah-maslahat-dan-pondasi-pembangunan" target="_blank" rel="noopener">Bimas Islam Kemenag — Keluarga Sakinah-Maslahat dan lima pilar perkawinan</a></li>
+        <li><a href="https://kemenag.go.id/nasional/calon-pengantin-saat-bimwin-belajar-prioritas-keuangan-keluarga-ini-materinya-idEI9" target="_blank" rel="noopener">Kemenag — Prioritas keuangan keluarga dalam Bimbingan Perkawinan</a></li>
+        <li><a href="https://kemenag.go.id/en/nasional/mau-start-the-wedding-ikuti-dulu-program-persiapan-nikah-dari-kemenag-iUdke" target="_blank" rel="noopener">Kemenag — Materi persiapan perkawinan dan pendampingan keluarga</a></li>
+        <li><a href="https://bimasislam.kemenag.go.id/artikel/institusi-pernikahan-dan-ketahanan-keluarga-di-tengah-perubahan-sosial" target="_blank" rel="noopener">Bimas Islam Kemenag — Ketahanan keluarga dan pendampingan pascanikah</a></li>
+        <li><a href="https://jdih.kemenag.go.id/yzxkthpo/regulation/2024abspermenag30.pdf" target="_blank" rel="noopener">JDIH Kemenag — PMA Nomor 30 Tahun 2024 tentang Pencatatan Pernikahan</a></li>
+      </ul>
+    </div>
+  </section>
+</div>
+</section>
+  </div>
+  <footer class="app-footer">
+    <div><strong>Asisten Penghulu v5.0</strong> · Aplikasi web modular</div>
+    <div class="footer-disclaimer">Aplikasi ini merupakan alat bantu kerja. Keputusan administratif dan penetapan hukum tetap mengacu pada peraturan yang berlaku serta kewenangan pejabat yang berwenang.</div>
+    <div class="footer-v4">Asisten Penghulu Modular Web v5.0</div>
+  </footer>
+</main>
+</div>
+<div id="toast-notification"><span aria-hidden="true">✓</span><span id="toast-message">Teks berhasil disalin.</span></div>
+<script src="../assets/js/data/nasihat-data.js"></script><script src="../assets/js/app-core.js"></script><script src="../assets/js/data/bank-nasehat.js"></script>
+<script src="../assets/js/pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123e32">
+<meta name="description" content="Asisten Penghulu — alat bantu administrasi, fikih munakahat, dan materi kepenghuluan.">
+<title>Kalkulator Iddah | Asisten Penghulu</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body data-page="iddah">
+<div class="version-strip">ASISTEN PENGHULU · VERSI 5.0 · WEB MODULAR</div>
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleMobileSidebar()"></div>
+<div class="app-layout">
+<aside class="app-sidebar" id="appSidebar">
+  <div class="sidebar-header">
+    <div class="brand-icon"><span aria-hidden="true">م</span></div>
+    <div><h1 class="brand-title">Asisten Penghulu</h1><p class="brand-subtitle">Pengetahuan &amp; Praktik Kepenghuluan</p></div>
+  </div>
+  <nav class="sidebar-nav">
+<div class="nav-label">Ruang Kerja</div>
+<a class="nav-item" href="../index.html"><span class="nav-glyph">⌂</span><span>Beranda</span></a>
+<a class="nav-item" href="../pages/wali.html"><span class="nav-glyph">♧</span><span>Cek Wali Nikah</span></a>
+<a class="nav-item active" href="../pages/iddah.html" aria-current="page"><span class="nav-glyph">◷</span><span>Kalkulator Iddah</span></a>
+<a class="nav-item" href="../pages/mahar.html"><span class="nav-glyph">◇</span><span>Terjemah Mahar</span></a>
+<a class="nav-item" href="../pages/akad.html"><span class="nav-glyph">✧</span><span>Lafaz Akad Nikah</span></a>
+<a class="nav-item" href="../pages/khutbah.html"><span class="nav-glyph">▤</span><span>Kumpulan Khutbah</span></a>
+<a class="nav-item" href="../pages/nasihat.html"><span class="nav-glyph">♡</span><span>Bank Nasihat Perkawinan</span></a>
+<a class="nav-item" href="../pages/konversi.html"><span class="nav-glyph">∑</span><span>Kalkulator & Konversi</span></a>
+<div class="nav-label">Pusat Pengetahuan</div>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=regulasi"><span class="nav-glyph">§</span><span>Ensiklopedia Regulasi</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=fikih"><span class="nav-glyph">ف</span><span>Ensiklopedia Fikih Munakahat</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=dalil"><span class="nav-glyph">۞</span><span>Ensiklopedia Dalil</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=problematika"><span class="nav-glyph">⚖</span><span>Problematika Akad</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=nasab-mahram"><span class="nav-glyph">∞</span><span>Ensiklopedia Nasab & Mahram</span></a>
+<a class="nav-item" href="../pages/referensi.html"><span class="nav-glyph">▤</span><span>Referensi Fikih &amp; KHI</span></a>
+</nav>
+  <div class="sidebar-footer">
+    <div class="offline-badge"><span class="pulse-dot"></span><span>Web · Offline setelah halaman tersimpan</span></div>
+    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.0 · Modular Web</div>
+  </div>
+</aside>
+<main class="app-main">
+  <header class="app-header">
+    <div class="header-left">
+      <button aria-label="Buka Menu" class="mobile-toggle" onclick="toggleMobileSidebar()"><span aria-hidden="true">☰</span></button>
+      <div class="page-title-badge" id="topPageTitle"><span aria-hidden="true">◷</span><span>Kalkulator Iddah</span></div>
+    </div>
+    <div class="header-right">
+      <div class="date-badge"><span id="currentDateMasehi">Memuat...</span><span class="hijri" id="currentDateHijri">... H</span></div>
+      <button class="btn-header-print no-print" onclick="window.print()" title="Cetak Halaman"><span>⎙</span><span>Cetak</span></button>
+    </div>
+  </header>
+  <div class="content-area">
+    <div class="print-header"><p style="font-size:.85rem;margin-top:4px">Lembar Kerja Asisten Penghulu — Kalkulator Iddah</p></div>
+    <section class="app-section active" id="section-iddah">
+<div class="card-header" style="border:none; padding:0; margin-bottom: 20px;">
+<div>
+<h2 style="font-family: var(--font-heading); color: var(--primary-dark); font-size: 1.5rem;">
+<i class="fa-solid fa-hourglass-half" style="color: var(--gold);"></i> Kalkulator Masa Iddah Syar'i
+              </h2>
+<p style="font-size: 0.86rem; color: var(--text-muted);">
+                Penghitungan masa tunggu perceraian atau kematian suami berdasarkan hukum Islam (Al-Qur'an &amp; Sunnah) serta Kompilasi Hukum Islam (KHI).
+              </p>
+</div>
+</div>
+<div class="grid-sidebar-layout">
+<!-- Left: Inputs & Results -->
+<div>
+<div class="card">
+<div class="card-title" style="margin-bottom: 16px;">
+<i class="fa-solid fa-sliders"></i>
+<span>Parameter Kondisi Perceraian / Kematian</span>
+</div>
+<div class="grid-2">
+<div class="form-group">
+<label class="form-label">Jenis Perceraian / Pemisahan:</label>
+<select class="form-select" id="iddahReason" onchange="calculateIddah()">
+<option value="talak">Cerai Talak (Dijatuhkan Suami)</option>
+<option value="gugat">Cerai Gugat (Gugatan Istri ke PA)</option>
+<option value="mati">Cerai Mati (Suami Meninggal Dunia)</option>
+<option value="fasakh">Fasakh (Pembatalan Akad oleh Hakim)</option>
+<option value="khulu">Khulu' (Tebus Talak)</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">Tanggal Cerai / Putusan / Kematian:</label>
+<input class="form-control" id="iddahStartDate" onchange="calculateIddah()" type="date"/>
+<div class="form-hint">Tanggal putusan berkekuatan hukum tetap (BHT) / akta cerai / kematian</div>
+</div>
+</div>
+<div class="grid-3" style="margin-top: 10px;">
+<div class="form-group">
+<label class="form-label">Apakah Sudah Pernah Dukhul (Bersetubuh)?</label>
+<select class="form-select" id="iddahDukhul" onchange="calculateIddah()">
+<option value="yes">Sudah Dukhul (Ba'da Dukhul)</option>
+<option value="no">Belum Pernah (Qabla Dukhul)</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">Apakah Istri Sedang Hamil?</label>
+<select class="form-select" id="iddahHamil" onchange="calculateIddah()">
+<option value="no">Tidak Hamil</option>
+<option value="yes">Ya, Sedang Mengandung</option>
+</select>
+</div>
+<div class="form-group" id="grpStatusHaid">
+<label class="form-label">Status Siklus Haid (Jika Tidak Hamil):</label>
+<select class="form-select" id="iddahHaidStatus" onchange="calculateIddah()">
+<option value="masih_haid">Masih Haid Teratur (Quru')</option>
+<option value="menopause">Sudah Menopause (Ya'isah)</option>
+<option value="belum_haid">Belum Pernah Haid / Masih Muda</option>
+</select>
+</div>
+</div>
+<div class="form-group" id="grpEstimatedBirth" style="display:none; margin-top: 10px;">
+<label class="form-label">Perkiraan Hari Lahir (HPL) jika diketahui (Opsional):</label>
+<input class="form-control" id="iddahEstimatedBirth" onchange="calculateIddah()" type="date"/>
+</div>
+</div>
+<!-- Output Results -->
+<div class="card" id="iddahResultCard">
+<div class="card-header">
+<div class="card-title">
+<i class="fa-solid fa-chart-pie"></i>
+<span>Hasil Perhitungan Masa Iddah</span>
+</div>
+<span class="badge badge-primary" id="iddahStatusBadge">Perhitungan Berlaku</span>
+</div>
+<div class="iddah-metric-cards">
+<div class="iddah-metric">
+<div class="iddah-metric-val" id="iddahDurationText">Menunggu pemeriksaan</div>
+<div class="iddah-metric-title">Ketentuan Masa Iddah</div>
+</div>
+<div class="iddah-metric">
+<div class="iddah-metric-val" id="iddahEndDateText">Belum dihitung</div>
+<div class="iddah-metric-title">Perkiraan Berakhir</div>
+</div>
+<div class="iddah-metric">
+<div class="iddah-metric-val" id="iddahRemainingDays">Perlu verifikasi</div>
+<div class="iddah-metric-title">Sisa Waktu Tunggu</div>
+</div>
+</div>
+<!-- Visual Timeline -->
+<div class="timeline-container">
+<div class="timeline-labels">
+<span id="timelineStartLabel">Mulai: 29 Okt 2026</span>
+<span id="timelineTodayLabel" style="color: var(--primary); font-weight: 700;">Hari Ini</span>
+<span id="timelineEndLabel">Selesai: 27 Jan 2027</span>
+</div>
+<div class="timeline-track">
+<div class="timeline-fill" id="timelineProgressFill" style="width: 15%;"></div>
+</div>
+<div id="timelinePercentLabel" style="text-align: center; font-size: 0.8rem; color: var(--text-muted);">
+                    Progres masa tunggu telah berjalan 15%
+                  </div>
+</div>
+<!-- Dalil Box -->
+<div class="dalil-box" id="iddahDalilBox">
+<div class="dalil-title">
+<i class="fa-solid fa-book-open"></i>
+<span id="iddahDalilHeading">Dasar Dalil Syar'i (QS. Al-Baqarah: 228)</span>
+</div>
+<div class="dalil-arabic" id="iddahDalilArabic">
+                    وَٱلْمُطَلَّقَٰتُ يَتَرَبَّصْنَ بِأَنفُسِهِنَّ ثَلَٰثَةَ قُرُوٓءٍ
+                  </div>
+<p class="dalil-translation" id="iddahDalilTranslation">
+                    "Wanita-wanita yang ditalak handaklah menahan diri (menunggu) tiga kali quru'..."
+                  </p>
+<div class="dalil-source" id="iddahDalilSource">QS. Al-Baqarah: 228 &amp; KHI Pasal 153 ayat (2)</div>
+</div>
+<!-- Hak Istri & Catatan Hukum -->
+<div style="background: #f8fafc; border-radius: var(--radius-md); padding: 16px; border: 1px solid var(--border-color); font-size: 0.84rem;">
+<strong style="color: var(--primary-dark);"><i class="fa-solid fa-scale-balanced"></i> Catatan Hukum Munakahat:</strong>
+<ul id="iddahLegalNotes" style="margin: 8px 0 0 20px; line-height: 1.6;">
+<li>Istri dalam masa iddah talak raj'i berhak mendapatkan tempat tinggal, nafkah pakaian, dan nafkah makan dari mantan suami.</li>
+<li>Mantan suami berhak merujuk mantan istrinya selama masa iddah talak raj'i masih berlangsung tanpa perlu akad nikah baru.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Quick Guidance Sidecard -->
+<div>
+<div class="card">
+<div class="card-title" style="font-size: 1rem;">
+<i class="fa-solid fa-bookmark"></i>
+<span>Ringkasan Kaidah Iddah</span>
+</div>
+<div style="font-size: 0.82rem; line-height: 1.6; margin-top: 10px;">
+<div style="margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #edf2ef;">
+<strong style="color: var(--primary-dark);">1. Qabla Dukhul (Belum Campur):</strong>
+<div style="color: var(--text-muted);">Tidak ada iddah sama sekali jika bercerai hidup. Jika cerai mati, tetap wajib beriddah 4 bulan 10 hari.</div>
+</div>
+<div style="margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #edf2ef;">
+<strong style="color: var(--primary-dark);">2. Wanita Mengandung:</strong>
+<div style="color: var(--text-muted);">Iddahnya berakhir seketika saat melahirkan atau gugur kandungannya, baik cerai hidup maupun cerai mati.</div>
+</div>
+<div style="margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #edf2ef;">
+<strong style="color: var(--primary-dark);">3. Cerai Mati (Wafat):</strong>
+<div style="color: var(--text-muted);">Iddah 4 bulan 10 hari jika tidak hamil; jangan disederhanakan menjadi 130 hari tetap. Perhatikan kalender Hijriah dan kewajiban ihdad.</div>
+</div>
+<div style="margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #edf2ef;">
+<strong style="color: var(--primary-dark);">4. Menopause / Belum Haid:</strong>
+<div style="color: var(--text-muted);">Iddahnya 3 bulan; jangan otomatis disamakan dengan 90 hari.</div>
+</div>
+<div>
+<strong style="color: var(--primary-dark);">5. Masih Haid:</strong>
+<div style="color: var(--text-muted);">Tiga quru’; penafsiran berbeda menurut mazhab. Jangan menetapkan tanggal akhir hanya dengan estimasi 90 hari.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+  </div>
+  <footer class="app-footer">
+    <div><strong>Asisten Penghulu v5.0</strong> · Aplikasi web modular</div>
+    <div class="footer-disclaimer">Aplikasi ini merupakan alat bantu kerja. Keputusan administratif dan penetapan hukum tetap mengacu pada peraturan yang berlaku serta kewenangan pejabat yang berwenang.</div>
+    <div class="footer-v4">Asisten Penghulu Modular Web v5.0</div>
+  </footer>
+</main>
+</div>
+<div id="toast-notification"><span aria-hidden="true">✓</span><span id="toast-message">Teks berhasil disalin.</span></div>
+<script src="../assets/js/app-core.js"></script>
+<script src="../assets/js/pwa.js"></script>
+</body>
+</html>

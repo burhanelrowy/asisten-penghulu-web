@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123e32">
+<meta name="description" content="Asisten Penghulu — alat bantu administrasi, fikih munakahat, dan materi kepenghuluan.">
+<title>Kalkulator Penanggalan & Logam Mulia | Asisten Penghulu</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body data-page="konversi">
+<div class="version-strip">ASISTEN PENGHULU · VERSI 5.0 · WEB MODULAR</div>
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleMobileSidebar()"></div>
+<div class="app-layout">
+<aside class="app-sidebar" id="appSidebar">
+  <div class="sidebar-header">
+    <div class="brand-icon"><span aria-hidden="true">م</span></div>
+    <div><h1 class="brand-title">Asisten Penghulu</h1><p class="brand-subtitle">Pengetahuan &amp; Praktik Kepenghuluan</p></div>
+  </div>
+  <nav class="sidebar-nav">
+<div class="nav-label">Ruang Kerja</div>
+<a class="nav-item" href="../index.html"><span class="nav-glyph">⌂</span><span>Beranda</span></a>
+<a class="nav-item" href="../pages/wali.html"><span class="nav-glyph">♧</span><span>Cek Wali Nikah</span></a>
+<a class="nav-item" href="../pages/iddah.html"><span class="nav-glyph">◷</span><span>Kalkulator Iddah</span></a>
+<a class="nav-item" href="../pages/mahar.html"><span class="nav-glyph">◇</span><span>Terjemah Mahar</span></a>
+<a class="nav-item" href="../pages/akad.html"><span class="nav-glyph">✧</span><span>Lafaz Akad Nikah</span></a>
+<a class="nav-item" href="../pages/khutbah.html"><span class="nav-glyph">▤</span><span>Kumpulan Khutbah</span></a>
+<a class="nav-item" href="../pages/nasihat.html"><span class="nav-glyph">♡</span><span>Bank Nasihat Perkawinan</span></a>
+<a class="nav-item active" href="../pages/konversi.html" aria-current="page"><span class="nav-glyph">∑</span><span>Kalkulator & Konversi</span></a>
+<div class="nav-label">Pusat Pengetahuan</div>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=regulasi"><span class="nav-glyph">§</span><span>Ensiklopedia Regulasi</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=fikih"><span class="nav-glyph">ف</span><span>Ensiklopedia Fikih Munakahat</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=dalil"><span class="nav-glyph">۞</span><span>Ensiklopedia Dalil</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=problematika"><span class="nav-glyph">⚖</span><span>Problematika Akad</span></a>
+<a class="nav-item knowledge-nav" href="../pages/ensiklopedia.html?category=nasab-mahram"><span class="nav-glyph">∞</span><span>Ensiklopedia Nasab & Mahram</span></a>
+<a class="nav-item" href="../pages/referensi.html"><span class="nav-glyph">▤</span><span>Referensi Fikih &amp; KHI</span></a>
+</nav>
+  <div class="sidebar-footer">
+    <div class="offline-badge"><span class="pulse-dot"></span><span>Web · Offline setelah halaman tersimpan</span></div>
+    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.0 · Modular Web</div>
+  </div>
+</aside>
+<main class="app-main">
+  <header class="app-header">
+    <div class="header-left">
+      <button aria-label="Buka Menu" class="mobile-toggle" onclick="toggleMobileSidebar()"><span aria-hidden="true">☰</span></button>
+      <div class="page-title-badge" id="topPageTitle"><span aria-hidden="true">∑</span><span>Kalkulator Penanggalan & Logam Mulia</span></div>
+    </div>
+    <div class="header-right">
+      <div class="date-badge"><span id="currentDateMasehi">Memuat...</span><span class="hijri" id="currentDateHijri">... H</span></div>
+      <button class="btn-header-print no-print" onclick="window.print()" title="Cetak Halaman"><span>⎙</span><span>Cetak</span></button>
+    </div>
+  </header>
+  <div class="content-area">
+    <div class="print-header"><p style="font-size:.85rem;margin-top:4px">Lembar Kerja Asisten Penghulu — Kalkulator Penanggalan & Logam Mulia</p></div>
+    <section class="app-section active" id="section-konversi">
+<div class="card-header" style="border:none; padding:0; margin-bottom: 20px;">
+<div>
+<h2 style="font-family: var(--font-heading); color: var(--primary-dark); font-size: 1.5rem;">
+<i class="fa-solid fa-calculator" style="color: var(--gold);"></i> Kalkulator Penanggalan &amp; Logam Mulia
+              </h2>
+<p style="font-size: 0.86rem; color: var(--text-muted);">
+                Konversi kalender Masehi - Hijriyah, hitung mundur hari nikah/iddah, serta perhitungan mitsqal syar'i &amp; kadar emas murni.
+              </p>
+</div>
+</div>
+<div class="grid-3">
+<!-- Tool 1: Konversi Hijriyah <-> Masehi -->
+<div class="converter-card">
+<div class="card-title" style="font-size: 1.05rem; margin-bottom: 14px;">
+<i class="fa-solid fa-moon"></i>
+<span>Konversi Masehi &amp; Hijriyah</span>
+</div>
+<div class="form-group">
+<label class="form-label">Pilih Tanggal Masehi:</label>
+<input class="form-control" id="convMasehiInput" onchange="convertMasehiToHijriCalc()" type="date"/>
+</div>
+<div style="background: var(--primary-subtle); border: 1px solid var(--primary-border); padding: 14px; border-radius: var(--radius-md); text-align: center; margin-bottom: 18px;">
+<div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Hasil Tanggal Hijriyah:</div>
+<div id="convHijriResult" style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--primary-dark); margin: 4px 0;">
+                  ...
+                </div>
+<div id="convHijriResultAr" style="font-family: var(--font-arabic); font-size: 1.15rem; color: var(--gold-dark);">
+                  ...
+                </div>
+</div>
+<hr style="border: none; border-top: 1px dashed var(--border-color); margin: 16px 0;"/>
+<!-- Inverse Hijri to Masehi -->
+<div class="form-label" style="margin-bottom: 8px;">Ubah Tanggal Hijriyah ke Masehi:</div>
+<div style="display: flex; gap: 6px; margin-bottom: 12px;">
+<input class="form-control" id="invHijriDay" max="30" min="1" placeholder="Hari (1-30)" style="width: 80px;" type="number" value="1"/>
+<select class="form-select" id="invHijriMonth" style="flex: 1;">
+<option value="1">1. Muharram</option>
+<option value="2">2. Shafar</option>
+<option value="3">3. Rabi'ul Awwal</option>
+<option value="4">4. Rabi'ul Akhir</option>
+<option value="5">5. Jumadil Ula</option>
+<option value="6">6. Jumadil Akhir</option>
+<option value="7">7. Rajab</option>
+<option value="8">8. Sya'ban</option>
+<option value="9">9. Ramadhan</option>
+<option value="10">10. Syawwal</option>
+<option value="11">11. Dzulqa'dah</option>
+<option value="12">12. Dzulhijjah</option>
+</select>
+<input class="form-control" id="invHijriYear" placeholder="Tahun H" style="width: 90px;" type="number" value="1448"/>
+</div>
+<button class="btn btn-outline btn-block btn-sm" onclick="convertHijriToMasehiCalc()">
+<i class="fa-solid fa-arrow-right-arrow-left"></i> Konversi ke Masehi
+              </button>
+<div id="invMasehiResult" style="font-size: 0.84rem; text-align: center; margin-top: 8px; font-weight: 600; color: var(--primary-dark);">
+                -
+              </div>
+</div>
+<!-- Tool 2: Hitung Mundur Hari -->
+<div class="converter-card">
+<div class="card-title" style="font-size: 1.05rem; margin-bottom: 14px;">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<span>Hitung Selisih &amp; Proyeksi Hari</span>
+</div>
+<!-- Mode A: Target Date Countdown -->
+<div class="form-group">
+<label class="form-label">Hitung Jarak Hari ke Tanggal:</label>
+<input class="form-control" id="cntTargetDate" onchange="calculateDayCountdown()" type="date"/>
+</div>
+<div style="background: var(--bg-card-alt); border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md); text-align: center; margin-bottom: 18px;">
+<div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Selisih Hari dari Hari Ini:</div>
+<div id="cntCountdownResult" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--primary-dark);">
+                  0 Hari
+                </div>
+</div>
+<hr style="border: none; border-top: 1px dashed var(--border-color); margin: 16px 0;"/>
+<!-- Mode B: Add Days to Date -->
+<div class="form-group">
+<label class="form-label">Tambah Jumlah Hari dari Tanggal Tertentu:</label>
+<input class="form-control" id="cntAddBaseDate" style="margin-bottom: 6px;" type="date"/>
+<div style="display: flex; gap: 8px;">
+<input class="form-control" id="cntAddDaysAmount" placeholder="Jumlah hari (cth: 130 atau 90)" type="number" value="130"/>
+<button class="btn btn-primary btn-sm" onclick="calculateAddDays()">Hitung</button>
+</div>
+</div>
+<div id="cntAddDaysResult" style="font-size: 0.85rem; text-align: center; font-weight: 600; color: var(--primary-dark);">
+                Target: -
+              </div>
+</div>
+<!-- Tool 3: Kalkulator Emas & Mitsqal -->
+<div class="converter-card">
+<div class="card-title" style="font-size: 1.05rem; margin-bottom: 14px;">
+<i class="fa-solid fa-coins"></i>
+<span>Kalkulator Emas &amp; Mitsqal Syar'i</span>
+</div>
+<!-- Gram to Mitsqal -->
+<div class="form-group">
+<label class="form-label">Konversi Gram &lt;-&gt; Mitsqal (1 Mitsqal = 4.25 g):</label>
+<div style="display: flex; gap: 8px; margin-bottom: 6px;">
+<input class="form-control" id="goldGramInput" oninput="convertGramToMitsqal()" placeholder="Berat Gram" step="0.01" type="number" value="4.25"/>
+<span style="align-self: center; font-size: 0.85rem; font-weight: 600;">Gram</span>
+</div>
+<div id="goldMitsqalResult" style="font-size: 0.84rem; color: var(--primary-dark); font-weight: 600;">
+                  = 1.00 Mitsqal Syar'i (Dinar Emas)
+                </div>
+</div>
+<hr style="border: none; border-top: 1px dashed var(--border-color); margin: 16px 0;"/>
+<!-- Karatage Pure Gold Content -->
+<div class="form-group">
+<label class="form-label">Hitung Kandungan Emas Murni (Karatasi):</label>
+<div style="display: flex; gap: 8px; margin-bottom: 8px;">
+<select class="form-select" id="goldKaratSelect" onchange="calculatePureGold()">
+<option value="24">24 Karat (99.9% Murni)</option>
+<option selected="" value="22">22 Karat (91.6% Murni)</option>
+<option value="20">20 Karat (83.3% Murni)</option>
+<option value="18">18 Karat (75.0% Murni)</option>
+<option value="16">16 Karat (66.7% Murni)</option>
+</select>
+<input class="form-control" id="goldTotalWeight" oninput="calculatePureGold()" placeholder="Total Gram" step="0.1" style="width: 110px;" type="number" value="10"/>
+</div>
+</div>
+<div class="gold-result-box">
+<div style="font-size: 0.72rem; color: #715206; text-transform: uppercase;">Emas Murni Bersih (Fine Gold):</div>
+<div class="gold-pure-val" id="goldPureOutput">9.16 Gram</div>
+<div style="font-size: 0.75rem; color: #8c670a; margin-top: 4px;">Kadar kemurnian 91.6%</div>
+</div>
+
+  <div class="nasehat-script-panel" </section>
+  </div>
+  <footer class="app-footer">
+    <div><strong>Asisten Penghulu v5.0</strong> · Aplikasi web modular</div>
+    <div class="footer-disclaimer">Aplikasi ini merupakan alat bantu kerja. Keputusan administratif dan penetapan hukum tetap mengacu pada peraturan yang berlaku serta kewenangan pejabat yang berwenang.</div>
+    <div class="footer-v4">Asisten Penghulu Modular Web v5.0</div>
+  </footer>
+</main>
+</div>
+<div id="toast-notification"><span aria-hidden="true">✓</span><span id="toast-message">Teks berhasil disalin.</span></div>
+<script src="../assets/js/app-core.js"></script>
+<script src="../assets/js/pwa.js"></script>
+</body>
+</html>
