@@ -69,7 +69,7 @@ const BANK_NASEHAT_ARTICLES = [{"theme": "Fondasi Keluarga Sakinah", "title": "S
     }[a.theme]||"Rujukan hukum harus diperiksa pada naskah resmi dan versi terbaru sebelum digunakan untuk memberikan nasihat hukum.";
     return `
       <section class="bank-deep-section"><h5>1. Pengantar dan urgensi tema</h5><p>${a.body}</p><p>Topik ini penting dibicarakan sejak awal perkawinan karena harapan, kebiasaan, dan latar keluarga setiap pasangan tidak selalu sama. Nasihat yang baik tidak berhenti pada slogan, tetapi membantu pasangan menerjemahkan nilai agama menjadi keputusan dan kebiasaan yang dapat diamati. Penghulu dapat menyampaikannya dengan bahasa yang tidak menghakimi, memberi ruang bagi perbedaan keadaan, serta mengingatkan bahwa keluarga berkembang melalui proses belajar.</p><p>Dalam praktik, satu tema dapat berhubungan dengan tema lain. Ketegangan ekonomi, misalnya, dapat memengaruhi komunikasi; pola komunikasi dapat memengaruhi pengasuhan; dan rasa aman menjadi dasar agar pasangan mampu menyampaikan kebutuhan. Karena itu, materi perlu disampaikan secara utuh dan kontekstual.</p></section>
-      <section class="bank-deep-section"><h5>2. Dalil Al-Qur’an dan terjemahan</h5><div class="bank-deep-arabic" dir="rtl">${dalil.ar}</div><p><strong>Terjemahan:</strong> ${dalil.tr}</p><p><strong>Rujukan:</strong> ${dalil.ref}. Ayat ini menjadi landasan nilai untuk memahami tema artikel. Penyebutan ayat tidak dimaksudkan sebagai pengganti pembahasan tafsir. Penghulu sebaiknya menjaga ketepatan teks Arab, terjemahan, konteks ayat, dan tidak menghubungkan ayat dengan kesimpulan hukum yang melampaui kandungannya.</p></section>
+      <section class="bank-deep-section"><h5>2. Dalil penguat tema dan terjemahan</h5><div class="bank-deep-arabic" dir="rtl">${dalil.ar}</div><p><strong>Terjemahan:</strong> ${dalil.tr}</p><p><strong>Rujukan artikel:</strong> ${a.source}</p><p><strong>Dalil penguat tema:</strong> ${dalil.ref}. Ayat ini menjadi landasan nilai untuk memahami tema artikel. Penyebutan ayat tidak dimaksudkan sebagai pengganti pembahasan tafsir. Penghulu sebaiknya menjaga ketepatan teks Arab, terjemahan, konteks ayat, dan tidak menghubungkan ayat dengan kesimpulan hukum yang melampaui kandungannya.</p></section>
       <section class="bank-deep-section"><h5>3. Penjelasan fikih dan prinsip keluarga</h5><p>Dalam fikih keluarga, pembahasan perkawinan berkaitan dengan tujuan menjaga agama, jiwa, keturunan, kehormatan, dan kemaslahatan. Prinsip <em>mu’asyarah bil ma’ruf</em> menuntut perlakuan yang patut; amanah menuntut kejujuran dan tanggung jawab; sedangkan musyawarah mengajarkan keterlibatan pasangan dalam urusan yang menyangkut kehidupan bersama. Prinsip-prinsip ini perlu dipahami bersama dalil yang relevan, penjelasan ulama, serta ketentuan hukum positif Indonesia.</p><p>${legal}</p><p>Penghulu perlu membedakan nasihat keagamaan yang bersifat umum dari konsultasi hukum atas kasus tertentu. Bila persoalan menyangkut status hukum, hak ekonomi, kekerasan, kesehatan, atau keselamatan, arahkan kepada lembaga atau tenaga profesional yang memiliki kewenangan. Hindari memberi putusan hanya berdasarkan cerita sepihak atau informasi yang belum diverifikasi.</p></section>
       <section class="bank-deep-section"><h5>4. Ilustrasi kasus rumah tangga</h5><p>${scenario}</p><p>Dalam membahas ilustrasi, tekankan bahwa contoh tersebut bukan gambaran semua keluarga dan bukan diagnosis terhadap pasangan. Ajak kedua pihak mengidentifikasi kebutuhan, sumber daya, batas yang harus dihormati, dan pilihan langkah yang aman. Apabila kasus nyata mengandung kekerasan atau ancaman, jangan mendorong korban untuk berhadapan langsung dengan pelaku atau membuka informasi yang dapat meningkatkan risiko.</p></section>
       <section class="bank-deep-section"><h5>5. Langkah praktis yang dapat disepakati pasangan</h5><p>${practice}</p><p>Kesepakatan sebaiknya spesifik, realistis, dan dapat ditinjau ulang. Pasangan dapat memilih satu atau dua perubahan kecil untuk dimulai, menentukan kapan akan mengevaluasinya, dan menyepakati cara membicarakan kendala. Perubahan perilaku membutuhkan konsistensi, bukan tuntutan agar pasangan berubah seketika.</p></section>
@@ -88,22 +88,70 @@ const BANK_NASEHAT_ARTICLES = [{"theme": "Fondasi Keluarga Sakinah", "title": "S
   }
   themeSelect.addEventListener('change',populateTitles);
   titleSelect.addEventListener('change',showArticle);
-  document.getElementById('bankNasehatCopy').addEventListener('click',()=>{
-    const a=BANK_NASEHAT_ARTICLES[Number(titleSelect.value)]; if(!a)return;
-    const deep=document.getElementById('bankNasehatDeep');
-    const text=a.title+'\nTema: '+a.theme+'\nRujukan: '+a.source+'\n\n'+a.body+'\n\n'+(deep?deep.innerText:'');
-    const helper=document.createElement('textarea'); helper.value=text; helper.setAttribute('readonly','');
-    helper.style.position='fixed';helper.style.left='-9999px';document.body.appendChild(helper);
-    helper.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}
-    helper.remove();
-    if(typeof showToast==='function')showToast(ok?'Artikel berhasil disalin.':'Salin otomatis gagal.');
+  document.getElementById('bankNasehatCopy').addEventListener('click', async () => {
+    const a = BANK_NASEHAT_ARTICLES[Number(titleSelect.value)];
+    if (!a) return;
+    const deep = document.getElementById('bankNasehatDeep');
+    const text = `${a.title}\nTema: ${a.theme}\nRujukan: ${a.source}\n\n${a.body}\n\n${deep ? deep.innerText : ''}`;
+    let copied = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext && typeof navigator.clipboard.writeText === 'function') {
+        await navigator.clipboard.writeText(text);
+        copied = true;
+      }
+    } catch (error) {
+      copied = false;
+    }
+    if (!copied) {
+      const helper = document.createElement('textarea');
+      helper.value = text;
+      helper.setAttribute('readonly', '');
+      helper.style.position = 'fixed';
+      helper.style.left = '-9999px';
+      document.body.appendChild(helper);
+      helper.focus();
+      helper.select();
+      try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+      helper.remove();
+    }
+    if (typeof showToast === 'function') {
+      showToast(copied ? 'Artikel lengkap berhasil disalin.' : 'Penyalinan otomatis gagal. Silakan salin teks secara manual.');
+    }
   });
-  document.getElementById('bankNasehatPrint').addEventListener('click',()=>{
-    const a=BANK_NASEHAT_ARTICLES[Number(titleSelect.value)];if(!a)return;
-    const w=window.open('','_blank','width=800,height=700');
-    if(!w)return;
-    w.document.write('<!doctype html><html><head><title>'+a.title+'</title><style>body{font:16px/1.8 Georgia,serif;max-width:760px;margin:40px auto;padding:0 24px;color:#222}h1{font:700 25px/1.3 Arial}small{color:#567}p{white-space:pre-wrap}</style></head><body><small>'+a.theme+'</small><h1>'+a.title+'</h1><p><b>Rujukan: </b>'+a.source+'</p><p>'+a.body+'</p></body></html>');
-    w.document.close();w.focus();w.print();
+  document.getElementById('bankNasehatPrint').addEventListener('click', () => {
+    const a = BANK_NASEHAT_ARTICLES[Number(titleSelect.value)];
+    if (!a) return;
+    const deep = document.getElementById('bankNasehatDeep');
+    const w = window.open('', '_blank', 'width=900,height=760');
+    if (!w) {
+      if (typeof showToast === 'function') showToast('Jendela cetak diblokir browser. Izinkan pop-up untuk mencetak artikel.');
+      return;
+    }
+    const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[char]));
+    const fullArticle = deep ? deep.innerHTML : '';
+    w.document.open();
+    w.document.write(`<!doctype html>
+      <html lang="id"><head><meta charset="utf-8"><title>${escapeHtml(a.title)}</title>
+      <style>
+        @page{margin:20mm}
+        body{font:16px/1.8 Georgia,serif;max-width:760px;margin:32px auto;padding:0 24px;color:#222}
+        h1{font:700 25px/1.3 Arial,sans-serif;margin:8px 0 16px}
+        h5{font:700 17px/1.4 Arial,sans-serif;margin:22px 0 8px}
+        .meta{color:#567;font-size:13px}
+        .bank-deep-arabic{direction:rtl;text-align:right;font-size:25px;line-height:2.1;margin:16px 0}
+        section{break-inside:avoid}
+      </style></head><body>
+      <div class="meta">${escapeHtml(a.theme)}</div>
+      <h1>${escapeHtml(a.title)}</h1>
+      <p><b>Rujukan artikel:</b> ${escapeHtml(a.source)}</p>
+      <p>${escapeHtml(a.body)}</p>
+      ${fullArticle}
+      </body></html>`);
+    w.document.close();
+    w.focus();
+    w.print();
   });
   populateTitles();
 })();

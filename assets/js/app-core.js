@@ -17,7 +17,85 @@
     /* ==========================================================================
        B. INITIALIZATION & NAVIGATION
        ========================================================================== */
+    const SIDEBAR_SCROLL_KEY = 'asisten-penghulu.sidebar-scroll.v1';
+
+    function initSidebarScrollPersistence() {
+      const sidebarNav = document.querySelector('.sidebar-nav');
+      if (!sidebarNav) return;
+
+      // Restore only when the saved position belongs to the page being opened.
+      // This also handles browser back/forward cache through the pageshow event.
+      const restoreSidebarPosition = () => {
+        let saved = null;
+        try {
+          saved = sessionStorage.getItem(SIDEBAR_SCROLL_KEY);
+        } catch (error) {
+          return;
+        }
+        if (!saved) return;
+
+        let state = null;
+        try {
+          state = JSON.parse(saved);
+        } catch (error) {
+          try { sessionStorage.removeItem(SIDEBAR_SCROLL_KEY); } catch (_) {}
+          return;
+        }
+
+        if (!state || state.destination !== window.location.pathname ||
+            !Number.isFinite(Number(state.scrollTop))) {
+          try { sessionStorage.removeItem(SIDEBAR_SCROLL_KEY); } catch (_) {}
+          return;
+        }
+
+        // Wait for layout/fonts to settle, then restore the sidebar's own scroll area.
+        const applyPosition = () => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              const maxScroll = Math.max(0, sidebarNav.scrollHeight - sidebarNav.clientHeight);
+              sidebarNav.scrollTop = Math.min(Math.max(0, Number(state.scrollTop)), maxScroll);
+              try { sessionStorage.removeItem(SIDEBAR_SCROLL_KEY); } catch (_) {}
+            });
+          });
+        };
+
+        if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function') {
+          document.fonts.ready.then(applyPosition).catch(applyPosition);
+        } else {
+          applyPosition();
+        }
+      };
+
+      // Save the scroll position before a normal same-tab sidebar navigation.
+      sidebarNav.addEventListener('click', event => {
+        const link = event.target.closest('a.nav-item[href]');
+        if (!link || event.defaultPrevented || event.button !== 0 ||
+            event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (link.target && link.target !== '_self') return;
+
+        let destination;
+        try {
+          destination = new URL(link.href, window.location.href);
+        } catch (error) {
+          return;
+        }
+        if (destination.origin !== window.location.origin) return;
+
+        try {
+          sessionStorage.setItem(SIDEBAR_SCROLL_KEY, JSON.stringify({
+            scrollTop: sidebarNav.scrollTop,
+            destination: destination.pathname
+          }));
+        } catch (error) {
+          // Navigation should continue even if browser storage is unavailable.
+        }
+      });
+
+      window.addEventListener('pageshow', restoreSidebarPosition);
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+      initSidebarScrollPersistence();
       initAppDates();
       const page = document.body.dataset.page || 'dashboard';
       if (page === 'wali') { renderWaliTreeSidebar(); loadWaliStep(0); }
@@ -229,7 +307,11 @@
       const elM = document.getElementById('currentDateMasehi');
       const elH = document.getElementById('currentDateHijri');
       if (elM) elM.innerText = indoStr;
-      if (elH) elH.innerText = hijriStr;
+      if (elH) {
+        elH.innerText = hijriStr;
+        elH.title = 'Tanggal Hijriah merupakan perkiraan berdasarkan algoritma kalender dan dapat berbeda dari penetapan rukyat atau otoritas setempat.';
+        elH.setAttribute('aria-label', `Perkiraan tanggal Hijriah: ${hijriStr}`);
+      }
 
       // Dashboard Banner
       const dashM = document.getElementById('dashMasehiText');
@@ -542,6 +624,13 @@
       const date = new Date(y, m - 1, d);
       return date.getFullYear() === y && date.getMonth() === m - 1 && date.getDate() === d ? date : null;
     }
+
+    function formatLocalISODate(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
     function addCalendarMonths(date, months) {
       const result = new Date(date.getFullYear(), date.getMonth(), 1);
       const targetMonth = result.getMonth() + months;
@@ -585,6 +674,10 @@
       const today = new Date(); today.setHours(0, 0, 0, 0);
       if (!startDate) { showToast('Tanggal awal tidak valid.'); return; }
       if (startDate > today) { showToast('Tanggal awal tidak boleh berada di masa depan.'); return; }
+      if (isHamil && !isDukhul && reason !== 'mati') {
+        showToast('Kombinasi hamil dan belum dukhul perlu diperiksa kembali. Kalkulator tidak akan memberikan hasil otomatis untuk kondisi yang tidak konsisten.');
+        return;
+      }
 
       let ruleTitle = '';
       let daysDuration = 0;
@@ -1375,7 +1468,7 @@
        ========================================================================== */
     function initConverters() {
       const today = new Date();
-      const isoToday = today.toISOString().split('T')[0];
+      const isoToday = formatLocalISODate(today);
 
       const elM = document.getElementById('convMasehiInput');
       if (elM) {
@@ -1387,7 +1480,7 @@
       if (elC) {
         const nextMonth = new Date(today);
         nextMonth.setDate(nextMonth.getDate() + 30);
-        elC.value = nextMonth.toISOString().split('T')[0];
+        elC.value = formatLocalISODate(nextMonth);
         calculateDayCountdown();
       }
 
@@ -1415,18 +1508,37 @@
     }
 
     function convertHijriToMasehiCalc() {
-      const day = Number(document.getElementById('invHijriDay').value) || 1;
-      const month = Number(document.getElementById('invHijriMonth').value) || 1;
-      const year = Number(document.getElementById('invHijriYear').value) || 1448;
+      const dayValue = document.getElementById('invHijriDay').value;
+      const monthValue = document.getElementById('invHijriMonth').value;
+      const yearValue = document.getElementById('invHijriYear').value;
+      const day = Number(dayValue);
+      const month = Number(monthValue);
+      const year = Number(yearValue);
+      const output = document.getElementById('invMasehiResult');
+
+      if (!Number.isInteger(day) || day < 1 || day > 30 ||
+          !Number.isInteger(month) || month < 1 || month > 12 ||
+          !Number.isInteger(year) || year < 1 || year > 9999) {
+        output.innerText = 'Masukkan tanggal Hijriah yang valid.';
+        showToast('Periksa kembali hari, bulan, dan tahun Hijriah.');
+        return;
+      }
 
       const mDate = hijriToGregorian(day, month, year);
-      document.getElementById('invMasehiResult').innerText = `Perkiraan Masehi: ${formatIndoDate(mDate)}`;
+      const check = gregorianToHijri(mDate);
+      if (check.day !== day || check.month !== month || check.year !== year) {
+        output.innerText = 'Tanggal tersebut tidak tersedia pada perkiraan kalender Hijriah.';
+        showToast('Tanggal Hijriah tidak valid pada algoritma kalender yang digunakan.');
+        return;
+      }
+      output.innerText = `Perkiraan Masehi: ${formatIndoDate(mDate)}`;
     }
 
     function calculateDayCountdown() {
       const val = document.getElementById('cntTargetDate').value;
       if (!val) return;
-      const target = new Date(val);
+      const target = parseLocalISODate(val);
+      if (!target) { showToast('Tanggal tujuan tidak valid.'); return; }
       const today = new Date();
 
       target.setHours(0,0,0,0);
@@ -1453,7 +1565,8 @@
       const addAmount = Number(document.getElementById('cntAddDaysAmount').value) || 0;
       if (!baseVal) return;
 
-      const base = new Date(baseVal);
+      const base = parseLocalISODate(baseVal);
+      if (!base) { showToast('Tanggal awal tidak valid.'); return; }
       base.setDate(base.getDate() + addAmount);
 
       document.getElementById('cntAddDaysResult').innerText = `Target Tanggal: ${formatIndoDate(base)}`;

@@ -8,8 +8,8 @@ Dokumen ini berisi metadata dan pengaturan yang disarankan agar halaman reposito
 |---|---|
 | Repository name | `asisten-penghulu-web` |
 | Project name | `Asisten Penghulu` |
-| Short description | `Aplikasi web modular untuk mendukung pekerjaan kepenghuluan: pemeriksaan wali, iddah, mahar, akad nikah, khutbah, nasihat, dan referensi fikih.` |
-| Website | Isi setelah domain Vercel/Netlify aktif |
+| Short description | `Platform web modular untuk pengetahuan profesional penghulu: regulasi, fikih munakahat, dalil, khutbah, nasihat perkawinan, dan alat bantu pembelajaran.` |
+| Website | `https://asistenpenghulu.vercel.app` |
 | Default branch | `main` |
 | Repository type | Git repository |
 | Primary language | JavaScript |
@@ -22,7 +22,7 @@ Masukkan topics berikut pada bagian **About → Topics** di GitHub:
 ```text
 asisten-penghulu
 kepenghuluan
-administrasi-pernikahan
+pengetahuan-kepenghuluan
 pernikahan
 nikah
 fikih-munakahat
@@ -43,12 +43,12 @@ Rekomendasi teks:
 
 **Description**
 ```text
-Aplikasi web modular untuk mendukung pekerjaan kepenghuluan: pemeriksaan wali, iddah, mahar, akad nikah, khutbah, nasihat, dan referensi fikih.
+Platform web modular untuk pengetahuan profesional penghulu: regulasi, fikih munakahat, dalil, khutbah, nasihat perkawinan, dan alat bantu pembelajaran.
 ```
 
 **Website**
 ```text
-https://NAMA-PROYEK.vercel.app
+https://asistenpenghulu.vercel.app
 ```
 
 Ganti contoh alamat di atas dengan domain deployment yang benar-benar aktif. Jangan mengisi website dengan URL contoh.
@@ -88,7 +88,7 @@ Spesifikasi desain yang disarankan:
 
 - Ukuran: 1280 × 640 px.
 - Judul: `ASISTEN PENGHULU`.
-- Subjudul: `Digital Workspace for Islamic Marriage Administration & Knowledge`.
+- Subjudul: `Professional Knowledge Platform for Marriage Officers`.
 - Identitas warna: hijau tua, hijau lembut, dan aksen emas.
 - Elemen visual: simbol geometris islami yang sederhana, ilustrasi dokumen, dan tampilan antarmuka.
 - Hindari menampilkan data pribadi atau dokumen pengguna.
@@ -112,5 +112,5 @@ Gambar preview belum disertakan dalam repository ini; tambahkan setelah desain f
 ## 8. Deskripsi Singkat untuk Profil atau Portofolio
 
 ```text
-Asisten Penghulu adalah aplikasi web modular yang dikembangkan untuk mendukung pekerjaan kepenghuluan melalui integrasi alat bantu administrasi pernikahan, kalkulator, generator naskah akad, khutbah, bank nasihat perkawinan, dan ensiklopedia fikih munakahat. Dibangun menggunakan HTML, CSS, dan Vanilla JavaScript dengan pendekatan static multi-page application serta dukungan Progressive Web App.
+Asisten Penghulu adalah platform pengetahuan profesional yang dikembangkan untuk penghulu melalui integrasi ensiklopedia regulasi, fikih munakahat, dalil, materi khutbah, bank nasihat perkawinan, dan alat bantu pembelajaran. Aplikasi ini tidak mengelola data calon pengantin atau administrasi pencatatan nikah. Dibangun menggunakan HTML, CSS, dan Vanilla JavaScript dengan pendekatan static multi-page application serta dukungan Progressive Web App.
 ```

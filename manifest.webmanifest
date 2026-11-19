@@ -1,7 +1,7 @@
 {
   "name": "Asisten Penghulu",
   "short_name": "Asisten Penghulu",
-  "description": "Alat bantu administrasi dan pengetahuan kepenghuluan.",
+  "description": "Platform pengetahuan profesional penghulu: regulasi, fikih munakahat, dalil, nasihat, khutbah, dan alat bantu pembelajaran.",
   "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
@@ -9,10 +9,22 @@
   "theme_color": "#123e32",
   "icons": [
     {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "/assets/icons/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }

@@ -2,12 +2,12 @@
 
 # Asisten Penghulu
 
-### Digital Workspace for Islamic Marriage Administration & Knowledge
+### Professional Knowledge Platform for Marriage Officers
 
-Aplikasi web modular untuk membantu pekerjaan kepenghuluan melalui alat bantu administrasi, kalkulator, generator naskah, dan perpustakaan pengetahuan fikih munakahat.
+Platform web modular untuk memperkaya pengetahuan profesional penghulu melalui ensiklopedia regulasi, fikih munakahat, dalil, materi khutbah, nasihat perkawinan, dan alat bantu pembelajaran.
 
 <p>
-  <img src="https://img.shields.io/badge/version-5.0-176b52?style=flat-square" alt="Version 5.0">
+  <img src="https://img.shields.io/badge/version-5.1-176b52?style=flat-square" alt="Version 5.1.1">
   <img src="https://img.shields.io/badge/architecture-modular-2563eb?style=flat-square" alt="Modular architecture">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
@@ -16,7 +16,7 @@ Aplikasi web modular untuk membantu pekerjaan kepenghuluan melalui alat bantu ad
   <img src="https://img.shields.io/badge/Deploy-Vercel%20%7C%20Netlify-111827?style=flat-square" alt="Vercel and Netlify">
 </p>
 
-**Bahasa:** Indonesia · **Platform:** Web · **Versi:** 5.0
+**Bahasa:** Indonesia · **Platform:** Web · **Versi:** 5.1.1 · **Website:** [asistenpenghulu.vercel.app](https://asistenpenghulu.vercel.app)
 
 </div>
 
@@ -24,9 +24,9 @@ Aplikasi web modular untuk membantu pekerjaan kepenghuluan melalui alat bantu ad
 
 ## Tentang Proyek
 
-**Asisten Penghulu** adalah aplikasi web yang dirancang sebagai ruang kerja digital untuk membantu aktivitas kepenghuluan. Aplikasi menggabungkan alat bantu pemeriksaan, perhitungan, penyusunan naskah, dan akses referensi dalam satu antarmuka.
+**Asisten Penghulu** adalah platform pengetahuan profesional bagi penghulu. Aplikasi menyediakan referensi regulasi, fikih munakahat, dalil Al-Qur'an dan hadis, materi nasihat, khutbah, serta alat bantu pembelajaran. Aplikasi ini bukan sistem administrasi pencatatan nikah dan tidak mengelola basis data calon pengantin.
 
-Versi 5.0 membawa perubahan arsitektur dari satu dokumen HTML besar menjadi **aplikasi multi-halaman modular**. Setiap fitur ditempatkan pada halaman tersendiri, sedangkan stylesheet, logika inti, dan data pendukung dipisahkan agar pemeliharaan dan pengembangan lebih terarah.
+Versi 5.1 menyempurnakan stabilitas dan fondasi offline dari arsitektur multi-halaman modular yang diperkenalkan pada v5.0. Setiap fitur ditempatkan pada halaman tersendiri, sedangkan stylesheet, logika inti, dan data pendukung dipisahkan agar pemeliharaan dan pengembangan lebih terarah.
 
 Aplikasi menggunakan teknologi web standar tanpa framework JavaScript dan tanpa proses build. Proyek dapat di-host sebagai static website melalui GitHub Pages, Vercel, atau Netlify.
 
@@ -35,8 +35,8 @@ Aplikasi menggunakan teknologi web standar tanpa framework JavaScript dan tanpa 
 | Modul | Kegunaan |
 |---|---|
 | Beranda | Akses ringkas ke fitur dan ruang kerja aplikasi |
-| Cek Wali Nikah | Alur bantu pemeriksaan urutan wali nasab |
-| Kalkulator Iddah | Alat bantu perhitungan masa iddah berdasarkan pilihan kondisi |
+| Cek Wali Nikah | Alat bantu pembelajaran untuk memahami urutan dan kriteria awal wali nasab; bukan penetapan hukum |
+| Kalkulator Iddah | Alat bantu pembelajaran dan estimasi awal masa iddah berdasarkan kondisi yang dipilih; hasil perlu verifikasi |
 | Terjemah Mahar | Konversi nominal dan penyusunan istilah mahar |
 | Lafaz Akad Nikah | Generator naskah ijab kabul berdasarkan data yang dimasukkan |
 | Kumpulan Khutbah | Referensi naskah khutbah nikah |
@@ -194,7 +194,7 @@ Versi ini merupakan aplikasi statis dan tidak menyediakan backend atau sinkronis
 
 ## Batasan dan Penggunaan yang Bertanggung Jawab
 
-Asisten Penghulu merupakan **alat bantu kerja dan pembelajaran**, bukan pengganti:
+Asisten Penghulu merupakan **platform pengetahuan dan alat bantu pembelajaran**, bukan sistem administrasi pencatatan nikah dan bukan pengganti:
 
 - pemeriksaan dokumen dan prosedur resmi KUA;
 - kewenangan serta pertimbangan Pejabat Penghulu;
@@ -218,6 +218,7 @@ Sebelum mengajukan perubahan:
 
 ## Dokumentasi
 
+- [Laporan Audit v5.0](AUDIT-v5.0.md)
 - [Peta Modul](MODULE-MAP.md)
 - [Arsitektur Aplikasi](docs/ARCHITECTURE.md)
 - [Panduan Deployment](DEPLOY.md)
@@ -233,8 +234,8 @@ Repository ini belum menyertakan file lisensi. Hak penggunaan, modifikasi, dan d
 
 <div align="center">
 
-**Asisten Penghulu Web v5.0**
+**Asisten Penghulu Web v5.1.1**
 
-*Digital tools for thoughtful, accurate, and responsible marriage administration.*
+*Professional knowledge tools for accurate and responsible marriage guidance.*
 
 </div>
