@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/app.css"><link rel="stylesheet" href="../assets/css/modules/wali.css">
 </head>
 <body data-page="wali">
-<div class="version-strip">ASISTEN PENGHULU · VERSI 5.2.0 · WEB MODULAR</div>
+<div class="version-strip">ASISTEN PENGHULU · VERSI 5.2.1 · WEB MODULAR</div>
 <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleMobileSidebar()"></div>
 <div class="app-layout">
 <aside class="app-sidebar" id="appSidebar">
@@ -39,7 +39,7 @@
 </nav>
   <div class="sidebar-footer">
     <div class="offline-badge"><span class="pulse-dot"></span><span>Web · Offline setelah halaman tersimpan</span></div>
-    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.2.0 · Modular Web</div>
+    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.2.1 · Modular Web</div>
   </div>
 </aside>
 <main class="app-main">
@@ -105,13 +105,18 @@
 <!-- Q2: STATUS KEBERADAAN WALI -->
 <div class="question-row wali-availability-row">
   <div>
-    <div class="question-text">2. Apakah keberadaan wali diketahui?</div>
+    <div class="question-text">2. Keterangan keberadaan wali</div>
     <div class="question-desc">Pilih “tidak diketahui” hanya jika keberadaan wali benar-benar tidak diketahui. Jika alamat/lokasinya diketahui tetapi wali tidak dapat hadir atau sulit dihubungi, hal itu tidak otomatis berarti keberadaannya tidak diketahui; lanjutkan pemeriksaan kehadiran dan kemungkinan taukil wali.</div>
   </div>
-  <div class="wali-availability-options" role="group" aria-label="Status keberadaan wali">
-    <button type="button" class="wali-availability-option is-known" id="btn-location-known" aria-pressed="false" onclick="setWaliLocationStatus('known')">Diketahui</button>
-    <button type="button" class="wali-availability-option is-unknown" id="btn-location-unknown" aria-pressed="false" onclick="setWaliLocationStatus('unknown')">Tidak diketahui</button>
-    <button type="button" class="wali-availability-option is-pending active" id="btn-location-pending" aria-pressed="true" onclick="setWaliLocationStatus('pending')">Belum diverifikasi</button>
+  <div class="wali-availability-control">
+    <div class="wali-availability-options" role="group" aria-label="Status keberadaan wali">
+      <button type="button" class="wali-availability-option is-known" id="btn-location-known" data-wali-location-status="known" aria-pressed="false">Diketahui</button>
+      <button type="button" class="wali-availability-option is-unknown" id="btn-location-unknown" data-wali-location-status="unknown" aria-pressed="false">Tidak diketahui</button>
+      <button type="button" class="wali-availability-option is-pending active" id="btn-location-pending" data-wali-location-status="pending" aria-pressed="true">Belum diverifikasi</button>
+    </div>
+    <div class="wali-availability-selection" id="waliAvailabilitySelection" role="status" aria-live="polite">
+      Status belum diverifikasi. Lengkapi informasi sebelum menyimpulkan keberadaan wali.
+    </div>
   </div>
 </div>
 <!-- Q3 -->
@@ -210,9 +215,9 @@
 </section>
   </div>
   <footer class="app-footer">
-    <div><strong>Asisten Penghulu v5.2</strong> · Platform pengetahuan profesional</div>
+    <div><strong>Asisten Penghulu v5.2.1</strong> · Platform pengetahuan profesional</div>
     <div class="footer-disclaimer">Aplikasi ini merupakan alat bantu kerja. Keputusan administratif dan penetapan hukum tetap mengacu pada peraturan yang berlaku serta kewenangan pejabat yang berwenang.</div>
-    <div class="footer-v4">Asisten Penghulu Modular Web v5.2</div>
+    <div class="footer-v4">Asisten Penghulu Modular Web v5.2.1</div>
   </footer>
 </main>
 </div>

@@ -1,0 +1,24 @@
+name: Validate static application
+
+on:
+  push:
+    branches: [main, develop, v5.1-preview, v5.2-preview, v5.2.1-preview]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run static validation
+        run: node tests/validate-project.mjs
+      - name: Test sidebar scroll persistence
+        run: node tests/sidebar-scroll-smoke.mjs
+      - name: Test wali availability and qabul wording
+        run: node tests/wali-availability-smoke.mjs

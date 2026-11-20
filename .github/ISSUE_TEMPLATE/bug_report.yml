@@ -1,0 +1,43 @@
+name: Bug report
+description: Laporkan kesalahan fungsi, tampilan, atau navigasi.
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Jangan sertakan data pribadi atau dokumen pernikahan dalam laporan.
+  - type: input
+    id: page
+    attributes:
+      label: Halaman / modul
+      placeholder: Contoh: Kalkulator Iddah
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Deskripsi masalah
+      description: Jelaskan apa yang terjadi.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Langkah untuk mereproduksi
+      placeholder: "1. Buka halaman ...\n2. Masukkan ...\n3. Klik ..."
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser dan perangkat
+      placeholder: Contoh: Chrome 130, Windows 11
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: Hasil yang diharapkan
+    validations:
+      required: false

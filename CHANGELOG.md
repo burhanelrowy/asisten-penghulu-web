@@ -77,3 +77,15 @@ Semua perubahan penting pada proyek dicatat dalam dokumen ini.
 - Fitur wafat yang otomatis melanjutkan pemeriksaan ke urutan wali nasab berikutnya.
 - Seluruh modul dan perbaikan stabilitas v5.1.1.
 - Batasan produk sebagai platform pengetahuan, bukan aplikasi administrasi calon pengantin.
+
+
+## [5.2.1] — 2026-11-20
+
+### Fixed
+- Replaced inline click handlers on the wali whereabouts selector with a delegated event listener initialized on the wali page.
+- Added explicit click/touch interaction styling and stacking order to the three status buttons.
+- Added a visible live status message so the selected whereabouts state is immediately clear.
+- Bumped the Service Worker cache version to ensure the browser loads the updated interaction code.
+
+### Tests
+- Added a smoke test that invokes the delegated click handler and verifies that the selected status and live message update.
