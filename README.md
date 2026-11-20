@@ -7,7 +7,7 @@
 Platform web modular untuk memperkaya pengetahuan profesional penghulu melalui ensiklopedia regulasi, fikih munakahat, dalil, materi khutbah, nasihat perkawinan, dan alat bantu pembelajaran.
 
 <p>
-  <img src="https://img.shields.io/badge/version-5.1-176b52?style=flat-square" alt="Version 5.1.1">
+  <img src="https://img.shields.io/badge/version-5.2-176b52?style=flat-square" alt="Version 5.2">
   <img src="https://img.shields.io/badge/architecture-modular-2563eb?style=flat-square" alt="Modular architecture">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
@@ -16,7 +16,7 @@ Platform web modular untuk memperkaya pengetahuan profesional penghulu melalui e
   <img src="https://img.shields.io/badge/Deploy-Vercel%20%7C%20Netlify-111827?style=flat-square" alt="Vercel and Netlify">
 </p>
 
-**Bahasa:** Indonesia · **Platform:** Web · **Versi:** 5.1.1 · **Website:** [asistenpenghulu.vercel.app](https://asistenpenghulu.vercel.app)
+**Bahasa:** Indonesia · **Platform:** Web · **Versi:** 5.2.0 · **Website:** [asistenpenghulu.vercel.app](https://asistenpenghulu.vercel.app)
 
 </div>
 
@@ -26,7 +26,7 @@ Platform web modular untuk memperkaya pengetahuan profesional penghulu melalui e
 
 **Asisten Penghulu** adalah platform pengetahuan profesional bagi penghulu. Aplikasi menyediakan referensi regulasi, fikih munakahat, dalil Al-Qur'an dan hadis, materi nasihat, khutbah, serta alat bantu pembelajaran. Aplikasi ini bukan sistem administrasi pencatatan nikah dan tidak mengelola basis data calon pengantin.
 
-Versi 5.1 menyempurnakan stabilitas dan fondasi offline dari arsitektur multi-halaman modular yang diperkenalkan pada v5.0. Setiap fitur ditempatkan pada halaman tersendiri, sedangkan stylesheet, logika inti, dan data pendukung dipisahkan agar pemeliharaan dan pengembangan lebih terarah.
+Versi 5.2 mengembangkan pemeriksaan status keberadaan wali berdasarkan PMA Nomor 30 Tahun 2024 serta menyempurnakan redaksi generator kabul. Fondasi modular, cache offline, dan perbaikan stabilitas dari v5.1.1 tetap dipertahankan. Setiap fitur ditempatkan pada halaman tersendiri, sedangkan stylesheet, logika inti, dan data pendukung dipisahkan agar pemeliharaan dan pengembangan lebih terarah.
 
 Aplikasi menggunakan teknologi web standar tanpa framework JavaScript dan tanpa proses build. Proyek dapat di-host sebagai static website melalui GitHub Pages, Vercel, atau Netlify.
 
@@ -35,10 +35,10 @@ Aplikasi menggunakan teknologi web standar tanpa framework JavaScript dan tanpa 
 | Modul | Kegunaan |
 |---|---|
 | Beranda | Akses ringkas ke fitur dan ruang kerja aplikasi |
-| Cek Wali Nikah | Alat bantu pembelajaran untuk memahami urutan dan kriteria awal wali nasab; bukan penetapan hukum |
+| Cek Wali Nikah | Pemeriksaan bertahap urutan wali nasab, status keberadaan, dan pembedaan kondisi taukil/keberadaan tidak diketahui; bukan penetapan hukum otomatis |
 | Kalkulator Iddah | Alat bantu pembelajaran dan estimasi awal masa iddah berdasarkan kondisi yang dipilih; hasil perlu verifikasi |
 | Terjemah Mahar | Konversi nominal dan penyusunan istilah mahar |
-| Lafaz Akad Nikah | Generator naskah ijab kabul berdasarkan data yang dimasukkan |
+| Lafaz Akad Nikah | Generator naskah ijab dan kabul; redaksi kabul memuat frasa “untuk diri saya sendiri” |
 | Kumpulan Khutbah | Referensi naskah khutbah nikah |
 | Bank Nasihat Perkawinan | Perpustakaan materi nasihat dan bahan penyampaian |
 | Kalkulator & Konversi | Alat bantu tanggal, kalender, dan konversi terkait |
@@ -219,6 +219,7 @@ Sebelum mengajukan perubahan:
 ## Dokumentasi
 
 - [Laporan Audit v5.0](AUDIT-v5.0.md)
+- [Catatan Pengembangan v5.2](docs/RELEASE-v5.2.md)
 - [Peta Modul](MODULE-MAP.md)
 - [Arsitektur Aplikasi](docs/ARCHITECTURE.md)
 - [Panduan Deployment](DEPLOY.md)
@@ -234,7 +235,7 @@ Repository ini belum menyertakan file lisensi. Hak penggunaan, modifikasi, dan d
 
 <div align="center">
 
-**Asisten Penghulu Web v5.1.1**
+**Asisten Penghulu Web v5.2.0**
 
 *Professional knowledge tools for accurate and responsible marriage guidance.*
 

@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/app.css"><link rel="stylesheet" href="../assets/css/modules/wali.css">
 </head>
 <body data-page="wali">
-<div class="version-strip">ASISTEN PENGHULU · VERSI 5.1.1 · WEB MODULAR</div>
+<div class="version-strip">ASISTEN PENGHULU · VERSI 5.2.0 · WEB MODULAR</div>
 <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleMobileSidebar()"></div>
 <div class="app-layout">
 <aside class="app-sidebar" id="appSidebar">
@@ -39,7 +39,7 @@
 </nav>
   <div class="sidebar-footer">
     <div class="offline-badge"><span class="pulse-dot"></span><span>Web · Offline setelah halaman tersimpan</span></div>
-    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.1.1 · Modular Web</div>
+    <div style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)">Versi 5.2.0 · Modular Web</div>
   </div>
 </aside>
 <main class="app-main">
@@ -89,7 +89,7 @@
 <i class="fa-solid fa-list-check"></i>
 <span>Verifikasi Syarat Wali Nasab dan Kehadiran</span>
 </div>
-<span class="badge badge-gold">Wajib Terpenuhi Semua</span>
+<span class="badge badge-gold">Pemeriksaan Bertahap</span>
 </div>
 <!-- Q1 -->
 <div class="question-row">
@@ -102,10 +102,22 @@
 <button class="toggle-btn no" id="btn-q1-no" onclick="setWaliAnswer('q1', false)">Wafat</button>
 </div>
 </div>
-<!-- Q2 -->
+<!-- Q2: STATUS KEBERADAAN WALI -->
+<div class="question-row wali-availability-row">
+  <div>
+    <div class="question-text">2. Apakah keberadaan wali diketahui?</div>
+    <div class="question-desc">Pilih “tidak diketahui” hanya jika keberadaan wali benar-benar tidak diketahui. Jika alamat/lokasinya diketahui tetapi wali tidak dapat hadir atau sulit dihubungi, hal itu tidak otomatis berarti keberadaannya tidak diketahui; lanjutkan pemeriksaan kehadiran dan kemungkinan taukil wali.</div>
+  </div>
+  <div class="wali-availability-options" role="group" aria-label="Status keberadaan wali">
+    <button type="button" class="wali-availability-option is-known" id="btn-location-known" aria-pressed="false" onclick="setWaliLocationStatus('known')">Diketahui</button>
+    <button type="button" class="wali-availability-option is-unknown" id="btn-location-unknown" aria-pressed="false" onclick="setWaliLocationStatus('unknown')">Tidak diketahui</button>
+    <button type="button" class="wali-availability-option is-pending active" id="btn-location-pending" aria-pressed="true" onclick="setWaliLocationStatus('pending')">Belum diverifikasi</button>
+  </div>
+</div>
+<!-- Q3 -->
 <div class="question-row">
 <div>
-<div class="question-text">2. Apakah calon wali laki-laki dan beragama Islam?</div>
+<div class="question-text">3. Apakah calon wali laki-laki dan beragama Islam?</div>
 <div class="question-desc">Syarat wali nasab menurut PMA Nomor 30 Tahun 2024 Pasal 12 ayat (2) adalah laki-laki dan beragama Islam.</div>
 </div>
 <div class="toggle-group">
@@ -116,7 +128,7 @@
 <!-- Q3 -->
 <div class="question-row">
 <div>
-<div class="question-text">3. Apakah calon wali baligh dan berakal sehat?</div>
+<div class="question-text">4. Apakah calon wali baligh dan berakal sehat?</div>
 <div class="question-desc">Anak kecil dan orang yang hilang akal/gila atau pikun tidak berhak menikahkan.</div>
 </div>
 <div class="toggle-group">
@@ -127,7 +139,7 @@
 <!-- Q4 -->
 <div class="question-row">
 <div>
-<div class="question-text">4. Apakah calon wali memenuhi syarat adil?</div>
+<div class="question-text">5. Apakah calon wali memenuhi syarat adil?</div>
 <div class="question-desc">Syarat wali nasab menurut PMA Nomor 30 Tahun 2024 Pasal 12 ayat (2) huruf e adalah adil. Kondisi ihram, bila relevan, perlu diperiksa tersendiri menurut pedoman fikih.</div>
 </div>
 <div class="toggle-group">
@@ -138,7 +150,7 @@
 <!-- Q5 -->
 <div class="question-row">
 <div>
-<div class="question-text">5. Apakah wali hadir saat akad atau taukil wali telah dibuat sesuai prosedur?</div>
+<div class="question-text">6. Apakah wali hadir saat akad atau taukil wali telah dibuat sesuai prosedur?</div>
 <div class="question-desc">Jika tidak hadir, periksa surat taukil wali di hadapan PPN sesuai domisili/keberadaan wali dan disaksikan 2 orang sebagaimana Pasal 12 ayat (5). Jarak saja tidak otomatis menggugurkan wali.</div>
 </div>
 <div class="toggle-group">
@@ -198,9 +210,9 @@
 </section>
   </div>
   <footer class="app-footer">
-    <div><strong>Asisten Penghulu v5.0</strong> · Aplikasi web modular</div>
+    <div><strong>Asisten Penghulu v5.2</strong> · Platform pengetahuan profesional</div>
     <div class="footer-disclaimer">Aplikasi ini merupakan alat bantu kerja. Keputusan administratif dan penetapan hukum tetap mengacu pada peraturan yang berlaku serta kewenangan pejabat yang berwenang.</div>
-    <div class="footer-v4">Asisten Penghulu Modular Web v5.0</div>
+    <div class="footer-v4">Asisten Penghulu Modular Web v5.2</div>
   </footer>
 </main>
 </div>

@@ -2,7 +2,7 @@
 
 ## Ruang Lingkup
 
-Asisten Penghulu Web v5.0 merupakan aplikasi static website. Repository ini tidak menyertakan backend, autentikasi pengguna, atau database server.
+Asisten Penghulu Web v5.2 merupakan aplikasi static website. Repository ini tidak menyertakan backend, autentikasi pengguna, atau database server.
 
 ## Pelaporan Kerentanan
 

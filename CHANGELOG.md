@@ -59,3 +59,21 @@ Semua perubahan penting pada proyek dicatat dalam dokumen ini.
 ### Improved
 - Service Worker cache version bumped to `asisten-penghulu-v5.1.1`.
 - Added automated static checks for sidebar scroll persistence.
+
+
+## [5.2.0] — 2026-11-20
+
+### Added
+- Status keberadaan wali: diketahui, tidak diketahui, dan belum diverifikasi.
+- Penjelasan dasar hukum PMA Nomor 30 Tahun 2024 Pasal 13 ayat (5) huruf c jo. ayat (7) untuk status keberadaan yang tidak diketahui.
+- Pembedaan antara wali yang tidak diketahui keberadaannya dan wali yang diketahui tetapi tidak hadir; kondisi terakhir tetap diarahkan ke pemeriksaan taukil wali.
+
+### Changed
+- Kedua redaksi kabul Bahasa Indonesia menambahkan frasa “untuk diri saya sendiri”.
+- Transliterasi dan teks Arab kabul menambahkan padanan “li-nafsii” / “لِنَفْسِي”.
+- Nomor versi aplikasi dan cache Service Worker dinaikkan ke 5.2.0.
+
+### Preserved
+- Fitur wafat yang otomatis melanjutkan pemeriksaan ke urutan wali nasab berikutnya.
+- Seluruh modul dan perbaikan stabilitas v5.1.1.
+- Batasan produk sebagai platform pengetahuan, bukan aplikasi administrasi calon pengantin.

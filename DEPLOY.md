@@ -1,6 +1,6 @@
 # Deployment Guide
 
-Asisten Penghulu Web v5.0 adalah static website. Tidak diperlukan build command, package manager, atau environment variable untuk deployment dasar.
+Asisten Penghulu Web v5.2 adalah static website. Tidak diperlukan build command, package manager, atau environment variable untuk deployment dasar.
 
 ## Sebelum Deploy
 

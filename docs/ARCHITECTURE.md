@@ -2,7 +2,7 @@
 
 ## Architectural Style
 
-Asisten Penghulu Web v5.0 menggunakan pendekatan **static multi-page application**. Setiap fitur utama memiliki dokumen HTML sendiri, sementara aset bersama dipakai lintas halaman.
+Asisten Penghulu Web v5.2 menggunakan pendekatan **static multi-page application**. Setiap fitur utama memiliki dokumen HTML sendiri, sementara aset bersama dipakai lintas halaman.
 
 ```mermaid
 flowchart TD
