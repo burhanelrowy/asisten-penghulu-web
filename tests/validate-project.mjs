@@ -64,9 +64,16 @@ for (const required of [
   assert.ok(worker.includes(required), `Service Worker shell missing ${required}`);
 }
 
+const waliPage = fs.readFileSync(path.join(root, "pages", "wali.html"), "utf8");
+assert.ok(waliPage.includes("btn-location-unknown"), "Wali availability unknown option is missing");
+assert.ok(waliPage.includes("btn-location-pending"), "Wali availability pending option is missing");
+assert.ok(appCore.includes("getWaliAvailabilityGuidance"), "Wali availability guidance is missing");
+assert.ok(appCore.includes("untuk diri saya sendiri"), "Requested qabul phrase is missing");
+
 const encyclopedia = fs.readFileSync(path.join(root, "pages", "ensiklopedia.html"), "utf8");
 assert.ok(!/class=["']nav-item knowledge-nav active["']/.test(encyclopedia),
   "Encyclopedia category links must not all be statically active");
 
 assert.ok(fs.existsSync(path.join(root, "tests", "sidebar-scroll-smoke.mjs")), "Sidebar scroll regression test is missing");
+assert.ok(fs.existsSync(path.join(root, "tests", "wali-availability-smoke.mjs")), "Wali availability and qabul regression test is missing");
 console.log(`Static validation passed: ${htmlFiles.length} HTML pages, ${jsFiles.length} JavaScript files, ${checkedRefs} local references.`);

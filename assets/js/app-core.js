@@ -11,7 +11,7 @@
 
     // Current State Variables
     let currentWaliIndex = 0;
-    let waliAnswers = { q1: true, q2: true, q3: true, q4: true, q5: true };
+    let waliAnswers = { q1: true, q2: true, q3: true, q4: true, q5: true, qLocation: 'pending' };
     let waliHistory = [];
 
     /* ==========================================================================
@@ -381,7 +381,8 @@
       document.getElementById('waliRelationshipBadge').innerText = target.group;
 
       // Reset answers to YES
-      waliAnswers = { q1: true, q2: true, q3: true, q4: true, q5: true };
+      waliAnswers = { q1: true, q2: true, q3: true, q4: true, q5: true, qLocation: 'pending' };
+      setWaliLocationStatus('pending');
       for (let i = 1; i <= 5; i++) {
         document.getElementById(`btn-q${i}-yes`).classList.add('active', 'yes');
         document.getElementById(`btn-q${i}-no`).classList.remove('active');
@@ -471,6 +472,43 @@
       if (resultBox) resultBox.style.display = 'none';
     }
 
+    function getWaliAvailabilityGuidance(status) {
+      if (status === 'unknown') {
+        return {
+          title: 'Keberadaan Wali Tidak Diketahui',
+          explanation: 'PMA Nomor 30 Tahun 2024 mengatur bahwa wali hakim dapat bertindak apabila wali nasab tidak diketahui keberadaannya. Keadaan ini harus diperiksa secara cermat; status “tidak diketahui” tidak boleh disamakan dengan wali yang hanya tinggal jauh, sedang tidak hadir, atau belum berhasil dihubungi.',
+          notes: 'Persyaratan khusus: surat pernyataan bermeterai dari calon pengantin dan disaksikan oleh 2 (dua) orang saksi. Dasar: PMA Nomor 30 Tahun 2024 Pasal 13 ayat (5) huruf c jo. ayat (7). Aplikasi tidak menetapkan wali hakim secara otomatis; petugas tetap memeriksa fakta, pernyataan, saksi, dan ketentuan yang berlaku.',
+          type: 'unknown'
+        };
+      }
+      if (status === 'pending') {
+        return {
+          title: 'Keberadaan Wali Belum Terverifikasi',
+          explanation: 'Pemeriksaan belum dapat disimpulkan. Lakukan klarifikasi kepada keluarga atau pihak yang mengetahui keadaan wali. Jangan menyatakan wali ghaib/tidak diketahui dan jangan mengalihkan kewalian hanya karena informasi belum lengkap.',
+          notes: 'Jika lokasi wali diketahui tetapi ia tidak dapat hadir, periksa kemungkinan taukil wali menurut PMA Nomor 30 Tahun 2024 Pasal 12 ayat (5). Jika keberadaannya benar-benar tidak diketahui, periksa persyaratan Pasal 13 ayat (5) huruf c dan ayat (7).',
+          type: 'pending'
+        };
+      }
+      return null;
+    }
+
+    function setWaliLocationStatus(status) {
+      const allowed = ['known', 'unknown', 'pending'];
+      if (!allowed.includes(status)) status = 'pending';
+      waliAnswers.qLocation = status;
+      const buttons = {
+        known: document.getElementById('btn-location-known'),
+        unknown: document.getElementById('btn-location-unknown'),
+        pending: document.getElementById('btn-location-pending')
+      };
+      Object.entries(buttons).forEach(([key, button]) => {
+        if (!button) return;
+        const active = key === status;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+    }
+
     function setWaliAnswer(qKey, isYes) {
       waliAnswers[qKey] = isYes;
       const btnYes = document.getElementById(`btn-${qKey}-yes`);
@@ -512,6 +550,21 @@
       const target = WALI_LEVELS[currentWaliIndex];
       const resultBox = document.getElementById('waliResultBox');
       const questionCard = document.getElementById('waliQuestionCard');
+
+      // Status keberadaan diperiksa sebelum evaluasi syarat lainnya.
+      const availabilityGuidance = getWaliAvailabilityGuidance(waliAnswers.qLocation);
+      if (availabilityGuidance) {
+        resultBox.className = availabilityGuidance.type === 'unknown' ? 'wali-result-box hakim' : 'wali-result-box';
+        document.getElementById('waliResultIcon').innerHTML = availabilityGuidance.type === 'unknown'
+          ? '<i class="fa-solid fa-location-crosshairs"></i>'
+          : '<i class="fa-solid fa-circle-question"></i>';
+        document.getElementById('waliResultTitle').textContent = availabilityGuidance.title;
+        document.getElementById('waliResultExplanation').textContent = availabilityGuidance.explanation;
+        const officialRegulation = 'https://peraturan.go.id/filespengundangan/permenag-no-30-tahun-2024.pdf';
+        document.getElementById('waliResultNotes').innerHTML = `${availabilityGuidance.notes}<br><br><a href="${officialRegulation}" target="_blank" rel="noopener noreferrer">Buka naskah resmi PMA Nomor 30 Tahun 2024</a>`;
+        showWaliResultModal(resultBox);
+        return;
+      }
 
       // Ketidakhadiran/jarak bukan dasar otomatis untuk melompati wali aqrab;
       // kemungkinan taukil wali dan ketentuan wali hakim harus diverifikasi petugas.
@@ -565,7 +618,7 @@
           resultBox.className = 'wali-result-box hakim';
           document.getElementById('waliResultIcon').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
           document.getElementById('waliResultTitle').innerText = 'Perlu Pemeriksaan Lanjutan: Wali Tidak Hadir/Jauh';
-          document.getElementById('waliResultExplanation').textContent = 'Ketidakhadiran, jarak, atau sulit dihubungi tidak otomatis menggugurkan hak wali nasab atau memindahkan kewalian kepada wali hakim. Periksa kemungkinan taukil wali, keberadaan wali, jarak, alasan ketidakhadiran, dan prosedur sesuai regulasi sebelum mengambil keputusan.';
+          document.getElementById('waliResultExplanation').textContent = 'Karena keberadaan wali diketahui, ketidakhadiran atau jarak tidak otomatis menjadikan wali tersebut tidak diketahui keberadaannya dan tidak otomatis memindahkan kewalian kepada wali hakim. Periksa kemungkinan taukil wali di hadapan PPN sesuai domisili/keberadaan wali dan disaksikan 2 orang sebagaimana PMA Nomor 30 Tahun 2024 Pasal 12 ayat (5).';
           document.getElementById('waliResultNotes').textContent = 'Hasil pemeriksaan awal saja. Jangan menetapkan wali hakim hanya berdasarkan jawaban ini. Konsultasikan dan dokumentasikan pemeriksaan oleh pejabat KUA yang berwenang.';
           showWaliResultModal(resultBox);
           return;
@@ -1448,19 +1501,19 @@
 
       // 4. Kabul Standar
       document.getElementById('textKabulStdId').innerText = 
-        `"Saya terima nikah dan kawinnya ${bride} dengan maskawin tersebut ${payId}."`;
+        `"Saya terima nikah dan kawinnya ${bride} untuk diri saya sendiri dengan maskawin tersebut ${payId}."`;
       document.getElementById('textKabulStdLatin').innerText = 
-        `"Qobiltu nikaahahaa wa tazwiijahaa 'alal mahril madzkuur ${payLatin}."`;
+        `"Qobiltu nikaahahaa wa tazwiijahaa li-nafsii 'alal mahril madzkuur ${payLatin}."`;
       document.getElementById('textKabulStdAr').innerText = 
-        `قَبِلْتُ نِكَاحَهَا وَتَزْوِيجَهَا عَلَى المَهْرِ المَذْكُورِ ${payAr}`;
+        `قَبِلْتُ نِكَاحَهَا وَتَزْوِيجَهَا لِنَفْسِي عَلَى الْمَهْرِ الْمَذْكُورِ ${payAr}`;
 
       // 5. Kabul Full
       document.getElementById('textKabulFullId').innerText = 
-        `"Saya terima nikah dan kawinnya ${bride} dengan maskawin ${mahar} ${payId}."`;
+        `"Saya terima nikah dan kawinnya ${bride} untuk diri saya sendiri dengan maskawin ${mahar} ${payId}."`;
       document.getElementById('textKabulFullLatin').innerText = 
-        `"Qobiltu nikaahahaa wa tazwiijahaa 'alaa mahrin ${mahar} ${payLatin}."`;
+        `"Qobiltu nikaahahaa wa tazwiijahaa li-nafsii 'alaa mahrin ${mahar} ${payLatin}."`;
       document.getElementById('textKabulFullAr').innerText = 
-        `قَبِلْتُ نِكَاحَهَا وَتَزْوِيجَهَا عَلَى مَهْرِ ${mahar} ${payAr}`;
+        `قَبِلْتُ نِكَاحَهَا وَتَزْوِيجَهَا لِنَفْسِي عَلَى مَهْرِ ${mahar} ${payAr}`;
     }
 
     /* ==========================================================================
