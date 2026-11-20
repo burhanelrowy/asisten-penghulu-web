@@ -33,3 +33,8 @@ Pada transliterasi dan teks Arab, ditambahkan padanan `li-nafsii` / `لِنَف�
 ## Catatan penggunaan
 
 Fitur pemeriksaan wali merupakan alat bantu pengetahuan dan penyaringan awal, bukan penetapan hukum otomatis. Redaksi kabul adalah contoh penyusunan naskah; pelaksanaan akad tetap mengikuti bimbingan dan ketentuan pejabat berwenang.
+
+
+## Patch v5.2.1 — selector keberadaan wali
+
+Tombol pilihan keterangan keberadaan wali kini memakai delegated click handler yang diinisialisasi pada halaman pemeriksaan wali, bukan inline `onclick`. Pemilihan juga menampilkan pesan status langsung (`aria-live`) dan style sentuh/click yang eksplisit. Cache Service Worker dinaikkan agar browser mengambil kode terbaru.

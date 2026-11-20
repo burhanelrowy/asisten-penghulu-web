@@ -11,3 +11,15 @@
 .wali-availability-note{margin-top:10px;padding:12px 14px;border:1px solid #e7d8b8;border-radius:11px;background:#fffaf0;color:#705827;font-size:.82rem;line-height:1.65}
 .wali-availability-note a{color:#176b52;font-weight:750;text-decoration:underline}
 @media(max-width:700px){.wali-availability-row{display:flex!important;flex-direction:column!important;gap:11px!important}.wali-availability-options{display:grid;grid-template-columns:1fr;justify-content:stretch;width:100%}.wali-availability-option{width:100%;text-align:left}}
+
+/* v5.2.1 — make the wali whereabouts selector reliably interactive and visible */
+.wali-availability-options{position:relative;z-index:2;pointer-events:auto}
+.wali-availability-option{position:relative;z-index:1;pointer-events:auto;touch-action:manipulation;user-select:none;-webkit-tap-highlight-color:rgba(23,107,80,.12)}
+.wali-availability-option:active{transform:translateY(1px)}
+.wali-availability-selection{margin-top:10px;padding:10px 12px;border:1px solid #dce8df;border-radius:10px;background:#f7faf8;color:#53675b;font-size:.78rem;line-height:1.6}
+.wali-availability-selection[data-status="known"]{border-color:#b8d9c4;background:#eef8f1;color:#205b3d}
+.wali-availability-selection[data-status="unknown"]{border-color:#e7c0bd;background:#fff3f2;color:#8f302a}
+.wali-availability-selection[data-status="pending"]{border-color:#e7d8b8;background:#fffaf0;color:#705827}
+
+.wali-availability-control{display:flex;flex:0 1 420px;flex-direction:column;gap:0;min-width:0}
+@media(max-width:700px){.wali-availability-control{width:100%;flex:1 1 auto}.wali-availability-options{grid-template-columns:1fr!important}}

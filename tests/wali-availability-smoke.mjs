@@ -9,11 +9,19 @@ const core = fs.readFileSync(path.join(root, 'assets', 'js', 'app-core.js'), 'ut
 const waliHtml = fs.readFileSync(path.join(root, 'pages', 'wali.html'), 'utf8');
 
 const nodes = new Map();
+let availabilityClickHandler = null;
+const availabilityGroup = {
+  dataset: {},
+  addEventListener(type, handler) { if (type === 'click') availabilityClickHandler = handler; },
+  contains(node) { return !!node && ['known', 'unknown', 'pending'].includes(node.dataset?.waliLocationStatus); }
+};
 function makeNode(value = '') {
   const attributes = new Map();
   const classes = new Set();
   return {
     value,
+    dataset: {},
+    hidden: false,
     innerText: '',
     textContent: '',
     innerHTML: '',
@@ -45,7 +53,7 @@ const document = {
     if (!nodes.has(id)) nodes.set(id, makeNode(inputDefaults[id] ?? ''));
     return nodes.get(id);
   },
-  querySelector() { return null; },
+  querySelector(selector) { return selector === '.wali-availability-options' ? availabilityGroup : null; },
   querySelectorAll() { return []; }
 };
 const context = vm.createContext({
@@ -80,6 +88,19 @@ assert.match(pending.notes, /Pasal 12 ayat \(5\)/);
 assert.equal(context.getWaliAvailabilityGuidance('known'), null);
 assert.equal(vm.runInContext('waliAnswers.qLocation', context), 'pending');
 
+// The real delegated click handler is bound and responds to a button click.
+context.initWaliAvailabilityControls();
+assert.equal(typeof availabilityClickHandler, 'function');
+const unknownButton = { dataset: { waliLocationStatus: 'unknown' } };
+let prevented = false;
+availabilityClickHandler({
+  target: { closest(selector) { return selector === 'button[data-wali-location-status]' ? unknownButton : null; } },
+  preventDefault() { prevented = true; }
+});
+assert.equal(prevented, true);
+assert.equal(vm.runInContext('waliAnswers.qLocation', context), 'unknown');
+assert.match(nodes.get('waliAvailabilitySelection').textContent, /Dipilih: Keberadaan wali tidak diketahui/);
+
 // Status control updates its selected state accessibly.
 context.setWaliLocationStatus('unknown');
 assert.equal(nodes.get('btn-location-unknown').getAttribute('aria-pressed'), 'true');
@@ -104,9 +125,11 @@ assert.equal(nodes.get('waliResultTitle').textContent, 'Keberadaan Wali Belum Te
 assert.equal(modalCalls, 2);
 
 // Wali page exposes all three statuses and clearly distinguishes presence/taukil.
-assert.match(waliHtml, /setWaliLocationStatus\('known'\)/);
-assert.match(waliHtml, /setWaliLocationStatus\('unknown'\)/);
-assert.match(waliHtml, /setWaliLocationStatus\('pending'\)/);
+assert.match(waliHtml, /data-wali-location-status="known"/);
+assert.match(waliHtml, /data-wali-location-status="unknown"/);
+assert.match(waliHtml, /data-wali-location-status="pending"/);
+assert.match(waliHtml, /id="waliAvailabilitySelection"/);
+assert.match(core, /initWaliAvailabilityControls\(\)/);
 assert.match(waliHtml, /kemungkinan taukil wali/i);
 
 // Generate qabul text and check Indonesian, Latin, and Arabic outputs.

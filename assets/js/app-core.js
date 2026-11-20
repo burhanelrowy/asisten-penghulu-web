@@ -98,7 +98,7 @@
       initSidebarScrollPersistence();
       initAppDates();
       const page = document.body.dataset.page || 'dashboard';
-      if (page === 'wali') { renderWaliTreeSidebar(); loadWaliStep(0); }
+      if (page === 'wali') { initWaliAvailabilityControls(); renderWaliTreeSidebar(); loadWaliStep(0); }
       if (page === 'iddah') { initIddahCalculator(); }
       if (page === 'mahar') { initMaharDictionary(); translateMaharNumber(); buildMaharSentence(); }
       if (page === 'akad') { renderAkadScripts(); }
@@ -492,6 +492,22 @@
       return null;
     }
 
+    // Bind status controls through a delegated listener instead of relying on
+    // inline onclick attributes. This is more robust across browser/PWA contexts.
+    function initWaliAvailabilityControls() {
+      const group = document.querySelector('.wali-availability-options');
+      if (!group || group.dataset.waliAvailabilityBound === 'true') return;
+      group.dataset.waliAvailabilityBound = 'true';
+      group.addEventListener('click', (event) => {
+        const button = event.target && typeof event.target.closest === 'function'
+          ? event.target.closest('button[data-wali-location-status]')
+          : null;
+        if (!button || !group.contains(button)) return;
+        event.preventDefault();
+        setWaliLocationStatus(button.dataset.waliLocationStatus);
+      });
+    }
+
     function setWaliLocationStatus(status) {
       const allowed = ['known', 'unknown', 'pending'];
       if (!allowed.includes(status)) status = 'pending';
@@ -507,6 +523,18 @@
         button.classList.toggle('active', active);
         button.setAttribute('aria-pressed', String(active));
       });
+
+      const selection = document.getElementById('waliAvailabilitySelection');
+      if (selection) {
+        const messages = {
+          known: 'Dipilih: Keberadaan wali diketahui. Lanjutkan pemeriksaan syarat wali dan kehadiran atau taukil.',
+          unknown: 'Dipilih: Keberadaan wali tidak diketahui. Evaluasi akan menampilkan ketentuan dan dokumen yang perlu diverifikasi.',
+          pending: 'Status belum diverifikasi. Lengkapi informasi sebelum menyimpulkan keberadaan wali.'
+        };
+        selection.textContent = messages[status];
+        selection.dataset.status = status;
+        selection.hidden = false;
+      }
     }
 
     function setWaliAnswer(qKey, isYes) {

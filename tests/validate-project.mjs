@@ -66,8 +66,11 @@ for (const required of [
 
 const waliPage = fs.readFileSync(path.join(root, "pages", "wali.html"), "utf8");
 assert.ok(waliPage.includes("btn-location-unknown"), "Wali availability unknown option is missing");
+assert.ok(waliPage.includes('data-wali-location-status="known"'), "Wali known status control is missing");
+assert.ok(waliPage.includes('id="waliAvailabilitySelection"'), "Wali status feedback is missing");
 assert.ok(waliPage.includes("btn-location-pending"), "Wali availability pending option is missing");
 assert.ok(appCore.includes("getWaliAvailabilityGuidance"), "Wali availability guidance is missing");
+assert.ok(appCore.includes("initWaliAvailabilityControls"), "Wali availability click binding is missing");
 assert.ok(appCore.includes("untuk diri saya sendiri"), "Requested qabul phrase is missing");
 
 const encyclopedia = fs.readFileSync(path.join(root, "pages", "ensiklopedia.html"), "utf8");
